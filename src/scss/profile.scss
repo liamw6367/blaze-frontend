@@ -1,0 +1,232 @@
+@import './styles.scss';
+// .$liteBG
+
+.profile-registration {
+  background: $liteBG;
+  padding: 50px;
+  box-sizing: border-box;
+
+  &__form {
+    max-width: 1400px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    display: flex;
+  }
+
+  &-columne {
+    display: flex;
+    margin-right: 150px;
+    flex-direction: column;
+  }
+}
+
+.profile-Payment {
+  background: white;
+  padding: 50px;
+  box-sizing: border-box;
+
+  &__form {
+    max-width: 1400px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    display: flex;
+  }
+
+  &-columne {
+    display: flex;
+    margin-right: 150px;
+    flex-direction: column;
+  }
+}
+
+.profile__Payment__small__container {
+  display: flex;
+  justify-content: space-between;
+
+  & .profile__inp {
+    width: 150px;
+  }
+}
+
+.profile__container {
+  display: flex;
+  align-items: center;
+  padding-top: 25px;
+  box-sizing: border-box;
+}
+
+// .order__payment__container{
+//     display: flex;
+//     align-items: center;
+//     flex-direction: column;
+//     padding-top: 25px;
+// }
+.profile__inp {
+  width: 328px;
+  height: 37px;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  outline: none;
+
+  &__name {
+    font: normal normal 600 18px/26px Mulish;
+    // margin-top: 25px;
+    width: 150px;
+    // font-size: 18px;
+    // font-family: 'Mulish', sans-serif;
+  }
+
+  &__name__Card {
+    font: normal normal normal 16px/24px Mulish;
+    letter-spacing: 0px;
+    color: #2A2A2A;
+  }
+
+  &__textArea {
+    padding: 15px;
+    resize: none;
+    height: 100px;
+    box-sizing: border-box;
+  }
+}
+
+.profile__btn {
+  width: 135px;
+  height: 44px;
+  // padding: 8px 51px;
+  margin-top: 51px;
+  box-sizing: border-box;
+  background: $orange;
+  border-radius: 10px;
+  border: none;
+  font: normal normal 600 18px/26px Mulish;
+  color: white;
+  cursor: pointer;
+}
+
+.addCardText {
+  font: normal normal 600 16px/26px Mulish;
+  margin-top: 30px;
+  color: #4F99D5;
+}
+
+.payment--inp__title {
+  display: flex;
+  align-items: center;
+  margin: 11px 0;
+}
+
+.payment__icon {
+  width: 16px;
+  margin-right: 11px;
+}
+
+.phoneVerificationBanner {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.phoneVerificationBtn {
+  width: max-content;
+  box-sizing: border-box;
+  background: #FF8400;
+  border-radius: 10px;
+  border: none;
+  font: normal normal 600 16px/16px Mulish;
+  color: white;
+  cursor: pointer;
+  padding: 15px 20px;
+  margin: 0 0 30px 0;
+}
+
+
+@media (max-width: 1200px) {
+  .profile{
+    .profile-registration{
+      padding: 50px 30px 15px;
+    }
+  }
+  .profile-Payment__form,
+  .profile-registration__form{
+    justify-content: space-between;
+    margin: 0;
+    width: 100%;
+  }
+  .profile-registration-columne,
+  .profile-Payment-columne {
+    margin-right: 50px;
+    width: 50%;
+&:nth-child(2){
+  margin-right: 0;
+}
+    .profile__container {
+      flex-direction: column;
+      align-items: end;
+    }
+    .profile__inp__name{
+      margin-bottom: 5px;
+    }
+    .profile__inp {
+      width: 100%;}
+
+  }
+
+  .profile-Payment{
+    padding: 50px 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .profile-registration-columne, .profile-Payment-columne {
+    margin-right: 30px;}
+  .profile__Payment__small__container{
+    flex-direction: column;
+  }
+
+}
+
+@media (max-width: 769px) {
+  .profile-registration{
+    padding: 30px 15px 0;
+  }
+  .profile-Payment{
+    padding: 30px 15px;
+  }
+  .profile-registration-columne, .profile-Payment-columne {
+    margin-right: 20px;
+  }
+  .title {
+    font-size: 18px;}
+  .profile__inp__name,.profile__inp{
+    font-size: 14px;
+  }
+  .profile__btn{
+    width: max-content;
+    height: auto;
+    margin-top: 30px;
+    font-size: 14px;
+    padding: 7px 30px;
+  }
+  .small-Menu__link {
+    margin: 0 50px;}
+}
+
+@media (max-width: 480px) {
+  .profile-Payment__form, .profile-registration__form{
+    flex-direction: column;
+
+  }
+  .profile-registration-columne, .profile-Payment-columne{
+    width: 100%;
+  }
+  .profile-registration-columne:nth-child(2), .profile-Payment-columne:nth-child(2){
+    margin-top: 30px;
+  }
+  .profile__container{
+    padding-top: 15px;
+  }
+  .small-Menu__link {
+    margin: 0 30px;}
+}

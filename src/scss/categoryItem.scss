@@ -1,0 +1,366 @@
+
+.category__Item.MuiDialog-root {
+  .MuiDialog-scrollPaper.MuiDialog-scrollPaper {
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .MuiDialog-container {
+    .MuiDialog-paperWidthSm {
+      width: 100%;
+      max-width: 1150px;
+      max-height: 1000px;
+    }
+
+    .MuiDialog-paper {
+      margin-top: 0;
+    }
+  }
+}
+
+.Card_Item {
+}
+
+.product_slider .cardItem__item {
+
+}
+
+.cardItem__item__container__left__title_g {
+  font: normal normal 700 13px/19px Mulish;
+  color: #8D8D8D;
+}
+
+.category__Item {
+  .wrapper {
+    margin: 0;
+  }
+
+  padding: 0 52px;
+
+  .product_details_txt {
+    margin-top: 22px;
+  }
+
+  .product_details_txt,
+  .more_like_txt {
+    text-align: left;
+    font: normal normal 600 16px/24px Muli;
+    font-family: MuliBold, sans-serif;
+    letter-spacing: 0;
+    color: #004C8A;
+    opacity: 1;
+    padding: 8px 0 0 0;
+
+  }
+
+  .owl-carousel {
+    margin-bottom: 67px;
+    height: 350px;
+  }
+
+}
+
+.category__Item.MuiDialog-root .MuiDialog-container .MuiDialog-paper {
+  padding: 0 52px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-end;
+  margin: auto;
+}
+
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #D1D6E9;
+
+  & > div {
+    width: 35%;
+  }
+
+  .left_bar {
+    .description {
+      text-align: left;
+      font: normal normal normal 12px/20px Montserrat;
+      font-family: MontserratRegualar, sans-serif;
+      letter-spacing: 0;
+      color: #004C8A;
+      margin-bottom: 13px;
+      padding-top: 16px;
+      margin-top: 8px;
+      border-top: 1px solid #D1D6E9;
+
+      span {
+        display: block;
+        font-family: MontserratMedium, sans-serif;
+        font-weight: 600;
+        margin-top: 3px;
+
+      }
+    }
+
+    .view_more {
+      text-align: left;
+      font: normal normal bold 14px/20px Muli;
+      font-family: MuliBold, sans-serif;
+      letter-spacing: 0;
+      color: #FF8400;
+      opacity: 1;
+    }
+  }
+
+  .right_bar {
+
+
+    .today_sale {
+      width: 85px;
+      height: 25px;
+      background: #FF8400 0 0 no-repeat padding-box;
+      border-radius: 17px;
+      color: #FFFFFF;
+      font: normal normal 700 14px/14px Mulish;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .today-card_product-title {
+      max-width: 300px;
+      text-align: left;
+      font: normal normal 600 18px/26px Muli;
+      font-family: MuliBold, sans-serif;
+      letter-spacing: 0;
+      color: #000000;
+      opacity: 1;
+      margin-bottom: 2px;
+    }
+
+    & > span {
+      text-align: left;
+      font: normal normal normal 14px/20px Muli;
+      font-family: MuliRegular, sans-serif;
+      letter-spacing: 0;
+      color: #004C8A;
+      opacity: 1;
+    }
+
+    p {
+      text-align: left;
+      font: normal normal normal 16px/24px Muli;
+      font-family: MuliRegular, sans-serif;
+      letter-spacing: 0;
+      opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 5px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      span {
+        &:first-child {
+          margin-right: 30px;
+          min-width: 100px;
+          color: #4F99D5;
+        }
+
+        font-family: MuliSemiBold, sans-serif;
+        color: #2A2A2A;
+
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+
+    }
+
+    .add_btn {
+      text-align: left;
+      font: normal normal bold 16px/16px Muli;
+      font-family: MuliBold, sans-serif;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      opacity: 1;
+      padding: 10px 24px;
+      background: #FF8400 0 0 no-repeat padding-box;
+      border-radius: 10px;
+      height: 44px;
+      line-height: initial;
+      border: none;
+    }
+
+    .shopName {
+      display: block;
+      text-align: center;
+
+      p {
+        width: 100%;
+        text-align: center;
+        font: normal normal 600 18px/26px Muli;
+        font-family: MuliSemiBold, sans-serif;
+        display: flex;
+        justify-content: center;
+        letter-spacing: 0;
+        color: #004C8A;
+        opacity: 1;
+        margin: 8px 0;
+
+      }
+    }
+
+    .phoneNum {
+      display: flex;
+
+      img {
+        margin-right: 8px;
+      }
+
+      p {
+        text-align: left;
+        font: normal normal 600 18px/26px Muli;
+        font-family: MuliSemiBold, sans-serif;
+
+        letter-spacing: 0;
+        color: #004C8A;
+        opacity: 1;
+      }
+    }
+
+  }
+
+}
+
+.category__Item.MuiDialog-root .MuiDialog-container .MuiDialog-paper {
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #004c8a;
+  }
+}
+
+.category__Item {
+  padding: 50px 30px;
+}
+
+.category__Item.MuiDialog-root .MuiDialog-container .MuiDialog-paper {
+  padding: 20px 30px;
+  margin: 20px auto;
+  justify-content: initial;
+}
+
+@media (max-width: 1200px) {
+  .category__Item {
+    .banner > div {
+      width: 40%;
+    }
+  }
+
+}
+
+@media (max-width: 992px) {
+  .category__Item {
+    .banner > div {
+      width: 47%;
+    }
+
+    &.MuiDialog-root .MuiDialog-container .MuiDialog-paper {
+      padding: 0 30px;
+    }
+
+    .banner .right_bar .today-card_product-title {
+      font-size: 14px;
+    }
+
+    .banner .right_bar .add_btn {
+      height: max-content;
+      padding: 10px 7px;
+      font-size: 12px;
+    }
+
+    .banner .right_bar p span:first-child,
+    .banner .right_bar .shopName p,
+    .banner .right_bar .phoneNum p {
+      font-size: 14px;
+    }
+
+    .right_bar {
+      padding-left: 20px;
+      padding-top: 30px;
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .category__Item {
+    padding: 15px;
+
+    &.MuiDialog-root .MuiDialog-container .MuiDialog-paper {
+      /*      padding: 20px 15px;
+      justify-content: initial;*/
+    }
+
+    .banner {
+      flex-direction: column;
+    }
+
+    .banner > div {
+      width: 100%;
+    }
+
+    .right_bar {
+      padding-left: 0;
+    }
+
+    .slick-slider {
+      margin: auto;
+      max-width: 50%;
+    }
+  }
+  .banner .right_bar .content {
+    width: max-content;
+
+    .add_btn {
+      margin-right: 30px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .category__Item {
+    .slick-slider {
+      max-width: 90%;
+    }
+
+    .banner .right_bar .content {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .banner .right_bar p {
+      justify-content: space-between
+    }
+  }
+
+}
+
+
+

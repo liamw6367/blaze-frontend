@@ -1,0 +1,96 @@
+@import './styles.scss';
+
+.footer {
+  padding: 50px 0;
+  box-sizing: border-box;
+  background: $blue;
+
+  &__container {
+    margin: 0 auto;
+    max-width: 1600px;
+    width: calc(100% - 30px);
+
+  }
+
+  &__title {
+    font: normal normal 600 20px/30px Mulish;
+    color: #FFFFFF;
+  }
+
+  &__blocks {
+    display: flex;
+    // justify-content: ;
+    a {
+      display: block;
+    }
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  &__block {
+    width: 25%;
+    display: flex;
+    // justify-content: ;
+
+  }
+
+  &__link {
+    font: normal normal 300 16px/30px Mulish;
+    color: #FFFFFF;
+    line-height: 25px;
+    margin-right: 20px;
+  }
+
+  &__shop-icon {
+    width: 140px;
+    height: 42px;
+    margin: 23px 10px 23px 0;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    .BestOffers__dropdown__title {
+      flex-direction: column;
+      align-items: end;
+
+
+    }
+    .BestOffers__dropdown {
+      height: 370px;
+    }
+  }
+  .footer__blocks {
+    margin-top: 20px;
+    flex-direction: column;
+
+    .footer__block {
+      width: 100%;
+    }
+
+    .list-unstyled {
+      margin: 0;
+
+      li {
+        width: 100%;
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .footer__title {
+      margin: 15px 0;
+    }
+
+    .footer__shop-icon {
+      display: flex;
+      margin: 10px 0;
+    }
+  }
+}

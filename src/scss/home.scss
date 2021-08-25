@@ -1,0 +1,269 @@
+@import './styles.scss';
+
+.home__link {
+  width: 140px;
+  height: 44px;
+  background: $orange 0 0 no-repeat padding-box;
+  border-radius: 10px;
+  text-align: center;
+  font: normal normal 600 16px/24px Mulish;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  margin-top: 48px;
+}
+
+.welcome {
+  background-image: url('../assets/images/welcome.png');
+  background-size: 55%;
+  background-repeat: no-repeat;
+  background-position: center right 150px;
+  // background-origin: content-box;
+  padding: 200px 0;
+  box-sizing: border-box;
+  background-color: $blue;
+
+  h3 {
+    text-align: left;
+    font: normal normal bold 30px/44px Muli;
+    font-family: MuliSemiBold, sans-serif;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    opacity: 1;
+    margin-top: 13px;
+  }
+
+  .wrapper {
+
+  }
+
+  &__title {
+    font: normal normal 700 40px/59px Mulish;
+    font-family: MuliSemiBold, sans-serif;
+    color: #FFFFFF;
+  }
+
+}
+
+.home {
+  .BestSavers__container,
+  .BestEveryday__container {
+    justify-content: space-between;
+  }
+
+  .cardItem__item {
+    max-width: 348px;
+  }
+}
+
+
+@media (max-width: 1600px) {
+  .home {
+    .welcome {
+      width: 100%;
+      background-size: 50%;
+      padding: 200px 30px;
+
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .home {
+    .welcome {
+      background-size: 45%;
+      padding: 150px 30px;
+
+    }
+
+    h2.welcome__title {
+      font-size: 35px;
+      line-height: 45px;
+    }
+
+    h3.welcome__title {
+      font-size: 25px;
+      line-height: 30px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .home {
+    .BestEveryday__container,
+    .BestSavers__container {
+      flex-wrap: wrap;
+    }
+    .BestOffers__container,
+    .ShopByCategory__container,
+    .BestSavers__container,
+    .BestEveryday__container {
+      margin-top: 50px;
+    }
+
+    .cardItem__item {
+      width: 48%;
+      max-width: 48%;
+    }
+
+    .welcome {
+      background-size: 40%;
+      padding: 100px 15px;
+
+    }
+
+    .ShopByCategory {
+      padding: 30px 0;
+    }
+
+    h2.welcome__title {
+      font-size: 30px;
+      line-height: 40px;
+    }
+
+    h3.welcome__title {
+      font-size: 21px;
+      line-height: 25px;
+    }
+
+    .home__link {
+      margin-top: 30px;
+    }
+
+    .BestSavers,
+    .BestEveryday,
+    .BestOffers {
+      padding: 30px 0;
+    }
+
+    .BestOffers__dropdown {
+      height: 240px;
+    }
+
+    .BestOffers__dropdown__title {
+      flex-wrap: wrap;
+    }
+
+    .BestOffers__dropdown__title p {
+      width: 100%;
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    p.dropdown__arrow {
+      margin-top: 90px;
+      top: 0;
+      width: max-content !important;
+    }
+
+    .BestOffers__dropdown--active {
+      height: auto !important;
+    }
+    .BestOffers__dropdown__content__item{
+      padding: 10px;
+    }
+    .BestOffers__dropdown__content .card-body_title{
+      font-size: 16px;
+      line-height: initial;
+    }
+    .BestOffers__dropdown__content .card-body_sale{
+      font-size: 12px;
+      line-height: initial;
+    }
+  }
+
+}
+
+@media (max-width: 895px) {
+  .home{
+    .BestOffers__dropdown {
+      height: 260px;
+    }
+  }
+}
+@media (max-width: 769px) {
+
+  .home {
+    h2.welcome__title {
+      font-size: 21px;
+      line-height: 30px;
+    }
+
+    h3.welcome__title {
+      font-size: 16px;
+      line-height: initial;
+    }
+
+    .welcome {
+      width: 100%;
+      padding: 20px 15px 120px;
+      background-size: 70%;
+      background-position: 50% 95%;
+
+    }
+
+    .wrapper {
+      width: 100%;
+
+    }
+    .BestOffers__dropdown__text__top,
+    .ShopByCategory__item__title{
+      font-size: 16px;
+      line-height: initial;
+    }
+    .BestOffers__dropdown__text__bottom,
+    .ShopByCategory__item__subTitle{
+      font-size: 21px;
+      line-height: initial;
+      margin: 5px 0;
+    }
+    .ShopByCategory__link{
+      font-size: 14px;
+    }
+    .cardItem__item,
+    .ShopByCategory__item {
+      width: 100%;
+      max-width: 100%;
+    }
+.BestEveryday__container .cardItem__item{
+  margin: 0 0 20px;
+
+}
+    .BestSavers__container .cardItem__item {
+      margin: 0 15px 20px;
+    }
+
+    .home__link {
+      width: max-content;
+      height: auto;
+      padding: 5px 15px;
+      font-size: 14px;
+      margin: 20px 0 40px;
+    }
+    .BestOffers__dropdown__text {
+      margin: 0 10px;
+    }
+    .title{
+      font-size: 25px;
+    }
+    p.dropdown__arrow{
+      margin-top: 87px;
+    }
+     .BestOffers__dropdown {
+      height: 265px;}
+    .BestSavers__link__block{
+      padding: 0 15px;
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+  .home{
+    .ShopByCategory__item{
+      min-width: initial;
+    }
+  }
+}

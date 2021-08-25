@@ -1,0 +1,370 @@
+  .MuiMenu-paper {
+    background-color: #fff !important;
+    top: 80px !important;
+    width: 100%;
+    max-width: 150px !important;
+    padding:0 10px;
+    li:first-child{
+      border-bottom: 1px solid rgba(102, 102, 102, 0.4);
+    }
+    .__link{
+      display: block;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+.menu {
+  width: 100%;
+  height: auto;
+  background: white;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  right: 0;
+  padding: 29px 15px;
+
+  .menu__navigation__item {
+    .user_profile_btn {
+      background-color: transparent;
+      box-shadow: initial;
+
+    }
+
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+
+    &__logo {
+      display: flex;
+      align-items: center;
+    }
+
+    &__map {
+      display: flex;
+      align-items: center;
+      margin-left: 60px;
+
+      &__icon {
+        margin-right: 8px;
+      }
+
+      &__text {
+        margin-right: 4px;
+        text-align: left;
+        font: normal normal normal 16px/24px Muli;
+        font-family: MuliRegular, sans-serif;
+        letter-spacing: 0;
+        //color: #000000;
+        opacity: 1;
+      }
+
+      &__arrow {
+        width: 7px;
+      }
+    }
+  }
+
+  &-icons {
+    stroke: #004c8a !important;
+    margin-right: 10px;
+
+    .a {
+      stroke: #004c8a !important;
+    }
+  }
+}
+
+.menu__navigation {
+  display: flex;
+  @media (max-width: 800px) {
+    display: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-left: 37px;
+    cursor: pointer;
+    text-align: left;
+    font: normal normal normal 16px/24px Muli;
+    font-family: MuliRegular, sans-serif;
+    letter-spacing: 0;
+    //color: #004C8A;
+    opacity: 1;
+  }
+}
+
+.menu__logo {
+  height: auto;
+  display: flex;
+}
+
+.hamburger-mb-menu {
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+    width: 50px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .hamburger1, .hamburger2, .hamburger3, .hamburger11, .hamburger22, .hamburger33 {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: black;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transition: .25s ease-in-out;
+  }
+
+  .hamburger1 {
+    top: 0px;
+    transform-origin: center center;
+  }
+
+  .hamburger2 {
+    top: 10px;
+    transform-origin: center center;
+  }
+
+  .hamburger3 {
+    top: 20px;
+    transform-origin: center center;
+  }
+
+  .hamburger11 {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 16px;
+  }
+
+  .hamburger22 {
+    width: 0%;
+    opacity: 0;
+  }
+
+  .hamburger33 {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 16px;
+  }
+}
+
+.menu-blok {
+  display: none;
+
+  &-active {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    margin-top: 78px;
+    height: calc(100vh - 78px);
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    @media (min-width: 800px) {
+      display: none;
+    }
+  }
+
+  &__container {
+    width: 400px;
+    margin-right: -400px;
+    background: white;
+    animation-name: hamburgerMenu;
+    animation-duration: 1s;
+    animation-delay: .2s;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    @keyframes hamburgerMenu {
+      from {
+        margin-right: -400px;
+      }
+      to {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+
+.selected_cart_items {
+  background-color: transparent;
+  border: none;
+}
+
+
+.MuiDialog-root {
+  .MuiDialog-scrollPaper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .MuiDialog-paper {
+    margin: 78px 0 0 0;
+
+  }
+
+
+  .MuiDialog-paperWidthSm {
+    height: 100%;
+    max-width: 486px;
+  }
+
+  .MuiDialogContent-root {
+    padding: 0;
+  }
+
+  .MuiDialog-paperWidthSm {
+    max-width: 100%;
+    margin-left: 30px;
+
+  }
+
+
+}
+
+.menu-container {
+  .menu-blok-active {
+    .menu-blok__container {
+      padding: 0 30px;
+
+      .menu__logo {
+        margin: 30px auto 20px;
+        width: max-content;
+      }
+
+      .menu__navigation__item {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+        padding: 0;
+      }
+
+      .selected_cart_items {
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+        padding: 0;
+      }
+    }
+  }
+
+}
+
+
+@media (max-width: 769px) {
+  .MuiDialog-root #dialogContent .product_cart_item {
+    .container {
+      .information_content {
+        .description {
+          font-size: 14px;
+        }
+      }
+
+      .img-bar {
+        margin: auto 10px auto 0;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+  .menu__logo {
+    max-width: 100px;
+
+    img {
+      max-width: 100%;
+    }
+
+  }
+  .hamburger-mb-menu {
+    width: 30px;
+  }
+  .menu-container__map {
+    margin-left: 20px;
+  }
+  .menu-container__map__icon {
+    max-width: 15px;
+  }
+  .menu-container__map__text {
+    font-size: 12px;
+  }
+  .MuiDialog-root #dialogContent .product_cart_item > .container {
+    flex-direction: column;
+    align-items: end !important;
+  }
+  .MuiDialog-root #dialogContent .product_cart_item .container.contact {
+    flex-direction: column;
+    align-items: end;
+
+
+    img {
+      height: auto;
+      width: auto;
+    }
+
+    .shopName {
+      margin-bottom: 20px;
+
+    }
+
+    img {
+      width: 36px;
+    }
+  }
+  .MuiDialog-root #dialogContent .product_cart_item .contact p,
+  .MuiDialog-root #dialogContent .head_banner div p {
+    font-size: 14px !important;
+  }
+  .MuiDialog-root #dialogContent .product_cart_item .information_content .price {
+    font-size: 12px !important;
+  }
+
+  .menu-container {
+    .menu-blok-active {
+      .menu-blok__container {
+        width: 80%;
+        padding: 0 15px;
+
+        .menu__logo {
+        }
+
+        .menu-container__map {
+        }
+
+        .menu__navigation__item {
+          font-size: 14px;
+        }
+
+        .menu-icons {
+          width: 17px;
+          height: 17px;
+        }
+      }
+    }
+
+  }
+
+}

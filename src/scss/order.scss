@@ -1,0 +1,230 @@
+@import './styles.scss';
+
+
+.order--data__container {
+  padding: 39px 30px;
+  box-sizing: border-box;
+  max-width: 1637px;
+  width: calc(100% - 30px);
+  background: #F6F7FB;
+  margin: 0 auto;
+
+  &__form {
+    display: flex;
+    align-items: center;
+
+  }
+}
+
+.order--search__container__title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 23px;
+  box-sizing: border-box;
+  max-width: 1637px;
+  width: calc(100% - 30px);
+  background: #F6F7FB;
+  margin: 9px auto 0;
+
+  &__form {
+    display: flex;
+    align-items: center;
+
+  }
+}
+
+.order--search__title__item {
+  font: normal normal 600 18px/26px Mulish;
+  letter-spacing: 0px;
+  color: #004C8A;
+  width: calc((100% - 350px) / 4);
+  text-align: center;
+  // border: 2px solid red;
+  &:nth-child(1) {
+    width: 350px;
+  }
+}
+
+.order--search__container {
+  max-width: 1637px;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+  margin-top: 23px;
+}
+
+.order-item {
+  background: #FFFBF5;
+  padding: 32px 23px;
+  box-sizing: border-box;
+  margin-bottom: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &__block {
+    display: flex;
+    align-items: center;
+    width: 350px;
+    // border: 2px solid red;
+    &__img {
+
+    }
+
+    &__title {
+      font: normal normal 600 18px/26px Mulish;
+      color: #2A2A2A;
+    }
+
+    &__text {
+      font: normal normal normal 14px/20px Mulish;
+      color: #004C8A;
+    }
+  }
+
+  &__text {
+    width: calc((100% - 350px) / 4);
+    text-align: center;
+    font: normal normal 600 18px/26px Mulish;
+    color: #2A2A2A;
+  }
+
+  // width: calc((100% - 350px)/4);
+  // &:nth-child(1){
+  //     width: 350px;
+  // }
+}
+
+.order__container {
+  display: flex;
+  align-items: center;
+}
+
+.order-inp__title {
+  font: normal normal 600 18px/26px Mulish;
+  margin-right: 16px;
+  color: #2A2A2A;
+}
+
+.order__inp {
+  margin-right: 40px;
+  height: 37px;
+  padding: 15px;
+  box-sizing: border-box;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  outline: none;
+}
+
+.order__inp__search {
+  margin-right: 20px;
+  height: 37px;
+  padding: 15px;
+  box-sizing: border-box;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #DBDBDB;
+  border-radius: 10px;
+  outline: none;
+}
+
+.order__btn {
+  width: 135px;
+  height: 37px;
+  // padding: 8px 51px;
+  // margin-top: 51px;
+  box-sizing: border-box;
+  background: $orange;
+  border-radius: 10px;
+  border: none;
+  font: normal normal 600 18px/26px Mulish;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .order--data__container__form {
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+  }
+  .order__container {
+    align-items: end;
+    flex-direction: column;
+    width: 48%;
+    margin-bottom: 15px;
+  }
+  .order__inp, .order__inp__search {
+    margin: 0;
+    width: 100%;
+  }
+  .order-item {
+    padding: 25px 10px;
+  }
+  .order-item__text {
+    width: calc((100% - 250px) / 4);
+  }
+  .order--search__title__item:nth-child(1) {
+    width: 280px;
+  }
+}
+
+@media (max-width: 769px) {
+  .order--data__container {
+    padding: 30px 15px;
+  }
+  .order--search__container__title {
+    padding: 10px;
+  }
+  .order--search__title__item,
+  .order-item__text {
+    font-size: 14px;
+  }
+  .order--search__title__item {
+    width: calc((100% - 250px) / 4);
+  }
+  .order-item__block {
+    flex-direction: column;
+    align-items: end;
+  }
+  .order-item {
+    justify-content: space-between;
+  }
+  .order--search__title__item:nth-child(1),
+  .order-item__block {
+    width: 110px;
+  }
+  .order-item__block__title {
+    font-size: 14px;
+    width: 100%;
+    line-height: initial;
+  }
+}
+
+@media (max-width: 480px) {
+  .order-item {
+    padding: 15px 0;
+  }
+  .order--search__title__item, .order-item__text {
+    font-size: 12px;
+    width: calc((100% - 2px) / 4);
+  }
+  .order-item__block__text,
+  .order-item__block__title{
+    font-size: 12px;
+    line-height: initial;
+  }
+  .order--search__title__item:nth-child(1), .order-item__block {
+    width: 90px;
+
+    img {
+      max-width: 100%;
+    }
+  }
+  .order--data__container__form {
+    flex-direction: column;
+  }
+  .order__container {
+    width: 100%;
+  }
+}

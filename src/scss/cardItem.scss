@@ -1,0 +1,132 @@
+@import './styles.scss';
+@import './base/fontFace.scss';
+
+.cardItem__item {
+  background: #FFFFFF 0 0 no-repeat padding-box;
+  box-shadow: 0 0 6px #00000029;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 348px;
+  height: auto;
+  margin: 0 6px 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: block;
+
+
+  &__img {
+    width: 100%;
+    height: 257px;
+    object-fit: contain;
+  }
+
+  .today_sale {
+    width: 90px;
+    height: 30px;
+    background: $orange 0 0 no-repeat padding-box;
+    border-radius: 17px;
+    color: #FFFFFF;
+    font: normal normal 700 14px/14px Mulish;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .today-card_product-paragraph {
+    font: normal normal 700 14px/16px Mulish;
+    color: $blue;
+    // margin-bottom: 24px;
+  }
+
+  .today-card_product-title {
+    font: normal normal 700 18px/26px Mulish;
+    font-family: MuliBold,sans-serif;
+        color: #000000;
+    margin-bottom: 24px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: auto;
+
+      .qtyValue {
+        width: 30px;
+        border: none;
+        text-align: center;
+        outline: none;
+      }
+
+      .qtySelector {
+margin-top: 14px;
+        input {
+          text-align: center;
+          font: normal normal normal 16px/25px Muli;
+          letter-spacing: 0;
+          color: #373737;
+          opacity: 1;
+          background-color: transparent;
+        }
+
+        button {
+          width: 25px;
+          height: 41px;
+          background: #FFFFFF 0 0 no-repeat padding-box;
+          border: 1px solid #D6D6D6;
+          border-radius: 5px;
+          opacity: 1;
+
+          &:hover {
+            box-shadow: 0 0 5px 3px #d6d6d6;
+          }
+        }
+      }
+
+      &__title {
+        text-decoration: line-through;
+        font: normal normal 700 18px/26px Mulish;
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      height: auto;
+
+      &__title {
+        font: normal normal 700 18px/26px Mulish;
+        color: #FF0000;
+      }
+    }
+  }
+
+  .shoppingCart_btn {
+    background: transparent linear-gradient(
+                    180deg, #FFC400 0%, #FF8400 100%) 0 0 no-repeat padding-box;
+    border-radius: 19px;
+    opacity: 1;
+    padding: 9px 22px;
+    margin-top: 14px;
+
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+  }
+
+
+}
+
+
+
+

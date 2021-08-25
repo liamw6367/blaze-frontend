@@ -1,0 +1,105 @@
+
+.BestOffers{
+    max-width: 1600px;
+    width: calc(100% - 30px);
+    margin:  0 auto;
+    padding: 100px 0;
+    &__container{
+        margin-top: 80px;
+    }
+    &__dropdown{
+        height: 165px;
+        background: #F6F7FB 0 0 no-repeat padding-box;
+        box-shadow: 0 0 6px #00000029;
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        transition: .33s;
+        margin-bottom: 20px;
+        position: relative;
+        &--active{
+            height: 373px;
+        }
+        &__title{
+            display: flex;
+            align-items: center;
+            p{
+                max-width: 53%;
+                text-align: left;
+                font: normal normal normal 16px/25px Muli;
+                font-family: MuliRegular, sans-serif;
+                letter-spacing: 0;
+                color: #646464;
+                opacity: 1;
+            }
+            .dropdown__arrow{
+                position: absolute;
+                right: 0;
+                margin: 0 37px 0 0 ;
+                font-size: 50px;
+                color: #004C8A;
+                transform: rotate(180deg);
+            }
+        }
+        &__content{
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            &__item{
+                width: 15%;
+                height: 173px;
+                background: #FFFFFF 0 0 no-repeat padding-box;
+                padding: 20px;
+                box-sizing: border-box;
+                box-shadow: 0 0 6px #00000008;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            &__img{
+                width: 87px;
+                height: 69px;
+                object-fit: contain;
+            }
+            .card-body_title{
+                font: normal normal bold 18px/26px Muli;
+                font-family:MuliBold,sans-serif;
+                letter-spacing: 0;
+                color: #004C8A;
+                opacity: 1;
+            }
+            .card-body_sale{
+                font: normal normal bold 14px/20px Muli;
+                font-family:MuliBold,sans-serif;
+                letter-spacing: 0;
+                color: #FF8400;
+                opacity: 1;
+            }
+        }
+        &__img{
+
+        }
+        &__text{
+            // width: 300px;
+            margin: 0 120px 0 40px;
+            &__top{
+                font: normal normal 700 20px/30px Mulish;
+                color: #FF8400;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+            &__bottom{
+                font: normal normal 700 25px/36px Mulish;
+                color: #004C8A;
+                white-space: nowrap;
+            }
+        }
+    }
+}
+.dropdown__arrow{
+    cursor: pointer;
+    margin: 10px;
+}

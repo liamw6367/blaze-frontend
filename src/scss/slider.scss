@@ -1,0 +1,56 @@
+@import './styles.scss';
+.sliderItem{
+    // background: red;
+    box-shadow: 0 0 6px #00000029;
+    border-radius: 10px;
+    padding: 32px 38px 48px 38px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 512px;
+    width: 100%;
+    height: 260px;
+    background-image: url('./../assets/images/vegetablesPngTransparent.png');
+    background-position: center right;
+    background-size: auto 150px;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    &__title{
+        color: $blue;
+        font-size: 32px;
+        font-family: 'Mulish', sans-serif;
+    }
+    &__subTitle{
+        color: $blue;
+        font-size: 24px;
+        // font-family: 'Montserrat', sans-serif;
+        font-family: 'Mulish', sans-serif;
+    }
+}
+.owl-carousel{
+    height: 300px;
+}
+.owl-stage-outer{
+    height: 300px;
+}
+.owl-stage{
+    padding: 20px 4px;
+    box-sizing: border-box;
+    height: 300px;
+}
+.owl-item:nth-child(3n - 1) .sliderItem{
+    background-color: #F7FDF9 ;
+}
+.owl-item:nth-child(3n - 2) .sliderItem{
+    background-color: #FFF7E9;
+}
+.owl-item:nth-child(3n - 3) .sliderItem{
+    background-color: #F6F7FB;
+}
+.sliderItem__content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

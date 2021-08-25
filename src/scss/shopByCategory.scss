@@ -1,0 +1,69 @@
+@import './styles.scss';
+.ShopByCategory{
+    max-width: 1600px;
+    width: calc(100% - 30px);
+    margin:  0 auto;
+    padding: 100px 0;
+    box-sizing: border-box;
+    &__container{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 80px;
+        
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        background: $liteBG 0 0 no-repeat padding-box;
+        border: 1px solid $liteBlue;
+        border-radius: 10px;
+        width: calc((100% / 3) - 10px);
+        min-width: 400px;
+        height: 174px;
+        margin-bottom: 20px;
+        @media (max-width: 1264px) {
+            width: calc(50% - 10px);
+        }
+        @media (max-width: 864px) {
+            width: calc(100% - 10px);
+        }
+        &__content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &__img{
+
+        }
+        &__title{
+            font: normal normal 700 20px/30px Mulish;
+            color: $orange;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        &__subTitle{
+            font: normal normal 700 25px/36px Mulish;
+            color: $blue;
+            text-align: center;
+        }
+        
+    }
+    &__link{
+        font: normal normal 700 16px/24px Mulish;
+        color: $liteBlue;
+        background: transparent;
+        text-align: center;
+        &__block{
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
+
+
+
+

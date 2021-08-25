@@ -1,0 +1,33 @@
+.menu_banner {
+  background-color: #004C8A;
+  width: 100%;
+  padding: 0 142px;
+  display: flex;
+  margin: 0;
+
+  li {
+    &:last-child {
+      a {
+        border: none
+      }
+    }
+  }
+
+  a {
+    display: block;
+    padding: 24px 40px;
+    text-align: left;
+    font: normal normal 600 18px/26px Muli;
+    font-family: MuliSemiBold, sans-serif;
+    letter-spacing: 0;
+    color: #FFFFFF;
+    opacity: 1;
+    border-right: 1px solid #8289A4;
+    transition: .3s ease;
+
+    &:hover {
+      color: #FF8400;
+    }
+
+  }
+}

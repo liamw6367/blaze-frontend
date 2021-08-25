@@ -1,0 +1,464 @@
+@import './base/menuBanner.scss';
+@import './base/main.scss';
+
+.Category {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+  .makeStyles-heading-9{
+    flex-basis: 100%;
+  }
+  .babyCare_leftMenu {
+    width: 15%;
+    max-width: 286px;
+    height: 100vh;
+    background-color: #F6F7FB;
+    margin: 0 31px 0 141px;
+
+    .contentName {
+      text-align: left;
+      font: normal normal bold 25px/36px Muli;
+      font-family: MuliBold, sans-serif;
+      letter-spacing: 0;
+      color: #2A2A2A;
+      opacity: 1;
+      margin: 38px 0 31px;
+      padding: 0 12px;
+    }
+
+    div {
+
+    }
+
+    .MuiPaper-root {
+      position: initial;
+      background-color: transparent;
+
+      ul {
+        width: 100%;
+        margin: 0;
+
+        li {
+          border-bottom: 1px solid #D1D6E9;
+          padding: 9px 15px 9px 44px;
+          text-align: left;
+          font: normal normal normal 18px/26px Muli;
+          font-family: MuliRegular, sans-serif;
+          letter-spacing: 0;
+          color: #2A2A2A;
+          opacity: 1;
+
+          &:last-child {
+            border-bottom: initial;
+          }
+
+          &:hover {
+            background-color: #EBECEF;
+            cursor: pointer;
+          }
+
+        }
+      }
+    }
+
+    .MuiAccordion-root.Mui-expanded {
+      margin: 0;
+
+
+    }
+
+    .MuiIconButton-root {
+      color: #FF8400;
+      margin-right: 7px;
+    }
+
+    .MuiAccordionSummary-root {
+      flex-direction: row-reverse;
+    }
+
+    .MuiAccordionSummary-root,
+    .MuiAccordionDetails-root {
+      padding: 0;
+    }
+
+    .MuiPaper-elevation1 {
+      box-shadow: initial;
+      border-top: 1px solid #D1D6E9;
+    }
+
+    .MuiAccordionSummary-root.Mui-expanded {
+      min-height: initial;
+      height: initial;
+    }
+
+    .MuiAccordionSummary-content.Mui-expanded {
+      margin: 0;
+    }
+
+    .makeStyles-heading-2 {
+      flex-basis: initial;
+    }
+  }
+
+  .babyCare_body {
+    width: 69%;
+    max-width: 1320px;
+    background-color: #FFFBF5;
+    padding: 31px 13px 35px 13px;
+
+    .babyCare_items {
+      display: flex;
+      flex-wrap: wrap;
+
+      .cardItem__item__img {
+        width: 171px;
+        height: 174px;
+        margin: auto;
+        display: flex;
+      }
+
+      .cardItem__item {
+        max-width: 293px;
+        margin-right: 32px;
+
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+      }
+
+    }
+
+    .month_txt {
+      text-align: left;
+      font: normal normal normal 25px/36px Muli;
+      font-family: MuliRegular, sans-serif;
+
+      letter-spacing: 0;
+      color: #FF8400;
+      opacity: 1;
+      margin: 31px 0 35px;
+    }
+
+    .sort_by {
+      display: flex;
+      align-items: center;
+
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #D1D6E9;
+
+      }
+
+      .Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #004C8A;
+
+      }
+
+      .PrivateNotchedOutline-root-4 {
+        border-radius: 15px;
+      }
+
+      .MuiFormControl-fullWidth {
+        background: #FFFFFF 0 0 no-repeat padding-box;
+        //border: 1px solid #D1D6E9;
+        border-radius: 10px;
+        opacity: 1;
+      }
+
+      p {
+        text-align: left;
+        font: normal normal 600 16px/24px Muli;
+        font-family: MuliBold, sans-serif;
+        letter-spacing: 0;
+        color: #004C8A;
+        opacity: 1;
+        margin-right: 23px;
+      }
+
+      .MuiInputLabel-outlined {
+        text-align: left;
+        font: normal normal normal 16px/16px Muli;
+        font-family: MuliBold, sans-serif;
+        letter-spacing: 0;
+        color: #CFCFCF;
+        opacity: 1;
+      }
+
+      .PrivateNotchedOutline-legendNotched-6 {
+        span {
+          color: #004C8A;
+        }
+
+      }
+
+      #price_select {
+        width: 271px;
+
+
+      }
+    }
+
+  }
+
+}
+
+.MuiAutocomplete-option {
+  color: #2A2A2A;
+}
+
+@media (max-width: 1900px) {
+  .Category .babyCare_body .babyCare_items .cardItem__item {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 1800px) {
+  .Category {
+    .menu_banner {
+      padding: 0 100px;
+    }
+
+    .babyCare_body {
+      .babyCare_items {
+        .cardItem__item {
+          padding: 15px;
+          width: 23%;
+          margin-right: 20px;
+
+          .today-card_product-title {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 1600px) {
+  .Category {
+    .menu_banner {
+      a {
+        padding: 20px 30px;
+        font-size: 16px;
+      }
+    }
+
+    .babyCare_body {
+      .babyCare_items {
+        .cardItem__item {
+          width: 22.7%;
+          margin-right: 20px;
+
+          .today-card_product-title {
+            font-size: 15px;
+          }
+
+          .shoppingCart_btn {
+            padding: 4px 20px;
+            margin-top: 20px;
+          }
+        }
+      }
+
+    }
+
+    .babyCare_leftMenu {
+      width: 17%;
+      margin-left: 120px;
+    }
+  }
+
+}
+
+@media (max-width: 1400px) {
+  .Category {
+    .menu_banner {
+      padding: 0 70px;
+
+      a {
+        padding: 20px;
+      }
+    }
+
+    .babyCare_body {
+      width: 68%;
+
+      .babyCare_items {
+        .cardItem__item {
+          width: 22.8%;
+          margin-right: 15px;
+        }
+      }
+    }
+
+    .babyCare_leftMenu {
+      width: 20%;
+      margin-left: 70px;
+    }
+  }
+
+}
+
+@media (max-width: 1200px) {
+  .Category {
+    width: 100%;
+
+    .menu_banner {
+      padding: 0 50px;
+
+      a {
+        padding: 15px;
+        font-size: 14px;
+        line-height: initial;
+      }
+    }
+
+    .babyCare_leftMenu {
+      width: 22%;
+      margin: 0 30px 0 20px;
+
+      .makeStyles-heading-2 {
+        font-size: 14px;
+      }
+
+      .MuiIconButton-root {
+        margin-right: 0;
+      }
+
+    }
+
+    .babyCare_body {
+      width: 70%;
+
+      .babyCare_items {
+        .cardItem__item {
+          width: 30%;
+          margin-right: 20px;
+
+          &:nth-child(4n) {
+            margin-right: 20px
+          }
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 992px) {
+  .Category {
+    .menu_banner {
+      padding: 0 3px;
+justify-content: center;
+      a {
+        padding: 10px 7px;
+        font-size: 12px;
+        line-height: initial;
+      }
+    }
+    .babyCare_leftMenu {
+      position: absolute;
+      top: 300px;
+      display: none;
+    }
+
+    .babyCare_body{
+width: 100%;
+      .babyCare_items{
+        .cardItem__item{
+          width: 30.7%;
+          padding: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 769px) {
+  .Category {
+    .menu_banner {
+      padding: 20px 0;
+      flex-wrap: wrap;
+
+      li {
+        width: 33.33%;
+        margin-bottom: 10px;
+
+        &:nth-child(3n) {
+          border: none;
+        }
+
+        &:last-child {
+          margin: auto;
+
+          a {
+            border-left: 1px solid #8289A4;
+            border-right: 1px solid #8289A4;
+          }
+        }
+      }
+
+      a {
+        text-align: center;
+        padding: 10px 7px;
+        font-size: 12px;
+        line-height: initial;
+      }
+    }
+    .babyCare_body{
+      .babyCare_items{
+        .cardItem__item{
+          width: 48%;
+          max-width: 48%;
+          margin-right: 5px;
+          &:nth-child(3n){
+            margin-right: 5px;
+
+          }
+          &:nth-child(2n){
+            margin-right: 0;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .Category {
+    .menu_banner {
+a {
+  padding: 10px 3px;
+}
+    }
+    .babyCare_body{
+      .sort_by{
+        flex-direction: column;
+        p{
+          margin-bottom: 20px;
+        }
+        .MuiAutocomplete-root{
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+      .babyCare_items{
+        .cardItem__item{
+          width: 100%;
+          max-width: 100%;
+          margin: 0 0 20px 0 ;
+          &:nth-child(3n){
+            margin-right: 0;
+          }
+
+        }
+      }
+    }
+  }
+}
