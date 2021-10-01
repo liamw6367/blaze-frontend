@@ -9,6 +9,10 @@ const initialState = [
   { id: 6, percent: 'UP TO 75% OFF', itemName: 'Household Items', imgUrl: img },
 ]
 
-export const shopCategoryRedcuer = (state = initialState, action) => {
+export const shopCategoryRedcuer = (state = [], action) => {
+  switch(action.type) {
+    case 'SHOP_CATEGORY_ITEMS':
+      return [...state, ...action.payload]
+  }
   return state
 }

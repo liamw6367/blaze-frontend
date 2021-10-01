@@ -23,6 +23,7 @@
     "react-slick": "^0.28.1",
     "react-verification-input": "^2.0.1",
     "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^1.0.1"
   },
@@ -31,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postbuild" : "mv build ../backend/dist_front"
+    "postbuild": "mv build ../backend/dist_front"
   },
   "eslintConfig": {
     "extends": [

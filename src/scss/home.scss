@@ -16,14 +16,15 @@
 }
 
 .welcome {
-  background-image: url('../assets/images/welcome.png');
-  background-size: 55%;
-  background-repeat: no-repeat;
-  background-position: center right 150px;
+  // background-image: url('../assets/images/welcome.png');
+  // background-size: 55%;
+  // background-repeat: no-repeat;
+  // background-position: center right 150px;
   // background-origin: content-box;
   padding: 200px 0;
   box-sizing: border-box;
   background-color: $blue;
+  // position: relative;
 
   h3 {
     text-align: left;
@@ -35,8 +36,8 @@
     margin-top: 13px;
   }
 
-  .wrapper {
-
+  &__container {
+    position: relative;
   }
 
   &__title {
@@ -45,6 +46,14 @@
     color: #FFFFFF;
   }
 
+}
+
+.welcomebgImg{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 50%;
 }
 
 .home {

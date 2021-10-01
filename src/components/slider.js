@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './../scss/slider.scss'
 import { Link } from 'react-router-dom'
 import OWLcorusel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.min.css'
 import 'owl.carousel/dist/assets/owl.theme.default.min.css'
-import { useSelector } from 'react-redux'
+import testImg from './../assets/images/vegetablesPngTransparent.png'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
 
 const options = {
   responsive: {
@@ -27,14 +29,42 @@ const options = {
   },
 }
 
+
+
+  
+
+  
 function Slider() {
+ const [itmes,setItems] = []
+  const dispatch = useDispatch()
   const sliderItems = useSelector((store) => {
     return store.sliderItems
   })
 
+  useEffect(async () => {
+        const response = await axios.get('http://54.184.111.173/products/get', {
+        })
+            .then(response => {
+              // console.log(response.data)
+                dispatch({
+                    type: 'SLIDER_ITEMS',
+                    payload: response.data
+                })
+                
+            })
+            .catch(err => {
+                console.log(err.response);
+            })
+           
+  }, [])
+
+
+
   return (
+    
     <section className="productsSlider wrapper">
-      <OWLcorusel
+      {sliderItems.length ? (
+        <OWLcorusel
         items="3"
         autoplay
         autoplayHoverPause
@@ -42,22 +72,31 @@ function Slider() {
         loop
         responsive={options.responsive}
         margin={20}
+        
       >
-        {/* {ProductsElement} */}
-        {sliderItems.map((item) => {
-          return (
-            <div className="sliderItem">
-              <div className="sliderItem__content">
-                <h3 className="sliderItem__title">{item.percent}</h3>
-                <h3 className="sliderItem__subTitle">{item.name}</h3>
-                <Link to="#" className="BestSavers__link">
-                  {item.button}
-                </Link>
-              </div>
-            </div>
-          )
-        })}
+              { sliderItems.map((item) => {
+                    // console.log(item)
+                    return (
+                      <div className="sliderItem" key={item.id}>
+                        <div className="sliderItem__content">
+                          <h3 className="sliderItem__title">{item.name}</h3>
+                          <h3 className="sliderItem__subTitle">40% OFF</h3>
+                          <Link to="#" className="BestSavers__link">
+                          Shop Now
+                          </Link>
+                        </div>
+                        <img src={testImg} className='sliderItem__img '/>
+                      </div>
+                    )
+                  })
+      }
       </OWLcorusel>
+      ): ''}
+  
+        {/* {ProductsElement} */}
+ 
+  
+
     </section>
   )
 }
