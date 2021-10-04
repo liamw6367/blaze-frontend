@@ -17,11 +17,9 @@ const initialState = [
 ]
 
 export const sliderItemsReducer = (state = [], action) => {
-  console.log(action)
   switch(action.type){
     case 'SLIDER_ITEMS': 
     return [...state, ...action.payload]
-    
   }
  
   return state

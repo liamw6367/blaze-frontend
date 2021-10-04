@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import OWLcorusel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.min.css'
 import 'owl.carousel/dist/assets/owl.theme.default.min.css'
-import testImg from './../assets/images/vegetablesPngTransparent.png'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 
@@ -28,14 +27,8 @@ const options = {
     },
   },
 }
-
-
-
-  
-
   
 function Slider() {
- const [itmes,setItems] = []
   const dispatch = useDispatch()
   const sliderItems = useSelector((store) => {
     return store.sliderItems
@@ -45,7 +38,6 @@ function Slider() {
         const response = await axios.get('http://54.184.111.173/products/get', {
         })
             .then(response => {
-              // console.log(response.data)
                 dispatch({
                     type: 'SLIDER_ITEMS',
                     payload: response.data
@@ -58,10 +50,7 @@ function Slider() {
            
   }, [])
 
-
-
   return (
-    
     <section className="productsSlider wrapper">
       {sliderItems.length ? (
         <OWLcorusel
@@ -74,20 +63,19 @@ function Slider() {
         margin={20}
         
       >
-              { sliderItems.map((item) => {
-                    // console.log(item)
-                    return (
-                      <div className="sliderItem" key={item.id}>
-                        <div className="sliderItem__content">
-                          <h3 className="sliderItem__title">{item.name}</h3>
-                          <h3 className="sliderItem__subTitle">40% OFF</h3>
-                          <Link to="#" className="BestSavers__link">
-                          Shop Now
-                          </Link>
-                        </div>
-                        <img src={testImg} className='sliderItem__img '/>
-                      </div>
-                    )
+        { sliderItems.map((item) => {
+         return (
+            <div className="sliderItem" key={item.id}>
+              <div className="sliderItem__content">
+                <h3 className="sliderItem__title">{item.name}</h3>
+                 <h3 className="sliderItem__subTitle">40% OFF</h3>
+                   <Link to="#" className="BestSavers__link">
+                    Shop Now
+                   </Link>
+             </div>
+                <img src={`http://54.184.111.173/uploads/product_images/${item.image}`} className='sliderItem__img '/>
+               </div>
+         )
                   })
       }
       </OWLcorusel>

@@ -15,7 +15,7 @@
     &__title{
         color: $blue;
         //font-size: 32px;
-        font-size: 25px;
+        font-size: 24px;
         font-family: 'Mulish', sans-serif;
     }
     &__subTitle{
@@ -28,6 +28,7 @@
         object-fit: contain;
         height: 170px;
         object-position: center right;
+        width: 44% !important;
     }
 }
 .owl-carousel{

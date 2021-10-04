@@ -14,7 +14,6 @@ function ShopByCategory() {
     const response = await axios.get('http://54.184.111.173/categories/get', {
     })
         .then(response => {
-          // console.log(response.data)
             dispatch({
                 type: 'SHOP_CATEGORY_ITEMS',
                 payload: response.data
@@ -31,11 +30,9 @@ function ShopByCategory() {
     <div className="ShopByCategory">
       <h2 className="title">Shop By Category</h2>
       <div className="ShopByCategory__container">
-        {console.log(shopItems, 'shopItems')}
         {shopItems.map((item) => {
           return (
-            <div className="ShopByCategory__item">
-              {console.log(item)}
+            <div className="ShopByCategory__item" key={item.id}>
               <img
                 alt=""
                 className="ShopByCategory__item__img"
