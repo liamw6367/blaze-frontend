@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axios from "axios";
 import config from "../../../config";
 import {useSelector, useDispatch} from "react-redux";
+import jwt_decode from "jwt-decode"
 
 const LoginForm = ({aaa, ForgotPassOpen, localUser}) => {
 
@@ -55,23 +56,17 @@ const LoginForm = ({aaa, ForgotPassOpen, localUser}) => {
         if (email && password) {
             if (inputs[0].isValid) {
                 if (password.length >= 8) {
-                    axios.post(`${config.url}auth/login`, {
+                    axios.post(`http://54.184.111.173/auth/login`, {
                         email,
                         password,
                     }).then(res => {
-                        let token = res.data.token;
-                        axios.get('https://blaze123.herokuapp.com/api/auth/me', {
-                            headers: {
-                                'Authorization': token
-                            }
-                        })
-                            .then(data => {
+                        let token = jwt_decode(res.data.token)
+                        console.log(token)
                                 dispatch({
                                     type: 'SET_CUSTOMER',
-                                    payload: data.data
+                                    payload: token
                                 })
-                            })
-                        window.localStorage.setItem('token', token);
+                        window.localStorage.setItem('token', res.data.token);
                         localUser(token)
                         aaa()
                             .catch(err => {

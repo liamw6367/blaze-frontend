@@ -42,13 +42,12 @@ function Slider() {
                     type: 'SLIDER_ITEMS',
                     payload: response.data
                 })
-                
             })
             .catch(err => {
                 console.log(err.response);
             })
            
-  }, [])
+  },[])
 
   return (
     <section className="productsSlider wrapper">
@@ -61,7 +60,6 @@ function Slider() {
         loop
         responsive={options.responsive}
         margin={20}
-        
       >
         { sliderItems.map((item) => {
          return (

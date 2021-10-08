@@ -10,6 +10,7 @@ import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import {useEffect} from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
 
 
@@ -21,20 +22,15 @@ function App() {
     })
     useEffect(() => {
         if (Token) {
-            axios.get('https://blaze123.herokuapp.com/api/auth/me', {
-                headers: {
-                    'Authorization': Token
-                }
-            })
-                .then(data => {
+            let token = jwt_decode(Token)
+          console.log(Token, 'Token sfnskafnkla')
+           
                     dispatch({
                         type: 'SET_CUSTOMER',
-                        payload: data.data
+                        payload: token
                     })
-                })
-                .catch(err => {
-                    console.log(err.response);
-                })
+             
+        
         }
     }, [])
     return (

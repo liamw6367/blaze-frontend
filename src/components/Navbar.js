@@ -132,17 +132,12 @@ function Navbar() {
   let logOut = (e) => {
     console.log(config, 'Config')
 
-    axios
-      .get(`${config.url}auth/logout`, {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
+  
+      
+     
         setToken('')
         window.localStorage.removeItem('token')
-      })
-      .catch((err) => {
-        console.log(err.response.data, 'Error')
-      })
+
   }
 
   return (
@@ -179,7 +174,7 @@ function Navbar() {
                         {...bindTrigger(popupState)}
                       >
                         <Path1 className="menu-icons" />
-                        <p style={{ color: '#FF8400' }}>{customer.username}</p>
+                        <p style={{ color: '#FF8400' }}>{customer.first_name}{console.log(customer)}</p>
                       </Button>
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
