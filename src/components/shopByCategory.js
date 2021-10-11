@@ -11,7 +11,7 @@ function ShopByCategory() {
   const dispatch = useDispatch()
 
   useEffect(async () => {
-    const response = await axios.get('http://54.184.111.173/categories/get', {
+    const response = await axios.get('http://54.245.154.47/categories/get', {
     })
         .then(response => {
             dispatch({
@@ -36,7 +36,7 @@ function ShopByCategory() {
               <img
                 alt=""
                 className="ShopByCategory__item__img"
-                src={`http://54.184.111.173/uploads/banners/${item.banner}`}
+                src={`http://54.245.154.47/uploads/banners/${item.banner}`}
               />
               <div className="ShopByCategory__item__content">
                 <h3 className="ShopByCategory__item__title">30% OFF</h3>

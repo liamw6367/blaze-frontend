@@ -35,7 +35,7 @@ function Slider() {
   })
 
   useEffect(async () => {
-        const response = await axios.get('http://54.184.111.173/products/get', {
+        const response = await axios.get('http://54.245.154.47/products/get', {
         })
             .then(response => {
                 dispatch({
@@ -71,7 +71,7 @@ function Slider() {
                     Shop Now
                    </Link>
              </div>
-                <img src={`http://54.184.111.173/uploads/product_images/${item.image}`} className='sliderItem__img '/>
+                <img src={`http://54.245.154.47/uploads/product_images/${item.image}`} className='sliderItem__img '/>
                </div>
          )
                   })
