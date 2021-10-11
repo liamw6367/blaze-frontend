@@ -178,8 +178,8 @@ function Navbar() {
                       </Button>
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
-                        <Link to="/" className="__link">
-                          <MenuItem>My Account</MenuItem>
+                        <Link to="/" className="__link menu_navigation__link">
+                          <MenuItem><Link style={ {color: '#000' }} classname='login_user' to='/profile'>My Account</Link></MenuItem>
                         </Link>
                         <MenuItem onClick={logOut}>Log Out</MenuItem>
                       </Menu>
