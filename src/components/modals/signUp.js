@@ -20,7 +20,7 @@ function SignUp({aaa, signUpActiv, loginOpen, SignUpOpen, localToken}) {
                 <div className="registerAs_checkbox">
                     <label onClick={() => setTab(true)} className='setTab_content' >
                         <input type="radio" name="setTabVal" defaultChecked={tab}/>
-                        Costumer
+                        Customer
                     </label>
                     <label onClick={() => setTab(false)} className='setTab_content'>
                         <input type="radio" name="setTabVal" defaultChecked={!tab}/>
