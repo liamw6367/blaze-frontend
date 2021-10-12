@@ -13,9 +13,10 @@ function BestEveryday() {
     <div className="BestEveryday">
       <h2 className="title">Best of Everyday Staples</h2>
       <div className="BestEveryday__container">
-        {dailyCards.map((item) => {
+        {dailyCards.map((item,index) => {
           return (
             <CardItem
+              key={index}
               imgUrl={item.imgUrl}
               paragraph={item.paragraph}
               title={item.title}

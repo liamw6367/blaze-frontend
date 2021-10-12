@@ -1,12 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './../../scss/modal.scss'
 import faceI from './../../assets/images/faceIcon.png'
 import GoogleI from './../../assets/images/googleIcon.png'
 import AppleI from './../../assets/images/appleIcon.png'
 import SignUpCostumer from './component/SignUpCostumer'
 import SignUpDriver from './component/SignUpDriver'
+import axios  from 'axios'
 
-function SignUp({signUpActiv, loginOpen, SignUpOpen}) {
+function SignUp({aaa, signUpActiv, loginOpen, SignUpOpen, localToken}) {
 
     let [tab, setTab] = useState(true)
 
@@ -38,9 +39,9 @@ function SignUp({signUpActiv, loginOpen, SignUpOpen}) {
                 <h2 className='login__title__OR'>OR</h2>
 
                 {tab ?
-                    <SignUpCostumer loginOpen={loginOpen}/>
+                    <SignUpCostumer localUser={localToken} />
                     :
-                    <SignUpDriver/>
+                    <SignUpDriver localUser={localToken} />
                 }
                 <p className='bottom__text'>Already have an account?<span className='bottom__text__link'
                                                                           onClick={loginOpen}>Log In</span>
