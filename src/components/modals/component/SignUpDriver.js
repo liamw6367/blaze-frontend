@@ -100,6 +100,7 @@ function SignUpDriver({ localUser}) {
     let req = process.env.REACT_APP_API_URL
     let inputValue = (value, id) => {
         setError('')
+        console.log(role_id)
         const inpts = inputs
         const input = inpts[id]
         input.value = value
