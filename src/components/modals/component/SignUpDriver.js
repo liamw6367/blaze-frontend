@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 function SignUpDriver({ localUser}) {
     let [error, setError] = useState('')
-    let [roleId,setRoleId] = useState('')
+    let [role_id,setRoleId] = useState('')
     let dispatch = useDispatch()
     let [inputs, setInputs] = useState([
             {
@@ -139,7 +139,7 @@ function SignUpDriver({ localUser}) {
                             address,
                             password,
                             confirm_password,
-                            roleId,
+                            role_id,
 
                         }).then(res => {
                             let token = jwt_decode(res.data.token)

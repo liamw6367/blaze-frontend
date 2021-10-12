@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 function SignUpCostumer({ localUser }) {
   let req = process.env.REACT_APP_API_URL
   let dispatch = useDispatch()
-  let [roleId,setRoleId] = useState('')
+  let [role_id,setRoleId] = useState('')
   let [error, setError] = useState('')
   let [inputs, setInputs] = useState([
     {
@@ -112,7 +112,7 @@ function SignUpCostumer({ localUser }) {
                 email,
                 password,
                 confirm_password,
-                roleId
+                role_id
               })
               .then(res => {
                 let token = jwt_decode(res.data.token)
