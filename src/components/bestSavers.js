@@ -11,9 +11,10 @@ function BestSavers() {
     <div className="BestSavers">
       <h2 className="title wrapper">Top Savers Today!</h2>
       <div className="BestSavers__container wrapper">
-        {topCardItems.map((item) => {
+        {topCardItems.map((item,index) => {
           return (
             <CardItem
+              key={index}
               imgUrl={item.imgUrl}
               paragraph={item.paragraph}
               title={item.title}

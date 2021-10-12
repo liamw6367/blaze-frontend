@@ -9,7 +9,6 @@ import NoMatch from './pages/NoMatch';
 import Order from './pages/Order';
 import Checkout from './pages/Checkout';
 import {useEffect} from "react";
-import axios from "axios";
 import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
 
@@ -22,15 +21,11 @@ function App() {
     })
     useEffect(() => {
         if (Token) {
-            let token = jwt_decode(Token)
-          console.log(Token, 'Token sfnskafnkla')
-           
+            let token = jwt_decode(Token)     
                     dispatch({
                         type: 'SET_CUSTOMER',
                         payload: token
                     })
-             
-        
         }
     }, [])
     return (

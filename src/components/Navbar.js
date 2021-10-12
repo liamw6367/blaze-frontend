@@ -174,7 +174,7 @@ function Navbar() {
                         {...bindTrigger(popupState)}
                       >
                         <Path1 className="menu-icons" />
-                        <p style={{ color: '#FF8400' }}>{customer.first_name}{console.log(customer)}</p>
+                        <p style={{ color: '#FF8400' }}>{customer.first_name}</p>
                       </Button>
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
@@ -271,10 +271,12 @@ function Navbar() {
         localToken={setLocalStorage}
       />
       <SignUp
+        aaa={bbb}
         loginActiv={loginActiv}
         loginOpen={loginOpen}
         signUpActiv={signUpActiv}
         SignUpOpen={SignUpOpen}
+        localToken={setLocalStorage}
       />
       <ForgotPass
         forgotActive={forgotActive}

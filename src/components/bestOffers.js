@@ -34,7 +34,7 @@ function BestOffers() {
           {bestOffersProducts.map((item, index) => {
             if (index === 0) {
               return (
-                <>
+                <React.Fragment key={index}>
                   <div className="BestOffers__dropdown__title">
                     <img
                       alt=""
@@ -55,9 +55,9 @@ function BestOffers() {
                     </p>
                   </div>
                   <div className="BestOffers__dropdown__content">
-                    {item.items.map((i) => {
+                    {item.items.map((i,index) => {
                       return (
-                        <div className="BestOffers__dropdown__content__item">
+                        <div className="BestOffers__dropdown__content__item" key={index}>
                           <img
                             alt=""
                             className="BestOffers__dropdown__content__img"
@@ -69,7 +69,7 @@ function BestOffers() {
                       )
                     })}
                   </div>
-                </>
+                </React.Fragment>
               )
             }
           })}
@@ -85,7 +85,7 @@ function BestOffers() {
           {bestOffersProducts.map((item, index) => {
             if (index === 1) {
               return (
-                <>
+                <React.Fragment key={index}>
                   <div className="BestOffers__dropdown__title">
                     <img
                       alt=""
@@ -106,9 +106,9 @@ function BestOffers() {
                     </p>
                   </div>
                   <div className="BestOffers__dropdown__content">
-                    {item.items.map((i) => {
+                    {item.items.map((i,index) => {
                       return (
-                        <div className="BestOffers__dropdown__content__item">
+                        <div className="BestOffers__dropdown__content__item" key={index}>
                           <img
                             alt=""
                             className="BestOffers__dropdown__content__img"
@@ -120,7 +120,7 @@ function BestOffers() {
                       )
                     })}
                   </div>
-                </>
+                </React.Fragment>
               )
             }
           })}
@@ -137,7 +137,7 @@ function BestOffers() {
           {bestOffersProducts.map((item, index) => {
             if (index === 2) {
               return (
-                <>
+                <React.Fragment key={index}>
                   <div className="BestOffers__dropdown__title">
                     <img
                       alt=""
@@ -158,9 +158,9 @@ function BestOffers() {
                     </p>
                   </div>
                   <div className="BestOffers__dropdown__content">
-                    {item.items.map((i) => {
+                    {item.items.map((i, index) => {
                       return (
-                        <div className="BestOffers__dropdown__content__item">
+                        <div className="BestOffers__dropdown__content__item" key={index}>
                           <img
                             alt=""
                             className="BestOffers__dropdown__content__img"
@@ -172,7 +172,7 @@ function BestOffers() {
                       )
                     })}
                   </div>
-                </>
+                </React.Fragment>
               )
             }
           })}
