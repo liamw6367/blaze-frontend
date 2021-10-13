@@ -47,6 +47,7 @@ function Profile() {
       [e.target.name]: e.target.value,
     })
   }
+  console.log(customer, 'gsafaf')
 
   function savedUserData(e) {
     e.preventDefault()

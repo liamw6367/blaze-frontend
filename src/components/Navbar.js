@@ -39,6 +39,9 @@ function Navbar() {
   let customer = useSelector((store) => {
     return store.customer
   })
+  const ROUT = customer.user_role?.name
+  console.log(ROUT)
+
   const [hamburgerActiv, setHamburgerActiv] = useState(false)
   const [loginActiv, setLoginActiv] = useState(false)
   const [signUpActiv, setSignUpActiv] = useState(false)
@@ -121,7 +124,13 @@ function Navbar() {
   let getResponse = (userId, token) => {
     setRes({ userId, token })
   }
-
+  function handleRout () {
+    if(ROUT === 'driver') {
+      return '/profile-driver'
+    }else {
+      return '/profile'
+    }
+  }
   // const [number, setNumber] = useState(0)
   /**********************************************/
 
@@ -179,7 +188,7 @@ function Navbar() {
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
                         <Link to="/" className="__link menu_navigation__link">
-                          <MenuItem><Link style={ {color: '#000' }} classname='login_user' to='/profile'>My Account</Link></MenuItem>
+                          <MenuItem><Link style={ {color: '#000' }} classname='login_user' to={handleRout}>My Account</Link></MenuItem>
                         </Link>
                         <MenuItem onClick={logOut}>Log Out</MenuItem>
                       </Menu>
