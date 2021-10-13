@@ -17,7 +17,7 @@ function BestOffers() {
   function dropdownToggle3() {
     setDropdownOpen3((dropdownOpen3) => !dropdownOpen3)
   }
-
+  
   const bestOffersProducts = useSelector((store) => store.bestOffersProducts)
 
   return (
@@ -33,7 +33,7 @@ function BestOffers() {
         >
           {bestOffersProducts.map((item, index) => {
             if (index === 0) {
-              return (
+              return ( 
                 <React.Fragment key={index}>
                   <div className="BestOffers__dropdown__title">
                     <img

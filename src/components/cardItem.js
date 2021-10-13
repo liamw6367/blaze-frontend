@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import dropdown from './../assets/images/vegetablesPngTransparent.png'
+// import dropdown from './../assets/images/vegetablesPngTransparent.png'
 import './../scss/cardItem.scss'
 
 import shoppingCart from '../assets/images/icons/shopping-cart.svg'
@@ -10,7 +10,7 @@ function CardItem({ imgUrl, paragraph, title, salePrice, price, sale }) {
   return (
     <div className="cardItem__item">
       <div className="today_sale">{sale}</div>
-      <img src={dropdown} className="cardItem__item__img" alt="" />
+        <img src={ `${process.env.REACT_APP_API_URL}/uploads/category_thumbs/${imgUrl}`} className="cardItem__item__img" alt="" />
       <div>
         <p className="today-card_product-paragraph">{paragraph}</p>
         <h3 className="today-card_product-title">{title}</h3>
