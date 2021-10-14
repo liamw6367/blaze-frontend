@@ -97,8 +97,7 @@ function ProfileDriver() {
         // for (var pair of data.entries()) {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }
-        console.log()
-        
+
         data.append('avatar_file', file[0])
         data.append('avatar', file[0].name)
 
