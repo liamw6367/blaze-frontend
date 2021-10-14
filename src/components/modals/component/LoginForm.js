@@ -56,7 +56,7 @@ const LoginForm = ({aaa, ForgotPassOpen, localUser}) => {
         if (email && password) {
             if (inputs[0].isValid) {
                 if (password.length >= 8) {
-                    axios.post(`http://54.245.154.47/auth/login`, {
+                    axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
                         email,
                         password,
                     }).then(res => {
