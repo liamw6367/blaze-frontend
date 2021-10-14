@@ -40,6 +40,7 @@ function ProfileDriver() {
     const [Password, setPassword] = useState("")
     const [NewPassword, setNewPassword] = useState('')
     const [userData, setUserData] = useState({
+        id: customer.id,
         first_name: customer.first_name,
         last_name: customer.last_name,
         phone: customer.phone,
@@ -57,7 +58,6 @@ function ProfileDriver() {
           [e.target.name]: e.target.value,
         })
       }
-
        function fileSelectHandler(e) {
           setFile(e.target.files)
         //   console.log(files)
@@ -123,8 +123,11 @@ function ProfileDriver() {
       function saveData(e) {
         e.preventDefault()
         const data = new FormData()
-        data.append('license_file', carLicense[0])
-        data.append('paper_file', carPaper[0])
+        data.append('license_file', carLicense[0]);
+        data.append('paper_file', carPaper[0]);
+        data.append('user_id', userData.id);
+        data.append('license', carLicense[0].name);
+        data.append('paper', carPaper[0].name);
         console.log(data)
         // for(let value of Object.values(imageFile)) {
         //     data.append('avatar_file', value)
