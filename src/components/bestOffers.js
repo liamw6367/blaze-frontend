@@ -94,7 +94,7 @@ function BestOffers() {
           })}
         </div>
 
-        <div
+        {/* <div
           className={
             dropdownOpen2
               ? 'BestOffers__dropdown'
@@ -195,7 +195,7 @@ function BestOffers() {
               )
             }
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   )
