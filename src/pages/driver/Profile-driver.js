@@ -9,7 +9,7 @@ import addImage from './../../assets/images/icons/add_image.svg'
 import PhoneVerification from '../../components/modals/phoneVerification';
 import PhoneVerificationCode from "../../components/modals/phoneVerificationCode";
 import Navbar from "../../components/Navbar";
-import { useSelector, useDispatch } from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
 
 function ProfileDriver() {
@@ -27,16 +27,16 @@ function ProfileDriver() {
     };
     let customer = useSelector((store) => {
         return store.customer
-      })
-    const dispatch = useDispatch()  
+    })
+    const dispatch = useDispatch()
     const [Name, setName] = useState("")
     const [image, setImage] = useState(false)
     const [Surname, setSurname] = useState("")
     const [Phone, setPhone] = useState("")
     const [Email, setEmail] = useState("")
     const [file, setFile] = useState('')
-    const [carLicense,setCarLicense] = useState("")
-    const [carPaper,setCarPaper] = useState("")
+    const [carLicense, setCarLicense] = useState("")
+    const [carPaper, setCarPaper] = useState("")
     const [Password, setPassword] = useState("")
     const [NewPassword, setNewPassword] = useState('')
     const [userData, setUserData] = useState({
@@ -46,20 +46,21 @@ function ProfileDriver() {
         phone: customer.phone,
         email: customer.email,
         address: customer.address
-      })
+    })
     const [CardNumber, setCardNumber] = useState("")
     const [CVV, setCVV] = useState("")
     const [ExpirationDate, setExpirationDate] = useState("")
 
     function handleUserData(e) {
         setUserData({
-          ...userData,
-        //   username: customer.username,
-          [e.target.name]: e.target.value,
+            ...userData,
+            //   username: customer.username,
+            [e.target.name]: e.target.value,
         })
-      }
-       function fileSelectHandler(e) {
-          setFile(e.target.files)
+    }
+
+    function fileSelectHandler(e) {
+        setFile(e.target.files)
         //   console.log(files)
 
         // //   data.append('avatar_file', 'avatar_file')
@@ -75,24 +76,26 @@ function ProfileDriver() {
         //   .catch((err) => {
         //       console.log(err.message)
         //   }) 
-      }
-      function handleCarLicense(e) {
+    }
+
+    function handleCarLicense(e) {
         setCarLicense(e.target.files)
         console.log(e.target.files)
-      }
+    }
 
-      function handleCarPaper(e) {
+    function handleCarPaper(e) {
         setCarPaper(e.target.files)
     }
 
-      function savedUserData(e) {
+    function savedUserData(e) {
         e.preventDefault()
         /*if (userData.password !== userData.new_password) {
           return false
         }
-    */ const data = new FormData()
-        for(let [key,value] of Object.entries(userData)){
-            data.append(key,value)
+    */
+        const data = new FormData()
+        for (let [key, value] of Object.entries(userData)) {
+            data.append(key, value)
         }
         // for (var pair of data.entries()) {
         //     console.log(pair[0]+ ', ' + pair[1]); 
@@ -101,30 +104,30 @@ function ProfileDriver() {
         data.append('avatar_file', file[0])
         data.append('avatar', file[0].name)
 
-        
-        axios
-          .put(`http://54.245.154.47/users/update-profile`, data, {
-            headers: {
-              Authorization: localStorage.getItem('token'),
-            },
-          })
-          .then((res) => {
-            dispatch({
-              type: 'SET_CUSTOMER',
-              payload: userData,
-            })
-            console.log(res)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      }
 
-      function saveData(e) {
+        axios
+            .put(`${process.env.REACT_APP_API_URL}/users/update-profile`, data, {
+                headers: {
+                    Authorization: localStorage.getItem('token'),
+                },
+            })
+            .then((res) => {
+                dispatch({
+                    type: 'SET_CUSTOMER',
+                    payload: userData,
+                })
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+    function saveData(e) {
         e.preventDefault()
         const data = new FormData()
-        data.append('license_file', carLicense[0]);
-        data.append('paper_file', carPaper[0]);
+        data.append('license_file', carLicense[0], carLicense[0].name);
+        data.append('paper_file', carPaper[0], carPaper[0].name);
         data.append('user_id', userData.id);
         data.append('license', carLicense[0].name);
         data.append('paper', carPaper[0].name);
@@ -135,28 +138,28 @@ function ProfileDriver() {
         // }
 
         axios
-          .put(`http://54.245.154.47/users/update-profile`, data, {
-            headers: {
-              Authorization: localStorage.getItem('token'),
-            },
-          })
-          .then((res) => {
-            dispatch({
-              type: 'SET_CUSTOMER',
-              payload: userData,
+            .put(`${process.env.REACT_APP_API_URL}/users/update-driver-details`, data, {
+                headers: {
+                    Authorization: localStorage.getItem('token'),
+                },
             })
-            console.log(res)
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+            .then((res) => {
+                dispatch({
+                    type: 'SET_CUSTOMER',
+                    payload: userData,
+                })
+                console.log(res)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 
-      }
+    }
 
 
     return (
         <>
-            <Navbar isLoggedIn={false} />
+            <Navbar isLoggedIn={false}/>
             {console.log(customer)}
             {console.log(userData, 'dsadsad')}
             <div className='profile sign__in'>
@@ -171,7 +174,7 @@ function ProfileDriver() {
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>Name:</span>
                                     <p className='profile__inp__name'>Name:</p>
-                                    <input className='profile__inp' type='text' placeholder=''name="first_name"
+                                    <input className='profile__inp' type='text' placeholder='' name="first_name"
                                            onChange={handleUserData} value={userData.first_name} required/>
                                 </label>
                                 <label className='profile__container'>
@@ -183,7 +186,7 @@ function ProfileDriver() {
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>Address:</span>
                                     <p className='profile__inp__name'>Address:</p>
-                                    <input className='profile__inp' type='text' placeholder=''name="address"
+                                    <input className='profile__inp' type='text' placeholder='' name="address"
                                            onChange={handleUserData} value={userData.address} required/>
                                 </label>
                                 <label className='profile__container d-f'>
@@ -191,58 +194,64 @@ function ProfileDriver() {
                                     <p className='profile__inp__name'>Profile image:</p>
                                     <label className='profile_image_add '>
                                         <img src={addImage} alt="" title=''/>
-                                        <input className='profile__inp' onChange={fileSelectHandler} name='file' type='file' placeholder='' hidden required/>
+                                        <input className='profile__inp' onChange={fileSelectHandler} name='file'
+                                               type='file' placeholder='' hidden required/>
                                     </label>
-                                    {file.length ? <span className='profile_car_paper'>done</span>: ''}
+                                    {file.length ? <span className='profile_car_paper'>done</span> : ''}
                                 </label>
                                 <button
-                            className="profile__btn"
-                            type="submit"
-                            onClick={savedUserData}
-                             >
-                            Save
-                         </button>
+                                    className="profile__btn"
+                                    type="submit"
+                                    onClick={savedUserData}
+                                >
+                                    Save
+                                </button>
                             </div>
                             <div className='profile_content'>
-                            <label className='profile__container'>
+                                <label className='profile__container'>
                                     <span className='visually-hidden'>Salary Amt:</span>
                                     <p className='profile__inp__name'>Salary Amt:</p>
-                                    <input className='profile__inp' onChange={handleUserData} type='text' placeholder='' required name='salary_amt'/>
+                                    <input className='profile__inp' onChange={handleUserData} type='text' placeholder=''
+                                           required name='salary_amt'/>
                                 </label>
 
-                                
+
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>Worktiming:</span>
                                     <p className='profile__inp__name'>Worktiming:</p>
-                                    <input className='profile__inp' onChange={handleUserData} type='text' placeholder='' name='work_timing'/>
+                                    <input className='profile__inp' onChange={handleUserData} type='text' placeholder=''
+                                           name='work_timing'/>
                                 </label>
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>Worktiming:</span>
                                     <p className='profile__inp__name'>Worktiming:</p>
-                                    <input className='profile__inp'onChange={handleUserData} type='text' placeholder='' required name='work_timing'/>
+                                    <input className='profile__inp' onChange={handleUserData} type='text' placeholder=''
+                                           required name='work_timing'/>
                                 </label>
                                 <label className="profile__container">
-                                <span className="visually-hidden">Email</span>
-                                <p className="profile__inp__name">Email</p>
-                                <input className="profile__inp" type="email" placeholder="@Email" 
-                                    value={userData.email} onChange={handleUserData}  name="email"
-                                    required  />
+                                    <span className="visually-hidden">Email</span>
+                                    <p className="profile__inp__name">Email</p>
+                                    <input className="profile__inp" type="email" placeholder="@Email"
+                                           value={userData.email} onChange={handleUserData} name="email"
+                                           required/>
                                 </label>
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>Password:</span>
                                     <p className='profile__inp__name'>Password:</p>
-                                    <input className='profile__inp' type='password' placeholder='Password' name="password" required 
-                                           onChange={handleUserData}  required/>
+                                    <input className='profile__inp' type='password' placeholder='Password'
+                                           name="password" required
+                                           onChange={handleUserData} required/>
                                 </label>
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>New Password:</span>
                                     <p className='profile__inp__name'>New Password:</p>
-                                    <input className='profile__inp' onChange={handleUserData} name='new_password' type='text' placeholder='' required/>
+                                    <input className='profile__inp' onChange={handleUserData} name='new_password'
+                                           type='text' placeholder='' required/>
                                 </label>
-                          
-                     </div>
-                 </div>
-                </form>
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div className='profile-Payment'>
                     <form className='profile-Payment__form'>
@@ -255,9 +264,10 @@ function ProfileDriver() {
                                 </div>
                                 <label className='profile_image_add'>
                                     <img src={addIcon} alt="" title=''/>
-                                    <input className='profile__inp' onChange={handleCarLicense} name='license_img' type='file' placeholder='' hidden required/>
+                                    <input className='profile__inp' onChange={handleCarLicense} name='license_img'
+                                           type='file' placeholder='' hidden required/>
                                 </label>
-                                {carLicense.length ? <span className='profile_car_license'>done</span>: ''}
+                                {carLicense.length ? <span className='profile_car_license'>done</span> : ''}
                             </label>
                             <label className='profile__container d-f'>
                                 <div>
@@ -266,9 +276,10 @@ function ProfileDriver() {
                                 </div>
                                 <label className='profile_image_add'>
                                     <img src={addIcon} alt="" title=''/>
-                                    <input className='profile__inp' onChange={handleCarPaper} name='car_paper' type='file' placeholder='' hidden required/>
+                                    <input className='profile__inp' onChange={handleCarPaper} name='car_paper'
+                                           type='file' placeholder='' hidden required/>
                                 </label>
-                                {carPaper.length ? <span className='profile_car_paper'>done</span>: ''}
+                                {carPaper.length ? <span className='profile_car_paper'>done</span> : ''}
                             </label>
                         </div>
                         <div className='profile-registration-columne'>
