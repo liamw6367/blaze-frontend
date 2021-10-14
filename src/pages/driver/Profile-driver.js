@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import Footer from '../../components/Footer'
 import '../../scss/driver/profile.scss'
@@ -11,6 +11,7 @@ import PhoneVerificationCode from "../../components/modals/phoneVerificationCode
 import Navbar from "../../components/Navbar";
 import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
+import jwtDecode from 'jwt-decode';
 
 function ProfileDriver() {
     const [PhoneVerificationActive, setPhoneVerificationActive] = useState(false);
@@ -35,7 +36,11 @@ function ProfileDriver() {
     const [Phone, setPhone] = useState("")
     const [Email, setEmail] = useState("")
     const [file, setFile] = useState('')
+    const [thumbnail,setThumbnail] = useState('')
     const [carLicense, setCarLicense] = useState("")
+    const [licenseThumbnail,setLicenseThumbnail] = useState('')
+    const [paperThumbnail, setPaperThumbnail] = useState('')
+    const [user,setUser] = useState("")
     const [carPaper, setCarPaper] = useState("")
     const [Password, setPassword] = useState("")
     const [NewPassword, setNewPassword] = useState('')
@@ -51,6 +56,13 @@ function ProfileDriver() {
     const [CVV, setCVV] = useState("")
     const [ExpirationDate, setExpirationDate] = useState("")
 
+    useEffect(()=>{
+
+        const user = jwtDecode(localStorage.getItem('token'));
+        setUser(user)
+
+    },[])
+
     function handleUserData(e) {
         setUserData({
             ...userData,
@@ -61,30 +73,38 @@ function ProfileDriver() {
 
     function fileSelectHandler(e) {
         setFile(e.target.files)
-        //   console.log(files)
-
-        // //   data.append('avatar_file', 'avatar_file')
-        //   const res = await fetch('http://54.245.154.47/users/update-profile',
-        //   {
-        //       method: 'PUT',
-        //       body:data
-        //   }
-
-        //   ).then(res => {
-        //       setImage(true)
-        //   })
-        //   .catch((err) => {
-        //       console.log(err.message)
-        //   }) 
+        const file = e.target.files[0]
+        let reader = new FileReader();
+        reader.onloadend = function() {
+            setThumbnail(reader.result)
+        }
+        reader.readAsDataURL(file);
+        console.log(file)
     }
 
     function handleCarLicense(e) {
         setCarLicense(e.target.files)
+
+        const file = e.target.files[0]
+        let reader = new FileReader();
+        reader.onloadend = function() {
+            setLicenseThumbnail(reader.result)
+        }
+        reader.readAsDataURL(file);
+        console.log(file)
         console.log(e.target.files)
     }
 
     function handleCarPaper(e) {
         setCarPaper(e.target.files)
+        const file = e.target.files[0]
+        let reader = new FileReader();
+        reader.onloadend = function() {
+            setPaperThumbnail(reader.result)
+        }
+        reader.readAsDataURL(file);
+        console.log(file)
+        console.log(e.target.files)
     }
 
     function savedUserData(e) {
@@ -102,7 +122,7 @@ function ProfileDriver() {
         // }
 
         data.append('avatar_file', file[0])
-        data.append('avatar', file[0].name)
+        data.append('avatar', file[0]?.name || '')
 
 
         axios
@@ -116,7 +136,15 @@ function ProfileDriver() {
                     type: 'SET_CUSTOMER',
                     payload: userData,
                 })
-                console.log(res)
+                const token = res.data.token;
+                const user = jwtDecode(token);
+
+                localStorage.setItem('token', token);
+                setUser(user)
+
+                console.log(user)
+                setThumbnail(null)
+                // window.location.reload()
             })
             .catch((err) => {
                 console.log(err)
@@ -126,11 +154,11 @@ function ProfileDriver() {
     function saveData(e) {
         e.preventDefault()
         const data = new FormData()
-        data.append('license_file', carLicense[0], carLicense[0].name);
-        data.append('paper_file', carPaper[0], carPaper[0].name);
+        data.append('license_file', carLicense[0]);
+        data.append('paper_file', carPaper[0]);
         data.append('user_id', userData.id);
-        data.append('license', carLicense[0].name);
-        data.append('paper', carPaper[0].name);
+        data.append('license', carLicense[0]?.name || '');
+        data.append('paper', carPaper[0]?.name || '');
         console.log(data)
         // for(let value of Object.values(imageFile)) {
         //     data.append('avatar_file', value)
@@ -148,7 +176,13 @@ function ProfileDriver() {
                     type: 'SET_CUSTOMER',
                     payload: userData,
                 })
-                console.log(res)
+                const token = res.data.token;
+                const user = jwtDecode(token);
+                localStorage.setItem('token', token);
+                setUser(user)
+                setPaperThumbnail(null)
+                setLicenseThumbnail(null)
+                // window.location.reload()
             })
             .catch((err) => {
                 console.log(err)
@@ -197,7 +231,8 @@ function ProfileDriver() {
                                         <input className='profile__inp' onChange={fileSelectHandler} name='file'
                                                type='file' placeholder='' hidden required/>
                                     </label>
-                                    {file.length ? <span className='profile_car_paper'>done</span> : ''}
+                                    {user.avatar && !thumbnail ? <img className="profile_img"src={`${process.env.REACT_APP_API_URL}/uploads/avatars/${user.avatar}`} alt=""/> : ''}
+                                    {<img className="profile_img" src={thumbnail} alt=""/>}
                                 </label>
                                 <button
                                     className="profile__btn"
@@ -267,7 +302,8 @@ function ProfileDriver() {
                                     <input className='profile__inp' onChange={handleCarLicense} name='license_img'
                                            type='file' placeholder='' hidden required/>
                                 </label>
-                                {carLicense.length ? <span className='profile_car_license'>done</span> : ''}
+                                {user.license && !licenseThumbnail ? <img className="profile_img"src={`${process.env.REACT_APP_API_URL}/uploads/license_files/${user.license}`} alt=""/> : ''}
+                                {<img className="profile_img" src={licenseThumbnail} alt=""/>}
                             </label>
                             <label className='profile__container d-f'>
                                 <div>
@@ -279,7 +315,8 @@ function ProfileDriver() {
                                     <input className='profile__inp' onChange={handleCarPaper} name='car_paper'
                                            type='file' placeholder='' hidden required/>
                                 </label>
-                                {carPaper.length ? <span className='profile_car_paper'>done</span> : ''}
+                                {user.paper && !paperThumbnail ? <img className="profile_img"src={`${process.env.REACT_APP_API_URL}/uploads/paper_files/${user.paper}`} alt=""/> : ''}
+                                {<img className="profile_img" src={paperThumbnail} alt=""/>}
                             </label>
                         </div>
                         <div className='profile-registration-columne'>
