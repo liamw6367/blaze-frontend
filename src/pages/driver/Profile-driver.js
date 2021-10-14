@@ -100,7 +100,8 @@ function ProfileDriver() {
         console.log()
         
         data.append('avatar_file', file[0])
-        
+        data.append('avatar', file[0].name)
+
         
         axios
           .put(`http://54.245.154.47/users/update-profile`, data, {
