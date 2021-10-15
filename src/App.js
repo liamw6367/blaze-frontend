@@ -19,6 +19,8 @@ function App() {
     let customer = useSelector(store => {
         return store.customer
     })
+    const role = customer.user_role?.name
+    
     useEffect(() => {
         if (Token) {
             let token = jwt_decode(Token)     
@@ -28,14 +30,30 @@ function App() {
                     })
         }
     }, [])
-    return (
 
+    function userRole(){
+        if(role === 'driver'){
+            return(
+                <>
+                <Route exact path='/profile-driver' component={ProfileDriver}/>
+                <Route exact path='/profile' component={Home}/>
+                </>
+            )
+        } else if(role === 'customer' || role === 'admin'){
+            return(
+                <>
+                <Route exact path='/profile' component={Profile}/>
+                <Route exact path='/profile-driver' component={Home}/>
+                </>
+            )
+        }
+    }
+
+    return (
         <BrowserRouter>
             <div className='page' id='page'>
-
                 <div id='routerContent'>
                     <ScrollToTop/>
-
                     {Token && Object.keys(customer).length  ?
                         <Switch>
                             <Route exact path='/home' component={Home}/>
@@ -43,8 +61,7 @@ function App() {
                             <Route exact path='/checkout' component={Checkout}/>
                             <Route exact path='/order' component={Order}/>
                             <Route exact path='/category' component={Category}/>
-                            <Route exact path='/profile' component={ Profile}/>
-                            <Route exact path='/profile-driver' component={ProfileDriver}/>
+                            {userRole()}
                             <Route component={NoMatch}/>
                         </Switch>
                         :

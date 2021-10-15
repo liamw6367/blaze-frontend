@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import axios from "axios";
-import config from "../../../config";
 import {useSelector, useDispatch} from "react-redux";
 import jwt_decode from "jwt-decode"
 
@@ -68,6 +67,7 @@ const LoginForm = ({aaa, ForgotPassOpen, localUser}) => {
                                 })
                         window.localStorage.setItem('token', res.data.token);
                         localUser(token)
+                        window.location.reload()
                         aaa()
                             .catch(err => {
                                 console.log(err.response);

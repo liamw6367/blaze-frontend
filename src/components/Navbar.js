@@ -29,6 +29,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
 import axios from 'axios'
 import config from '../config'
+import { useHistory } from 'react-router'
 import { useSelector } from 'react-redux'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -40,6 +41,7 @@ function Navbar() {
     return store.customer
   })
   const ROUT = customer.user_role?.name
+  const history = useHistory()
   console.log(ROUT)
 
   const [hamburgerActiv, setHamburgerActiv] = useState(false)
@@ -140,13 +142,9 @@ function Navbar() {
   }
   let logOut = (e) => {
     console.log(config, 'Config')
-
-  
-      
-     
         setToken('')
         window.localStorage.removeItem('token')
-
+        history.push('/')
   }
 
   return (
