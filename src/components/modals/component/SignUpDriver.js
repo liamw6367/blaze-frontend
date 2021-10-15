@@ -86,7 +86,7 @@ function SignUpDriver({ localUser}) {
     )
         
      useEffect(async () => {
-        const response = await axios.get('http://54.245.154.47/users/get-roles', {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/get-roles`, {
         })
             .then(response => {
                 let id = Object.values(response.data[2])[0]
@@ -130,7 +130,7 @@ function SignUpDriver({ localUser}) {
             if (inputs[2].isValid) {
                 if (password.length >= 8) {
                     if (password === confirm_password) {
-                        axios.post(`${req}auth/register`, {
+                        axios.post(`${req}/auth/register`, {
                             first_name,
                             last_name,
                             username,

@@ -105,7 +105,7 @@ function SignUpCostumer({ localUser }) {
             console.log(username, email, password, confirm_password)
             console.log(config.url, 'URL')
             axios
-              .post(`${req}auth/register`, {
+              .post(`${req}/auth/register`, {
                 first_name,
                 last_name,
                 username,
