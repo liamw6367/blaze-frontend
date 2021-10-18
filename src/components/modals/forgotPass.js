@@ -13,10 +13,11 @@ function ForgotPass({forgotActive, ForgotPassOpen, VerifyCodeOpen}) {
         let email_valid = re.test(email);
         console.log(email_valid);
         if (email_valid) {
-            axios.put(`${config.url}forgot/reset`, {
+            axios.post(`${process.env.REACT_APP_API_URL}/auth/send-forgot-pass-email`, {
                 email
             }).then((res) => {
                 VerifyCodeOpen()
+                localStorage.setItem('forgot-email', email)
             }).catch((err) => {
                 setError('User not found')
             })

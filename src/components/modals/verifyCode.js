@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import VerificationInput from '../VerificationInput'
 import './../../scss/modal.scss'
 import axios from 'axios'
+import {useSelector} from "react-redux";
 import config from '../../config'
 
 function VerifyCode({
@@ -12,11 +13,13 @@ function VerifyCode({
 }) {
   const [code, setCode] = useState('')
   let [error, setError] = useState('')
+ const email = localStorage.getItem('forgot-email')
+  console.log(email)
 
   let submit = (event) => {
     event.preventDefault()
     axios
-      .post(`${config.url}forgot/code`, { token: code })
+      .post(`${process.env.REACT_APP_API_URL}/auth/verify-code`, { token: code, email })
       .then((res) => {
         console.log(res, 'res')
         getResponse(res.data.userId, res.data.token)

@@ -29,7 +29,7 @@ function NewPass(props) {
         ],
     )
 
-    let handleChange = (value, id,f1) => {
+    let handleChange = (value, id, f1) => {
         f1(value)
         setError('')
         console.log(value);
@@ -54,11 +54,12 @@ function NewPass(props) {
         if (password && confirm_password) {
             if (password.length >= 8) {
                 if (password === confirm_password) {
-                    axios.put(`${config.url}forgot/password`, {
+                    axios.post(`${process.env.REACT_APP_API_URL}/auth/reset-password`, {
                         userId: props.res.userId,
                         token: props.res.token,
                         password: pass,
-                        confirm_password: confirmPass
+                        confirm_password: confirmPass,
+                        email: localStorage.getItem('forgot-email') || ''
                     })
                         .then(res => {
                             props.NewPassOpen()
@@ -67,8 +68,7 @@ function NewPass(props) {
                         .catch(err => {
                             // console.log(err);
                         })
-                }
-                else {
+                } else {
                     setError('Passwords do not match')
                 }
             } else {
@@ -90,11 +90,11 @@ function NewPass(props) {
                     <form className='modalForm'>
                         <label>
                             <input className='modalForm__inp' type='password' placeholder='Password'
-                                   onChange={(e) => handleChange(e.target.value,0, setPass)}/>
+                                   onChange={(e) => handleChange(e.target.value, 0, setPass)}/>
                         </label>
                         <label>
                             <input className='modalForm__inp' type='password' placeholder='Confirm Password'
-                                   onChange={(e) => handleChange(e.target.value,1, setConfirmPass)}/>
+                                   onChange={(e) => handleChange(e.target.value, 1, setConfirmPass)}/>
                         </label>
                         <button className='login__submite' onClick={submit}>Reset Password</button>
                         <p className='errorMessage'>{error}</p>
