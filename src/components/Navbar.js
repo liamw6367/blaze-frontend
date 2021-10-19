@@ -42,8 +42,7 @@ function Navbar() {
   })
   const ROUT = customer.user_role?.name
   const history = useHistory()
-  console.log(ROUT)
-
+  const pathName = history.location.pathname
   const [hamburgerActiv, setHamburgerActiv] = useState(false)
   const [loginActiv, setLoginActiv] = useState(false)
   const [signUpActiv, setSignUpActiv] = useState(false)
@@ -147,6 +146,18 @@ function Navbar() {
         history.push('/')
   }
 
+  function myAccount(){
+    if(pathName === '/profile-driver' || pathName === '/profile') {
+      return ''
+    }else {
+      return (
+            <Link to="/" className="__link menu_navigation__link">
+              <MenuItem><Link style={ {color: '#000' }} classname='login_user' to={handleRout}>My Account</Link></MenuItem>
+            </Link>
+      )
+    }
+  }
+
   return (
     <>
       <section className="menu">
@@ -185,9 +196,7 @@ function Navbar() {
                       </Button>
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
-                        <Link to="/" className="__link menu_navigation__link">
-                          <MenuItem><Link style={ {color: '#000' }} classname='login_user' to={handleRout}>My Account</Link></MenuItem>
-                        </Link>
+                        {myAccount()}
                         <MenuItem onClick={logOut}>Log Out</MenuItem>
                       </Menu>
                     </React.Fragment>
