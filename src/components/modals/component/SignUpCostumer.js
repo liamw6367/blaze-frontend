@@ -61,7 +61,7 @@ function SignUpCostumer({ localUser }) {
     },
   ])
   useEffect(async () => {
-    const response = await axios.get('http://54.245.154.47/users/get-roles', {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/get-roles`, {
     })
         .then(response => {
             let id = Object.values(response.data[1])[0]
