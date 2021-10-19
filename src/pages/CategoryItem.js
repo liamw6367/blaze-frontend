@@ -11,7 +11,7 @@ import CategorySlider from '../components/CategorySlider'
 import ProductItemSlider from '../components/ProductItemSlider'
 
 
-function CategoryItem() {
+function CategoryItem({ category, product }) {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -30,8 +30,8 @@ function CategoryItem() {
                 <div className="today_sale">25% OFF</div>
                 <img src={dropdown} className='cardItem__item__img' alt=''/>
                 <div>
-                    <p className="today-card_product-paragraph">Food & Snacks</p>
-                    <h3 className="today-card_product-title" onClick={handleClickOpen}>Taro Chips Par-fried & baked</h3>
+                    <p className="today-card_product-paragraph">{category.name}</p>
+                    <h3 className="today-card_product-title" onClick={handleClickOpen}>{product.name}</h3>
                     <div className='cardItem__item__container'>
                         <div className='cardItem__item__container__left'>
                             <h3 className='cardItem__item__container__left__title_g'>400g</h3>
@@ -43,7 +43,7 @@ function CategoryItem() {
                             </div>
                         </div>
                         <div className='cardItem__item__container__right'>
-                            <h3 className='cardItem__item__container__right__title'>$25</h3>
+                            <h3 className='cardItem__item__container__right__title'>{ product.normal_price }</h3>
                             <a href="#" className='shoppingCart_btn'><img src={shoppingCart} alt=""/></a>
                         </div>
                     </div>

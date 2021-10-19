@@ -7,13 +7,13 @@
 
   li {
     &:last-child {
-      a {
+      .category__redirect-btn {
         border: none
       }
     }
   }
 
-  a {
+  .category__redirect-btn {
     display: block;
     padding: 24px 40px;
     text-align: left;
@@ -22,10 +22,16 @@
     letter-spacing: 0;
     color: #FFFFFF;
     opacity: 1;
+    background-color: inherit;
+    border: none; outline: none;
     border-right: 1px solid #8289A4;
     transition: .3s ease;
 
     &:hover {
+      color: #FF8400;
+    }
+
+    &.active {
       color: #FF8400;
     }
 

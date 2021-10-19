@@ -67,7 +67,7 @@ function Slider() {
               <div className="sliderItem__content">
                 <h3 className="sliderItem__title">{item.name}</h3>
                  <h3 className="sliderItem__subTitle">40% OFF</h3>
-                   <Link to="#" className="BestSavers__link">
+                   <Link to="/category" className="BestSavers__link">
                     Shop Now
                    </Link>
              </div>

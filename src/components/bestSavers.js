@@ -16,7 +16,7 @@ function BestSavers() {
       const top_card_items = response.data;
       setTopCardItems(top_card_items);
     } catch (err) {
-      alert(err.message);
+      // alert(err.message);
     }
   };
 
