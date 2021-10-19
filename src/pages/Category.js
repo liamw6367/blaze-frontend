@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './../scss/categoryPage.scss'
 import {makeStyles} from '@material-ui/core/styles';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -10,6 +10,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from "@material-ui/core/TextField";
 import CategoryItem from "./CategoryItem";
 import Navbar from "../components/Navbar";
+import axios from "axios";
+import {NavLink} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,36 +40,49 @@ const useStyles = makeStyles((theme) => ({
 function Category() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState({});
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+    const getCategories = async () => {
+        try {
+            const responce = await axios.get(`${process.env.REACT_APP_API_URL}/categories/get`);
+            setSelectedCategory(responce.data[2]);
+            setCategories(responce.data);
+        } catch (err) {
+            console.log(err.message);
+        }
+
+    };
+
+    useEffect(() => {
+        getCategories().catch();
+    }, []);
+
     return (
         <>
             <Navbar isLoggedIn={true}/>
             <div className='Category'>
                 <ul className="menu_banner">
-                    <li>
-                        <a href="#">Household Items</a>
-                    </li>
-                    <li>
-                        <a href="#">Bath & Body</a>
-                    </li>
-                    <li>
-                        <a href="#">Food & Snacks</a>
-                    </li>
-                    <li>
-                        <a href="#">Baby Care</a>
-                    </li>
-                    <li>
-                        <a href="#">Home & Kitchen</a>
-                    </li>
-                    <li>
-                        <a href="#">Fruits & Vegetables</a>
-                    </li>
-                    <li>
-                        <a href="#">More >></a>
-                    </li>
+                    {
+                        categories.map(category => {
+                            return (
+                                <li>
+                                    <button
+                                        type={"button"}
+                                        className={` category__redirect-btn ${ (selectedCategory === category) ? "active" : "" }`}
+                                        onClick={() => setSelectedCategory(category)}
+                                    >
+                                        {category.name}
+                                    </button>
+                                </li>
+                            );
+                        })
+                    }
+
                 </ul>
                 <div className='babyCare_leftMenu'>
                     <div>
@@ -183,19 +198,19 @@ function Category() {
                         />
                     </div>
                     <p className='month_txt'>0-6 Month</p>
-                    <div className="babyCare_items">
-                        <CategoryItem/>
-                        <CategoryItem/>
-                        <CategoryItem/>
-                        <CategoryItem/>
+                    {
+                        selectedCategory?.products?.map(product => {
+                            return (
+                                <div className="babyCare_items" key={product.id}>
+                                    <CategoryItem
+                                        category={selectedCategory}
+                                        product={product}
+                                    />
+                                </div>
+                            );
+                        })
+                    }
 
-                        <CategoryItem/>
-                        <CategoryItem/>
-                        <CategoryItem/>
-                        <CategoryItem/>
-
-
-                    </div>
                 </div>
             </div>
         </>

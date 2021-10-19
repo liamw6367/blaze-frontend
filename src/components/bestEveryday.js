@@ -17,7 +17,7 @@ function BestEveryday() {
       const daily_cards = response.data;
       setDailyCards(daily_cards);
     } catch (err) {
-      alert(err.message);
+      // alert(err.message);
     }
   };
 

@@ -20,7 +20,7 @@ function BestOffers() {
       setBestOffersProducts(best_offers);
       console.log(best_offers);
     } catch (err) {
-      alert(err.message);
+      // alert(err.message);
     }
   };
 
