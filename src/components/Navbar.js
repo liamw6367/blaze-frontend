@@ -147,7 +147,7 @@ function Navbar() {
   }
 
   function myAccount(){
-    if(pathName === '/profile-driver' || pathName === 'profile') {
+    if(pathName === '/profile-driver' || pathName === '/profile') {
       return ''
     }else {
       return (
