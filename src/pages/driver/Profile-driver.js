@@ -252,14 +252,14 @@ function ProfileDriver() {
 
 
                                 <label className='profile__container'>
-                                    <span className='visually-hidden'>Worktiming:</span>
-                                    <p className='profile__inp__name'>Worktiming:</p>
+                                    <span className='visually-hidden'>Worktiming Start:</span>
+                                    <p className='profile__inp__name'>Worktiming Start:</p>
                                     <input className='profile__inp' onChange={handleUserData} type='text' placeholder=''
                                            name='work_start'/>
                                 </label>
                                 <label className='profile__container'>
-                                    <span className='visually-hidden'>Worktiming:</span>
-                                    <p className='profile__inp__name'>Worktiming:</p>
+                                    <span className='visually-hidden'>Worktiming End:</span>
+                                    <p className='profile__inp__name'>Worktiming End:</p>
                                     <input className='profile__inp' onChange={handleUserData} type='text' placeholder=''
                                            required name='work_end'/>
                                 </label>
@@ -280,8 +280,8 @@ function ProfileDriver() {
                                 <label className='profile__container'>
                                     <span className='visually-hidden'>New Password:</span>
                                     <p className='profile__inp__name'>New Password:</p>
-                                    <input className='profile__inp' onChange={handleUserData} name='new_password'
-                                           type='text' placeholder='' required/>
+                                    <input className='profile__inp' onChange={handleUserData} name='new_password' type='password'
+                                            placeholder='' required/>
                                 </label>
 
                             </div>
