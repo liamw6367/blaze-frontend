@@ -144,6 +144,7 @@ function Navbar() {
         setToken('')
         window.localStorage.removeItem('token')
         history.push('/')
+        window.location.reload()
   }
 
   function myAccount(){

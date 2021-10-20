@@ -11,6 +11,7 @@ import Checkout from './pages/Checkout';
 import {useEffect} from "react";
 import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
+import Login from './components/modals/login';
 
 
 function App() {
@@ -70,7 +71,8 @@ function App() {
                             <Route exact path='/' component={Home}/>
                             <Route exact path='/checkout' component={Home}/>
                             <Route exact path='/order' component={Home}/>
-                            <Route exact path='/category' component={Home}/>
+                            {/* <Route exact path='' render={(props) => <Login {...props} loginOpen={true} loginActiv={true}/>}/> */}
+                            
                             <Route exact path='/profile' component={ Home}/>
                             <Route exact path='/profile-driver' component={Home}/>
                         </Switch>}

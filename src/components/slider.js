@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import './../scss/slider.scss'
 import { Link } from 'react-router-dom'
 import OWLcorusel from 'react-owl-carousel'
@@ -6,6 +7,8 @@ import 'owl.carousel/dist/assets/owl.carousel.min.css'
 import 'owl.carousel/dist/assets/owl.theme.default.min.css'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { useHistory } from 'react-router'
+import Login from './modals/login'
 
 const options = {
   responsive: {
@@ -33,6 +36,85 @@ function Slider() {
   const sliderItems = useSelector((store) => {
     return store.sliderItems
   })
+  const user = useSelector(store => store.customer)
+  const history = useHistory()
+  const [loginActiv, setLoginActiv] = useState(false)
+  const [signUpActiv, setSignUpActiv] = useState(false)
+  const [forgotActive, setForgotActive] = useState(false)
+  const [newPassActive, setNewPassActive] = useState(false)
+  const [verifyCodeActive, setVerifyCodeActive] = useState(false)
+  const [cardActiv, setCardActiv] = useState(false)
+  const [mapActiv, setmapActiv] = useState(false)
+  const [locationChange, setLocationChange] = useState(false)
+  const [res, setRes] = useState({})
+
+
+  const loginOpen = () => {
+    setLoginActiv(!loginActiv)
+    setSignUpActiv(false)
+    setForgotActive(false)
+    setVerifyCodeActive(false)
+  }
+  const SignUpOpen = () => {
+    setSignUpActiv(!signUpActiv)
+    setLoginActiv(false)
+    setForgotActive(false)
+    setVerifyCodeActive(false)
+  }
+
+  const ForgotPassOpen = () => {
+    setForgotActive(!forgotActive)
+    setLoginActiv(false)
+    setSignUpActiv(false)
+    setVerifyCodeActive(false)
+  }
+
+  const VerifyCodeOpen = () => {
+    setVerifyCodeActive(!verifyCodeActive)
+    setLoginActiv(false)
+    setSignUpActiv(false)
+    setForgotActive(false)
+  }
+
+  const NewPassOpen = () => {
+    console.log(newPassActive, 'newPassActive')
+    setNewPassActive(!newPassActive)
+    setLoginActiv(false)
+    setSignUpActiv(false)
+    setForgotActive(false)
+    setVerifyCodeActive(false)
+  }
+  /**********************************************/
+  const [open, setOpen] = React.useState(false)
+
+  const handleClickOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  let [token, setToken] = useState(
+    window.localStorage.getItem('token')
+      ? window.localStorage.getItem('token')
+      : null
+  )
+
+  const bbb = () => {
+    setLoginActiv(false)
+  }
+
+  let setLocalStorage = (token) => {
+    setToken(token)
+    console.log('aaapopp')
+  }
+  console.log(user.id)
+
+  function categoryPage() {
+    history.push('/category')
+  }
+
 
   useEffect(async () => {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/get`, {
@@ -48,6 +130,7 @@ function Slider() {
             })
            
   },[])
+
 
   return (
     <section className="productsSlider wrapper">
@@ -67,9 +150,9 @@ function Slider() {
               <div className="sliderItem__content">
                 <h3 className="sliderItem__title">{item.name}</h3>
                  <h3 className="sliderItem__subTitle">40% OFF</h3>
-                   <Link to="/category" className="BestSavers__link">
+                   <button onClick={user.id ? categoryPage : loginOpen} className="BestSavers__link">
                     Shop Now
-                   </Link>
+                   </button>
              </div>
                 <img src={`${process.env.REACT_APP_API_URL}/uploads/product_images/${item.image}`} className='sliderItem__img '/>
                </div>
@@ -81,8 +164,16 @@ function Slider() {
   
         {/* {ProductsElement} */}
  
-  
-
+      <Login
+      aaa={bbb}
+      loginActiv={loginActiv}
+      loginOpen={loginOpen}
+      signUpActiv={signUpActiv}
+      SignUpOpen={SignUpOpen}
+      ForgotPassOpen={ForgotPassOpen}
+      localToken={setLocalStorage}
+    />
+      
     </section>
   )
 }

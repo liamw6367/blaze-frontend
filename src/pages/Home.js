@@ -10,6 +10,7 @@ import Slider from '../components/slider';
 import Navbar from "../components/Navbar";
 import test1 from './../assets/images/welcome.png'
 
+
 function Home() {
     return (
         <div className='home'>
@@ -21,7 +22,7 @@ function Home() {
                     <Link to='#' className='home__link'>Shop Now</Link>
                     <img src={test1} className='welcomebgImg'/>
                 </div>
-            </div>
+            </div>           
             <Slider/>
             <ShopByCategory/>
             <BestSavers/>

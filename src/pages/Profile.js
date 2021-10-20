@@ -56,7 +56,7 @@ function Profile() {
     }
 */
     axios
-      .post(`https://blaze123.herokuapp.com/api/profile/edit`, userData, {
+      .put(`${process.env.REACT_APP_API_URL}/users/update-profile`, userData, {
         headers: {
           Authorization: localStorage.getItem('token'),
         },
