@@ -9,6 +9,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useHistory } from 'react-router'
 import Login from './modals/login'
+import SignUp from './modals/signUp'
+import ForgotPass from './modals/forgotPass'
+import VerifyCode from './modals/verifyCode'
+import NewPass from './modals/resetPass'
 
 const options = {
   responsive: {
@@ -109,6 +113,10 @@ function Slider() {
     setToken(token)
     console.log('aaapopp')
   }
+  
+  let getResponse = (userId, token) => {
+    setRes({ userId, token })
+  }
   console.log(user.id)
 
   function categoryPage() {
@@ -173,6 +181,30 @@ function Slider() {
       ForgotPassOpen={ForgotPassOpen}
       localToken={setLocalStorage}
     />
+          <SignUp
+        aaa={bbb}
+        loginActiv={loginActiv}
+        loginOpen={loginOpen}
+        signUpActiv={signUpActiv}
+        SignUpOpen={SignUpOpen}
+        localToken={setLocalStorage}
+      />
+      <ForgotPass
+        forgotActive={forgotActive}
+        ForgotPassOpen={ForgotPassOpen}
+        VerifyCodeOpen={VerifyCodeOpen}
+      />
+      <NewPass
+        newPassActive={newPassActive}
+        NewPassOpen={NewPassOpen}
+        res={res}
+      />
+      <VerifyCode
+        verifyCodeActive={verifyCodeActive}
+        VerifyCodeOpen={VerifyCodeOpen}
+        NewPassOpen={NewPassOpen}
+        getResponse={getResponse}
+      />
       
     </section>
   )
