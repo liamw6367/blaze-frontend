@@ -111,7 +111,7 @@ function Slider() {
 
   let setLocalStorage = (token) => {
     setToken(token)
-    console.log('aaapopp')
+    history.push('/category')
   }
   
   let getResponse = (userId, token) => {

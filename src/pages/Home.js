@@ -20,7 +20,7 @@ import NewPass from '../components/modals/resetPass'
 function Home() {
     const user_id = useSelector(store => store.customer.id)
     const history = useHistory()
-    
+
     const [loginActiv, setLoginActiv] = useState(false)
     const [signUpActiv, setSignUpActiv] = useState(false)
     const [forgotActive, setForgotActive] = useState(false)
@@ -87,6 +87,7 @@ function Home() {
       let setLocalStorage = (token) => {
         setToken(token)
         console.log('aaapopp')
+        history.push('/category')
       }
       
       let getResponse = (userId, token) => {
