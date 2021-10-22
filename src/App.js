@@ -1,6 +1,6 @@
 import './App.css';
 import ScrollToTop from './scrollToTop/ScrollToTop';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
+import {Route, BrowserRouter, Switch, Redirect} from 'react-router-dom';
 import Home from './pages/Home'
 import Category from './pages/Category'
 import Profile from './pages/Profile'
@@ -36,17 +36,76 @@ function App() {
         if(role === 'driver'){
             return(
                 <>
-                <Route exact path='/profile-driver' component={ProfileDriver}/>
-                <Route exact path='/profile' component={Home}/>
+                    <Route exact path='/profile-driver' component={ ProfileDriver } />
+                    <Route exact path='/profile' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/dashboard' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/stores' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-store' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-store/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/categories' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-category' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-category/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/products' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-product' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-product/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/user-list' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/promotional-message' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/banners' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-banner' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-banner/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/delivery-fee' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/drivers' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/drivers-pending' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/all-orders' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/cancel-transaction' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/discounts' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-discount' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-discount/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-group' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-group' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/tax' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
-        } else if(role === 'customer' || role === 'admin'){
+        } else if(role === 'customer'){
             return(
                 <>
-                <Route exact path='/profile' component={Profile}/>
-                <Route exact path='/profile-driver' component={Home}/>
+                    <Route exact path='/profile' component={ Profile } />
+                    <Route exact path='/profile-driver' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/dashboard' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/stores' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-store' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-store/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/categories' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-category' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-category/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/products' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-product' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-product/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/user-list' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/promotional-message' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/banners' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-banner' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-banner/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/delivery-fee' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/drivers' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/drivers-pending' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/all-orders' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/cancel-transaction' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/discounts' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-discount' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-discount/:id' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-group' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/edit-group' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/tax' render={ () => <Redirect to='/' /> } />
+                    <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
+        } else if (role === 'admin') {
+            <>
+                <Route exact path='/profile' component={ Profile } />
+                <Route exact path='/profile-driver' render={ () => <Redirect to='/' /> } />
+            </>
         }
     }
 
@@ -80,8 +139,6 @@ function App() {
                 </div>
             </div>
         </BrowserRouter>
-
-
     );
 }
 
