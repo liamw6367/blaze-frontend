@@ -1,7 +1,7 @@
-const user = {
-}
+export const user = {
+};
 
-const customerReducer = (state = user, action) => {
+export const customerReducer = (state = user, action) => {
     // console.log(action);
     switch (action.type) {
         case 'SET_CUSTOMER':
@@ -12,5 +12,5 @@ const customerReducer = (state = user, action) => {
         default: break;
     }
     return state;
-}
-export default customerReducer
+};
+

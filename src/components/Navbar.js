@@ -18,28 +18,32 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import Slide from '@material-ui/core/Slide'
 import CloseIcon from '@material-ui/icons/Close'
-import CartItem from './CartItem'
 import ForgotPass from './modals/forgotPass'
 import VerifyCode from './modals/verifyCode'
 import NewPass from './modals/resetPass'
-
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
-import axios from 'axios'
 import config from '../config'
 import { useHistory } from 'react-router'
 import { useSelector } from 'react-redux'
+import ProductsDialog from './dialogs/ProductsDialog'
+import { selectCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice'
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />
-})
+});
 
 function Navbar() {
-  let customer = useSelector((store) => {
-    return store.customer
-  })
+  const customer = useSelector((store) => {
+    return store.customer;
+  });
+
+  const shoppingCartItems = useSelector(selectCartItems);
+  const numberOfCartItems = shoppingCartItems.reduce((acc, item) => acc + item.amount, 0);
+
   const ROUT = customer.user_role?.name
   const history = useHistory()
   const pathName = history.location.pathname
@@ -218,7 +222,7 @@ function Navbar() {
               onClick={handleClickOpen}
             >
               <Path2 className="menu-icons" />
-              <p>My Cart (0)</p>
+              <p> { `My Cart (${ numberOfCartItems })` } </p>
             </button>
           </div>
           <div className="hamburger-mb-menu" onClick={hamburgerOpen}>
@@ -269,10 +273,10 @@ function Navbar() {
               )}
               <button
                 className=" menu__navigation__item selected_cart_items"
-                onClick={handleClickOpen}
+                onClick={ handleClickOpen }
               >
                 <Path2 className="menu-icons" />
-                <p>My Cart (0)</p>
+                <p> { `My Cart (${ numberOfCartItems })` } </p>
               </button>
             </div>
           </div>
@@ -324,11 +328,11 @@ function Navbar() {
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={ handleClose }
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="dialog-title">
-          My Cart(3 items)
+          { `My Cart (${ numberOfCartItems } items)` }
           <DialogActions>
             <button onClick={handleClose}>
               <CloseIcon />
@@ -336,19 +340,7 @@ function Navbar() {
           </DialogActions>
         </DialogTitle>
         <DialogContent id="dialogContent">
-          <div className="head_banner">
-            <div>
-              <p>Sub Total</p>
-              <p>454$</p>
-            </div>
-            <div>
-              <p>Delivery Charges</p>
-              <p className="delivery_color">+49$</p>
-            </div>
-          </div>
-          <CartItem />
-          <CartItem />
-          <CartItem />
+            <ProductsDialog />
         </DialogContent>
       </Dialog>
     </>

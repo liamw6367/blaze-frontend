@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
-// import dropdown from './../assets/images/vegetablesPngTransparent.png'
-import './../scss/cardItem.scss'
+import React, { useState } from 'react';
+import './../scss/cardItem.scss';
+import shoppingCart from '../assets/images/icons/shopping-cart.svg';
+import { useDispatch } from 'react-redux';
+import { addCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
 
-import shoppingCart from '../assets/images/icons/shopping-cart.svg'
 
-function CardItem({ imgUrl, paragraph, title, salePrice, price, sale }) {
-  const [number, setNumber] = useState(0)
+function CardItem({ imgUrl, paragraph, title, salePrice, price, sale, cartItem }) {
+  const [itemQuantity, setItemQuantity] = useState(1);
+  const lessThanOne = itemQuantity <= 1;
+  const moreThanTen = itemQuantity >= 10;
+
+  const dispatch = useDispatch();
 
   return (
     <div className="cardItem__item">
@@ -20,21 +25,37 @@ function CardItem({ imgUrl, paragraph, title, salePrice, price, sale }) {
               {salePrice}
             </h3>
             <div className="qtySelector">
-              <button onClick={() => setNumber(number - 1)}>-</button>
-              <input
-                type="text"
-                className="qtyValue"
-                placeholder="kg"
-                defaultValue={number}
-              />
-              <button onClick={() => setNumber(number + 1)}>+</button>
+              <button 
+                type="button" 
+                onClick={ () => setItemQuantity(prevQuantity => prevQuantity - 1) }
+                disabled={ lessThanOne }
+              >
+                -
+              </button>
+              <span> { itemQuantity } </span>
+              <button 
+                type="button" 
+                onClick={ () => setItemQuantity(prevQuantity => prevQuantity + 1) }
+                disabled={ moreThanTen }
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="cardItem__item__container__right">
-            <h3 className="cardItem__item__container__right__title">{price}</h3>
-            <a href="#" className="shoppingCart_btn">
-              <img src={shoppingCart} alt="" />
-            </a>
+            <h3 className="cardItem__item__container__right__title"> { price } </h3>
+            <button 
+              type="button" 
+              className="shoppingCart_btn"
+              onClick={ () => {
+                dispatch(addCartItems({
+                  ...cartItem, 
+                  amount: itemQuantity
+                }));
+              } }
+            >
+              <img src={shoppingCart} alt="shopping cart" />
+            </button>
           </div>
         </div>
       </div>
@@ -42,4 +63,4 @@ function CardItem({ imgUrl, paragraph, title, salePrice, price, sale }) {
   )
 }
 
-export default CardItem
+export default CardItem;

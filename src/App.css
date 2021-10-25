@@ -1,0 +1,13 @@
+button {
+    border: none;
+    outline: none;
+}
+button:disabled {
+    cursor: default;
+}
+button:hover {
+    transform: scale(1.1);
+}
+button:active {
+    transform: scale(1);
+}

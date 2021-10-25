@@ -11,14 +11,13 @@ import Checkout from './pages/Checkout';
 import {useEffect} from "react";
 import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
-import Login from './components/modals/login';
 
 
 function App() {
     const Token = localStorage.getItem('token') ? localStorage.getItem('token') : null
     let dispatch = useDispatch()
     let customer = useSelector(store => {
-        return store.customer
+        return store.customer; 
     })
     const role = customer.user_role?.name
     

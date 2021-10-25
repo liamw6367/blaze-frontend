@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './../scss/bestSavers.scss';
 import { Link } from 'react-router-dom';
 import CardItem from './cardItem';
-// import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTopCardItems, selectTopCardItems } from '../features/topSavers/topSaversSlice';
 
 
 function BestSavers() {
-  // const topCardItems = useSelector((store) => store.topSaversCards)
-  const [topCardItems, setTopCardItems] = useState([]);
+  const topCardItems = useSelector(selectTopCardItems);
+  const dispatch = useDispatch();
 
-  const getTopCardItems = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/get`);
-      const top_card_items = response.data;
-      setTopCardItems(top_card_items);
-    } catch (err) {
-      // alert(err.message);
-    }
-  };
+  console.log(topCardItems);
 
   useEffect(() => {
-    getTopCardItems();
+    dispatch(getTopCardItems())
   }, []);
 
   return (
@@ -32,12 +24,13 @@ function BestSavers() {
           return (
             <CardItem
               key={ item.id }
-              imgUrl={item.image}
-              paragraph={item.description}
-              title={item.name}
-              salePrice={item.sales_price}
-              price={item.normal_price}
+              imgUrl={ item.image }
+              paragraph={ item.description }
+              title={ item.name }
+              salePrice={ item.sales_price }
+              price={ item.normal_price }
               sale={ '40% OFF' }
+              cartItem={ item }
             />
           )
         })}

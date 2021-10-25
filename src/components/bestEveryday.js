@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './../scss/bestEveryday.scss'
 import { Link } from 'react-router-dom'
 import CardItem from './../components/cardItem'
-// import { useSelector } from 'react-redux'
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDailyCards, selectDailyStaples } from '../features/bestDailyStaples/bestDailyStaplesSlice';
+
 
 function BestEveryday() {
-  // const dailyCards = useSelector((store) => {
-  //   return store.dailyBestCards
-  // })
-  const [dailyCards, setDailyCards] = useState([]);
-
-  const getDailyCards = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/get`);
-      const daily_cards = response.data;
-      setDailyCards(daily_cards);
-    } catch (err) {
-      // alert(err.message);
-    }
-  };
+  const dailyCards = useSelector(selectDailyStaples);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getDailyCards();
+    dispatch(getDailyCards());
   }, []);
 
   return (

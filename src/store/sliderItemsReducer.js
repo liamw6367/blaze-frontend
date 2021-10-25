@@ -1,4 +1,4 @@
-const initialState = [
+export const sliders = [
   {
     percent: '30% OFF',
     name: 'orange',
