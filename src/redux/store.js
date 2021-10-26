@@ -19,7 +19,7 @@ const store = createStore(combineReducers({
     bestDailyStaples: bestOfEveryDayStaples,
     shoppingCartItem: shoppingCartItem,
     customer: user,
-    shopCategoryItems: shopCategories,
+    // shopCategoryItems: shopCategories,
     sliderItems: sliders
 }, applyMiddleware(thunk));
 
