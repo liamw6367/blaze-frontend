@@ -10,8 +10,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from "@material-ui/core/TextField";
 import CategoryItem from "./CategoryItem";
 import Navbar from "../components/Navbar";
-import axios from "axios";
-import {NavLink} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, selectCategories } from '../features/categories/categoriesSlice';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,26 +40,19 @@ const useStyles = makeStyles((theme) => ({
 function Category() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState({});
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const getCategories = async () => {
-        try {
-            const responce = await axios.get(`${process.env.REACT_APP_API_URL}/categories/get`);
-            setSelectedCategory(responce.data[2]);
-            setCategories(responce.data);
-        } catch (err) {
-            console.log(err.message);
-        }
+    const categories = useSelector(selectCategories);
 
-    };
+    const [selectedCategory, setSelectedCategory] = useState(categories[1]);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getCategories().catch();
+        dispatch(getCategories());
     }, []);
 
     return (
@@ -74,7 +67,7 @@ function Category() {
                                     <button
                                         type={"button"}
                                         className={` category__redirect-btn ${ (selectedCategory === category) ? "active" : "" }`}
-                                        onClick={() => setSelectedCategory(category)}
+                                        onClick={ () => setSelectedCategory(category) }
                                     >
                                         {category.name}
                                     </button>
@@ -203,8 +196,8 @@ function Category() {
                             return (
                                 <div className="babyCare_items" key={product.id}>
                                     <CategoryItem
-                                        category={selectedCategory}
-                                        product={product}
+                                        category={ selectedCategory }
+                                        product={ product }
                                     />
                                 </div>
                             );

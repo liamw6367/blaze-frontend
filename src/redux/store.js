@@ -6,11 +6,13 @@ import { shopCategories, shopCategoryReducer } from '../store/shopCategroyReduce
 import { sliderItemsReducer, sliders } from '../store/sliderItemsReducer';
 import { bestDailyStaplesReducer, bestOfEveryDayStaples } from '../features/bestDailyStaples/bestDailyStaplesSlice';
 import { shoppingCartItem, shoppingCartItemsReducer } from '../features/shoppingCartItems/shoppingCartItemsSlice';
+import { categoriesReducer, categories } from '../features/categories/categoriesSlice';
 
 const store = createStore(combineReducers({
     topSavers: topSaversReducer,
     bestDailyStaples: bestDailyStaplesReducer,
     shoppingCartItem: shoppingCartItemsReducer,
+    categories: categoriesReducer,
     customer: customerReducer,
     shopCategoryItems: shopCategoryReducer,
     sliderItems: sliderItemsReducer
@@ -18,6 +20,7 @@ const store = createStore(combineReducers({
     topSavers: topCardItems,
     bestDailyStaples: bestOfEveryDayStaples,
     shoppingCartItem: shoppingCartItem,
+    categories,
     customer: user,
     // shopCategoryItems: shopCategories,
     sliderItems: sliders

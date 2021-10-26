@@ -18,10 +18,10 @@ export const shoppingCartItemsReducer = (state = {}, action) => {
             cartItems: updatedCartItems,
             totalAmount: updatedTotalAmount
         }; 
-    } else if(action.type === "REMOVE_CART_ITEMS") {
+    } else if(action.type === "DECREASE_CART_ITEMS") {
         const existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload.shoppingCartItemId);
         const existingCartItem = state.cartItems[existingCartItemIndex];
-        const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+        const updatedTotalAmount = state.totalAmount - existingCartItem.sales_price;
         let updatedCartItems;
         if(existingCartItem.amount === 1) {
             updatedCartItems = state.cartItems.filter(item => item.id !== action.payload.shoppingCartItemId);
@@ -30,6 +30,26 @@ export const shoppingCartItemsReducer = (state = {}, action) => {
             updatedCartItems = [...state.cartItems];
             updatedCartItems[existingCartItemIndex] = updatedCartItem;
         }
+        return {
+            cartItems: updatedCartItems,
+            totalAmount: updatedTotalAmount
+        };
+    } else if(action.type === "REMOVE_CART_ITEMS") {
+        const existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload.shoppingCartItemId);
+        const existingCartItem = state.cartItems[existingCartItemIndex];
+        const updatedTotalAmount = state.totalAmount - existingCartItem.sales_price * existingCartItem.amount;
+        const updatedCartItems = state.cartItems.filter(item => item.id !== action.payload.shoppingCartItemId);
+        return {
+            cartItems: updatedCartItems,
+            totalAmount: updatedTotalAmount
+        };
+    } else if(action.type === "INCREASE_CART_ITEMS") {
+        const existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload.shoppingCartItemId);
+        const existingCartItem = state.cartItems[existingCartItemIndex];
+        const updatedTotalAmount = state.totalAmount + existingCartItem.sales_price;
+        const updatedCartItem = { ...existingCartItem, amount: existingCartItem.amount + 1 };
+        const updatedCartItems = [...state.cartItems];
+        updatedCartItems[existingCartItemIndex] = updatedCartItem;
         return {
             cartItems: updatedCartItems,
             totalAmount: updatedTotalAmount
@@ -50,6 +70,20 @@ export const addCartItems = (cartItem) => {
     return {
         type: "ADD_CART_ITEMS",
         payload: { shoppingCartItem: cartItem }
+    };
+};
+
+export const decreaseCartItems = (itemId) => {
+    return {
+        type: "DECREASE_CART_ITEMS",
+        payload: { shoppingCartItemId: itemId }
+    };
+};
+
+export const increaseCartItems = (itemId) => {
+    return {
+        type: "INCREASE_CART_ITEMS",
+        payload: { shoppingCartItemId: itemId }
     };
 };
 

@@ -9,10 +9,18 @@ import PhoneIcon from '../assets/images/icons/phoneIcon.png'
 import Dialog from '@material-ui/core/Dialog';
 import CategorySlider from '../components/CategorySlider'
 import ProductItemSlider from '../components/ProductItemSlider'
+import { useDispatch } from 'react-redux';
+import { addCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice'
 
 
 function CategoryItem({ category, product }) {
     const [open, setOpen] = React.useState(false);
+
+    const [itemQuantity, setItemQuantity] = useState(1);
+    const lessThanOne = itemQuantity <= 1;
+    const moreThanTen = itemQuantity >= 10;
+
+    const dispatch = useDispatch();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -28,23 +36,46 @@ function CategoryItem({ category, product }) {
         <>
             <div className='cardItem__item Card_Item'>
                 <div className="today_sale">25% OFF</div>
-                <img src={dropdown} className='cardItem__item__img' alt=''/>
+                <img src={`${process.env.REACT_APP_API_URL}/uploads/product_images/${product.image}`} className='cardItem__item__img' alt=''/>
                 <div>
                     <p className="today-card_product-paragraph">{category.name}</p>
                     <h3 className="today-card_product-title" onClick={handleClickOpen}>{product.name}</h3>
                     <div className='cardItem__item__container'>
                         <div className='cardItem__item__container__left'>
                             <h3 className='cardItem__item__container__left__title_g'>400g</h3>
-                            <h3 className='cardItem__item__container__left__title'>$20.75</h3>
+                            <h3 className='cardItem__item__container__left__title'> { `$${product.normal_price}` } </h3>
                             <div className="qtySelector">
-                                <button onClick={() => setNumber1(number1 - 1)}>-</button>
-                                <input type="text" className="qtyValue" placeholder="kg" defaultValue={number1}/>
-                                <button onClick={() => setNumber1(number1 + 1)}>+</button>
+                                <button 
+                                    type="button" 
+                                    onClick={ () => setItemQuantity(prevQuantity => prevQuantity - 1) }
+                                    disabled={ lessThanOne }
+                                >
+                                    -
+                                </button>
+                                <span> { itemQuantity } </span>
+                                <button 
+                                    type="button" 
+                                    onClick={ () => setItemQuantity(prevQuantity => prevQuantity + 1) }
+                                    disabled={ moreThanTen }
+                                >
+                                    +
+                                </button>
                             </div>
                         </div>
                         <div className='cardItem__item__container__right'>
-                            <h3 className='cardItem__item__container__right__title'>{ product.normal_price }</h3>
-                            <a href="#" className='shoppingCart_btn'><img src={shoppingCart} alt=""/></a>
+                            <h3 className='cardItem__item__container__right__title'>{ product.sales_price }</h3>
+                                <button 
+                                    type="button" 
+                                    className="shoppingCart_btn"
+                                    onClick={ () => {
+                                        dispatch(addCartItems({
+                                        ...product, 
+                                        amount: itemQuantity
+                                        }));
+                                    } }
+                                    >
+                                    <img src={shoppingCart} alt="shopping cart" />
+                                </button>
                         </div>
                     </div>
                 </div>

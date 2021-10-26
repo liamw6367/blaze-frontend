@@ -6,7 +6,7 @@ import CartItem from '../CartItem';
 
 function ProductsDialog() {
   const shoppingCartItems = useSelector(selectCartItems);
-  const totalAmount = useSelector(selectTotalAmount);
+  const totalAmount = useSelector(selectTotalAmount) || 0;
 
   return (
       <>

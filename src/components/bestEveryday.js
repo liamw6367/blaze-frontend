@@ -28,6 +28,7 @@ function BestEveryday() {
               salePrice={item.sales_price}
               price={item.normal_price}
               sale={ '40% OFF' }
+              cartItem={ item }
             />
           )
         })}

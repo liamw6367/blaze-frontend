@@ -1,5 +1,6 @@
 import { loadDailyCards } from "./bestDailyStaplesAPI";
 
+
 export const bestDailyStaplesReducer = (state = [], action) => {
     if(action.type === "EDIT_BEST_DAILY_STAPLES") {
         return action.payload.bestDailyStaples;

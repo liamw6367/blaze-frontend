@@ -43,6 +43,7 @@ function Navbar() {
 
   const shoppingCartItems = useSelector(selectCartItems);
   const numberOfCartItems = shoppingCartItems.reduce((acc, item) => acc + item.amount, 0);
+  const cartItemsQuantity = shoppingCartItems.length;
 
   const ROUT = customer.user_role?.name
   const history = useHistory()
@@ -332,7 +333,7 @@ function Navbar() {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="dialog-title">
-          { `My Cart (${ numberOfCartItems } items)` }
+          { `My Cart (${ cartItemsQuantity } items)` }
           <DialogActions>
             <button onClick={handleClose}>
               <CloseIcon />

@@ -2,7 +2,7 @@ import deleteIcon from '../assets/images/icons/delete.png';
 import shopIcon from '../assets/images/icons/shopIcon.png';
 import phoneIcon from '../assets/images/icons/phoneIcon.png';
 import React, { useState } from 'react';
-import { removeCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
+import { removeCartItems, increaseCartItems, decreaseCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
 import { useDispatch } from 'react-redux';
 
 
@@ -40,7 +40,10 @@ const CartItem = ({ cartItem }) => {
               <div className="qtySelector">
                 <button 
                   type="button" 
-                  onClick={ () => setItemQuantity(prevQuantity => prevQuantity - 1) }
+                  onClick={ () => { 
+                    dispatch(decreaseCartItems(cartItem.id));
+                    setItemQuantity(prevQuantity => prevQuantity - 1);
+                  } }
                   disabled={ lessThanOne }
                 >
                   -
@@ -48,7 +51,10 @@ const CartItem = ({ cartItem }) => {
                 <span> { itemQuantity } </span>
                 <button 
                   type="button" 
-                  onClick={ () => setItemQuantity(prevQuantity => prevQuantity + 1) }
+                  onClick={ () => { 
+                    dispatch(increaseCartItems(cartItem.id)); 
+                    setItemQuantity(prevQuantity => prevQuantity + 1);
+                  } }
                   disabled={ moreThanTen }
                 >
                   +
