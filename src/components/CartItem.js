@@ -1,18 +1,27 @@
 import deleteIcon from '../assets/images/icons/delete.png';
 import shopIcon from '../assets/images/icons/shopIcon.png';
 import phoneIcon from '../assets/images/icons/phoneIcon.png';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { removeCartItems, increaseCartItems, decreaseCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
 import { useDispatch } from 'react-redux';
 
 
 const CartItem = ({ cartItem }) => {
+  const { product_stores } = cartItem;
+
+  console.log(product_stores, "cartitem -> product stores");
+
   const dispatch = useDispatch();
   const [itemQuantity, setItemQuantity] = useState(cartItem.amount);
+
+  console.log(cartItem.amount, "amount");
+
+  useEffect(() => {
+    setItemQuantity(cartItem.amount);
+  }, [cartItem.amount]);
   
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
-
   return (
     <div className="product_cart_item">
       <button
@@ -29,7 +38,7 @@ const CartItem = ({ cartItem }) => {
         <div className="information_content">
           <span className="percent">25% OFF</span>
           <p className="description">
-            { cartItem.description }
+            { cartItem.name }
             <span className="gr">300g</span>
           </p>
           <div
@@ -80,10 +89,16 @@ const CartItem = ({ cartItem }) => {
         </div>
       </div>
       <div className="container contact">
-        <div className="shopName">
-          <img src={shopIcon} alt="" />
-          <p> { cartItem.name } </p>
-        </div>
+        {
+          product_stores.map(productStore => {
+            return (
+              <div key={ productStore.id } className="shopName">
+                <img src={shopIcon} alt="" />
+                <p> { productStore.name } </p>
+              </div>
+            );
+          })
+        }
         <div className="phoneNum">
           <img src={phoneIcon} alt="" />
           <p> +454 55 44 54 </p>
