@@ -8,6 +8,7 @@ import PhoneVerificationCode from '../components/modals/phoneVerificationCode'
 import Navbar from '../components/Navbar'
 import axios from 'axios'
 import config from '../config'
+import {ReactComponent as VerifyIcon } from '../assets/images/icons/Verify_icon.svg'
 import { useSelector, useDispatch } from 'react-redux'
 
 function Profile() {
@@ -130,12 +131,16 @@ function Profile() {
         </div>
 
         <div className="profile-registration">
-          <div className="phoneVerificationBanner">
-            <div
-              className="phoneVerificationBtn"
-              onClick={PhoneVerificationOpen}
-            >
-              <p>Phone Verification</p>
+          <div className='wrapper-verify'>
+            <div className="phoneVerificationBanner phoneVerificationBanner__verify">
+              <VerifyIcon />
+              <p  className="phoneVerificationBanner__text">Phone Verification:</p>
+              <div
+                className="phoneVerificationBtn phoneVerificationBanner__btn"
+                onClick={PhoneVerificationOpen}
+              >
+                <p>Verify</p>
+              </div>
             </div>
           </div>
           <form className="profile-registration__form">

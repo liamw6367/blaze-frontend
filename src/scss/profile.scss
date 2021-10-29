@@ -123,10 +123,6 @@
   margin-right: 11px;
 }
 
-.phoneVerificationBanner {
-  max-width: 1400px;
-  margin: auto;
-}
 
 .phoneVerificationBtn {
   width: max-content;
@@ -141,6 +137,37 @@
   margin: 0 0 30px 0;
 }
 
+.phoneVerificationBanner {
+  max-width: 400px;
+  margin-right: auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 3px 5px #eee;
+
+  &__verify {
+    display: inline-flex;
+    margin-bottom: 40px;
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &__text {
+    margin-right: 20px;
+    font: normal normal 600 16px/16px Mulish;
+  }
+
+  &__btn{
+    margin-bottom: 0;
+    background-color: #cad5ff;
+    color: black;
+    padding: 10px 20px;
+  }
+}
 
 @media (max-width: 1200px) {
   .profile{

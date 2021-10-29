@@ -15,6 +15,13 @@ ul{
   width: calc(100% - 30px);
   margin: 0 auto;
 }
+
+.wrapper-verify{
+  max-width: 1400px;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

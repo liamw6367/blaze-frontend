@@ -99,10 +99,17 @@ const CartItem = ({ cartItem }) => {
             );
           })
         }
-        <div className="phoneNum">
-          <img src={phoneIcon} alt="" />
-          <p> +454 55 44 54 </p>
-        </div>
+                {
+          product_stores.map(productStore => {
+            return (
+              <div className="phoneNum">
+              <img src={phoneIcon} alt="" />
+              <p> {productStore.contact_number} </p>
+            </div>
+            );
+          })
+        }
+
       </div>
     </div>
   )
