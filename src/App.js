@@ -66,7 +66,7 @@ function App() {
                     <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
-        } else if(role === 'customer'){
+        } else if(role === 'customer' || role === 'store admin'){
             return(
                 <>
                     <Route exact path='/profile' component={ Profile } />
@@ -121,6 +121,7 @@ function App() {
                             <Route exact path='/order' component={Order}/>
                             <Route exact path='/category' component={Category}/>
                             {userRole()}
+                            {console.log(role, 'role')}
                             <Route component={NoMatch}/>
                         </Switch>
                         :
