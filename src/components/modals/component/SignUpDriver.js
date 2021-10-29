@@ -149,7 +149,7 @@ function SignUpDriver({ localUser}) {
                             })
                             window.localStorage.setItem('token', res.data.token);
                             localUser(token)
-                            // window.location.reload();
+                            window.location.reload();
                         }).catch(err => {
                             console.log(err.response, 'err')
                         })
