@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './../../scss/modal.scss'
-import axios from 'axios'
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
+
 
 function PhoneVerification({
   PhoneVerificationActive,
@@ -18,11 +20,13 @@ function PhoneVerification({
     console.log(phone, 'llllllllllllooooooooooo')
     //if (number) {
     let token = localStorage.getItem('token')
+    let userData = jwtDecode(token);
     axios
       .put(
-        'http://blazebeanstalk-env.eba-rn2hwvqp.us-west-2.elasticbeanstalk.com/api/profile/send_activation_code',
+        `${process.env.REACT_APP_API_URL}/users/verify-phone`,
         {
           phone: '+' + phone,
+          user_id: userData.id
         },
         {
           headers: {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import './../scss/profile.scss'
@@ -10,11 +10,14 @@ import axios from 'axios'
 import config from '../config'
 import {ReactComponent as VerifyIcon } from '../assets/images/icons/Verify_icon.svg'
 import { useSelector, useDispatch } from 'react-redux'
+import jwtDecode from 'jwt-decode';
 
 function Profile() {
   let customer = useSelector((store) => {
     return store.customer
   })
+  console.log(customer, 'customer')
+  const [user,setUser] = useState()
   let dispatch = useDispatch()
   const [PhoneVerificationActive, setPhoneVerificationActive] = useState(false)
   const [PhoneVerificationCodeActive, setPhoneVerificationCodeActive] =
@@ -29,6 +32,15 @@ function Profile() {
     setPhoneVerificationActive(false)
   }
 
+  useEffect(()=>{
+
+    const user = jwtDecode(localStorage.getItem('token'));
+    setUser(user)
+    console.log(user)
+
+
+  },[])
+
   // console.log(PhoneVerificationCodeActive, 'agaggagagaga')
 
   const [Password, setPassword] = useState('')
@@ -38,6 +50,7 @@ function Profile() {
     last_name: customer.last_name,
     phone: customer.phone,
     email: customer.email,
+    id: customer.id,
   })
   //console.log(userData.phone)
 
@@ -67,6 +80,11 @@ function Profile() {
           type: 'SET_CUSTOMER',
           payload: userData,
         })
+        const token = res.data.token;
+        const user = jwtDecode(token);
+        setUserData(user)
+        setUser(user)
+        // localStorage.setItem('token', token);
         console.log(res)
       })
       .catch((err) => {
@@ -131,18 +149,20 @@ function Profile() {
         </div>
 
         <div className="profile-registration">
-          <div className='wrapper-verify'>
+          {!customer.verified ?
+              <div className='wrapper-verify'>
             <div className="phoneVerificationBanner phoneVerificationBanner__verify">
               <VerifyIcon />
               <p  className="phoneVerificationBanner__text">Phone Verification:</p>
               <div
-                className="phoneVerificationBtn phoneVerificationBanner__btn"
-                onClick={PhoneVerificationOpen}
+                  className="phoneVerificationBtn phoneVerificationBanner__btn"
+                  onClick={PhoneVerificationOpen}
               >
                 <p>Verify</p>
               </div>
             </div>
-          </div>
+          </div> : null
+          }
           <form className="profile-registration__form">
             <div className="profile-registration-columne">
               <h2 className="title">Best Offers On Products</h2>

@@ -23,7 +23,8 @@ function App() {
     
     useEffect(() => {
         if (Token) {
-            let token = jwt_decode(Token)     
+            let token = jwt_decode(Token)
+            console.log(token, 'token')
                     dispatch({
                         type: 'SET_CUSTOMER',
                         payload: token

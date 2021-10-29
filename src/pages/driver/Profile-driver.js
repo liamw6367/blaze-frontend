@@ -140,8 +140,8 @@ function ProfileDriver() {
                 const user = jwtDecode(token);
 
                 localStorage.setItem('token', token);
-                setUser(user)
-
+                // setUser(user)
+                setUserData(user)
                 console.log(user)
                 setThumbnail(null)
                 // window.location.reload()
