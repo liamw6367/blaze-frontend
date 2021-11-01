@@ -1,10 +1,12 @@
 import React  from 'react'
 import mapIcon from './../../assets/images/map-pin.png'
-
+import { useSelector } from 'react-redux'
 
 
 function Login({mapActiv , mapOpen, locationChange , setLocationChange}){
-
+    const deliveryLocation = useSelector((store) => {
+        return store.customer?.city
+      });
 
     return(
         <div className={mapActiv ? 'modal-bg' : 'modal-bg--active'} onClick={mapOpen}>
@@ -15,7 +17,7 @@ function Login({mapActiv , mapOpen, locationChange , setLocationChange}){
                         <img src={mapIcon}  className='location__img' alt=''/>
                         <div>
                             <p className='delivery__text'>Delivery Location</p>
-                            <h1 className='location__title'>Balaiya Garden ...</h1>
+                            <h1 className='location__title'>{deliveryLocation ? deliveryLocation :'Balaiya Garden'}</h1>
                         </div>
                     </div>
                     <button onClick={() => setLocationChange(!locationChange)} className='location__btn'>Change</button>

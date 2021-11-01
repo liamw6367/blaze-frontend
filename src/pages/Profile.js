@@ -103,7 +103,10 @@ function Profile() {
     (CompanyAddressoptionsStates) => CompanyAddressoptionsStates
   )
 
-  function CompanyAddressChange(e) {
+  // function CompanyAddressChange(e) {
+  //   setSelectCity(City[e.target.value])
+  // }
+  function CityAdrressChange(e) {
     setSelectCity(City[e.target.value])
   }
 
@@ -129,6 +132,17 @@ function Profile() {
   const [CardNumber, setCardNumber] = useState('')
   const [CVV, setCVV] = useState('')
   const [ExpirationDate, setExpirationDate] = useState('')
+
+  function foo(){
+    dispatch({
+      type: 'SET_CUSTOMER',
+      payload: {...userData,
+        city: SelectCity,
+        community: SelectCommunity,
+        street: Street,
+        comments: Coments },
+    })
+  }
   // CardNumber
   //console.log(customer, 'customer')
   return (
@@ -265,7 +279,7 @@ function Profile() {
                 {/* <input className='profile__inp' type='text' placeholder='Name'  onChange={e => setName(e.target.value)} value={Name} required/> */}
                 <select
                   className="profile__inp"
-                  onChange={CompanyAddressChange}
+                  onChange={CityAdrressChange}
                 >
                   {CityStates.map((address, key) => (
                     <option value={key}>{address}</option>
@@ -302,12 +316,12 @@ function Profile() {
                 <p className="profile__inp__name">Comments:</p>
                 <textarea
                   className="profile__inp profile__inp__textArea"
-                  placeholder="tel."
+                  placeholder="comments"
                   onChange={(e) => setComents(e.target.value)}
                   value={Coments}
                 />
               </label>
-              <button className="profile__btn" type="submit">
+              <button onClick={foo} className="profile__btn" type="submit">
                 Save
               </button>
             </div>

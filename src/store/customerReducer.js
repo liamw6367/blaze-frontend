@@ -2,7 +2,7 @@ export const user = {
 };
 
 export const customerReducer = (state = user, action) => {
-    // console.log(action);
+     console.log(action);
     switch (action.type) {
         case 'SET_CUSTOMER':
             return {

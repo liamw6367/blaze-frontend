@@ -40,6 +40,7 @@ function Navbar() {
   const customer = useSelector((store) => {
     return store.customer;
   });
+  const deliveryLocation = customer?.city
 
   const shoppingCartItems = useSelector(selectCartItems);
   const numberOfCartItems = shoppingCartItems.reduce((acc, item) => acc + item.amount, 0);
@@ -172,15 +173,17 @@ function Navbar() {
             <Link to="/" className="menu__logo">
               <img src={logo} alt="" />
             </Link>
-            <div className="menu-container__map" onClick={mapOpen}>
-              <img src={mapIcon} className="menu-container__map__icon" alt="" />
-              <p className="menu-container__map__text">Balaiya Garden</p>
-              <img
-                src={loginArrow}
-                className="menu-container__map__arrow"
-                alt=""
-              />
-            </div>
+            {ROUT === 'customer' && (
+               <div className="menu-container__map" onClick={mapOpen}>
+               <img src={mapIcon} className="menu-container__map__icon" alt="" />
+               <p className="menu-container__map__text">{deliveryLocation ? deliveryLocation : 'Balaiya Garden'}</p>
+               <img
+                 src={loginArrow}
+                 className="menu-container__map__arrow"
+                 alt=""
+               />
+             </div>
+            )}
           </div>
           <div className="menu__navigation">
             <div className="menu__navigation__item">
