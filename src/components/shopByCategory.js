@@ -12,8 +12,7 @@ function ShopByCategory() {
 
   useEffect(async () => {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/categories/get`, {
-    })
-        .then(response => {
+    })     .then(response => {
             dispatch({
                 type: 'SHOP_CATEGORY_ITEMS',
                 payload: response.data
