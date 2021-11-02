@@ -89,7 +89,7 @@ function SignUpDriver({ localUser}) {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/get-roles`, {
         })
             .then(response => {
-                let id = Object.values(response.data[2])[0]
+                let id = Object.values(response.data[3])[0]
                 setRoleId(id)
             })
             .catch(err => {
@@ -149,7 +149,7 @@ function SignUpDriver({ localUser}) {
                             })
                             window.localStorage.setItem('token', res.data.token);
                             localUser(token)
-                            window.location.reload();
+                            // window.location.reload();
                         }).catch(err => {
                             console.log(err.response, 'err')
                         })

@@ -14,6 +14,7 @@ function CardItem({ imgUrl, paragraph, title, salePrice, price, sale, cartItem }
 
   return (
     <div className="cardItem__item">
+      {console.log('dsadsadsa')}
       <div className="today_sale">{sale}</div>
         <img src={ `${process.env.REACT_APP_API_URL}/uploads/product_images/${imgUrl}`} className="cardItem__item__img" alt="" />
       <div>

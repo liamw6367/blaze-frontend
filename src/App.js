@@ -30,7 +30,7 @@ function App() {
                     })
         }
     }, [])
-
+console.log(role, 'role');
     function userRole(){
         if(role === 'driver'){
             return(
@@ -66,7 +66,7 @@ function App() {
                     <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
-        } else if(role === 'customer'){
+        } else if(role === 'customer' || role === 'store admin' || role === 'admin'){
             return(
                 <>
                     <Route exact path='/profile' component={ Profile } />

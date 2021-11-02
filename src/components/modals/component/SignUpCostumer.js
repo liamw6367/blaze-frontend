@@ -64,7 +64,7 @@ function SignUpCostumer({ localUser }) {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/users/get-roles`, {
     })
         .then(response => {
-            let id = Object.values(response.data[1])[0]
+            let id = Object.values(response.data[2])[0]
             setRoleId(id)
         })
         .catch(err => {
