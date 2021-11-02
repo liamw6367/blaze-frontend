@@ -8,6 +8,20 @@
     margin: 52px auto 0;
   }
 
+  &__submit {
+    width: 140px;
+    height: 44px;
+    background: #FF8400 0 0 no-repeat padding-box;
+    border-radius: 10px;
+    text-align: center;
+    font: normal normal 600 16px/24px Mulish;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+  }
+
   &__form__block {
     width: 100%;
     max-width: 780px;
@@ -280,6 +294,8 @@ img{
   justify-content: space-between;
 }
 
+
+
 .product_weight {
   font: normal normal normal 14px/20px Mulish;
   letter-spacing: 0px;
@@ -290,6 +306,11 @@ img{
   font: normal normal 600 16px/24px Mulish;
   letter-spacing: 0px;
   color: #FF8400;
+}
+.product_count {
+  font: normal normal 600 18px/26px Mulish;
+  color:#000;
+  font-size: 14px;
 }
 
 @media (max-width: 1200px) {
