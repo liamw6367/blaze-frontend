@@ -134,14 +134,31 @@ function Profile() {
   const [ExpirationDate, setExpirationDate] = useState('')
 
   function foo(){
-    dispatch({
-      type: 'SET_CUSTOMER',
-      payload: {...userData,
+ 
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/users/update-profile`, {   
+        ...userData,
         city: SelectCity,
         community: SelectCommunity,
         street: Street,
-        comments: Coments },
-    })
+        comments: Coments
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      }).then(res => {
+        const token = res.data.token;
+        const user = jwtDecode(token);
+           dispatch({
+          type: 'SET_CUSTOMER',
+          payload: user,
+        })
+        console.log(user)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
   }
   // CardNumber
   //console.log(customer, 'customer')
