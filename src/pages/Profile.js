@@ -134,14 +134,27 @@ function Profile() {
   const [ExpirationDate, setExpirationDate] = useState('')
 
   function foo(){
-    dispatch({
-      type: 'SET_CUSTOMER',
-      payload: {...userData,
-        city: SelectCity,
-        community: SelectCommunity,
-        street: Street,
-        comments: Coments },
-    })
+    axios
+        .put(`${process.env.REACT_APP_API_URL}/users/save-delivery-details`, {
+          type: 'SET_CUSTOMER',
+          payload: {...userData,
+            city: SelectCity,
+            community: SelectCommunity,
+            street: Street,
+            comments: Coments },
+        }, {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          },
+        })
+        .then(data => {
+          dispatch({
+            type: 'SET_CUSTOMER',
+            payload: {...userData,
+               },
+          })
+        })
+
   }
   // CardNumber
   //console.log(customer, 'customer')
