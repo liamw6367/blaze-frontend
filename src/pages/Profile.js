@@ -135,14 +135,14 @@ function Profile() {
 
   function foo(){
     axios
-        .put(`${process.env.REACT_APP_API_URL}/users/save-delivery-details`, {
-          type: 'SET_CUSTOMER',
-          payload: {...userData,
+        .put(`${process.env.REACT_APP_API_URL}/users/save-delivery-details`,
+          {
+            user_id: userData.id,
             city: SelectCity,
             community: SelectCommunity,
             street: Street,
             comments: Coments },
-        }, {
+         {
           headers: {
             Authorization: localStorage.getItem('token'),
           },
@@ -151,10 +151,11 @@ function Profile() {
           dispatch({
             type: 'SET_CUSTOMER',
             payload: {...userData,
+              data
                },
           })
         })
-
+    console.log(customer,'customer')
   }
   // CardNumber
   //console.log(customer, 'customer')
