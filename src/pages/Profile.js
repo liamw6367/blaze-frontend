@@ -148,14 +148,15 @@ function Profile() {
           },
         })
         .then(data => {
+          const dataItems = jwtDecode(data.data.token)
           dispatch({
             type: 'SET_CUSTOMER',
-            payload: {...userData,
-              data
+            payload: {
+              dataItems
                },
           })
+          console.log(dataItems)
         })
-    console.log(customer,'customer')
   }
   // CardNumber
   //console.log(customer, 'customer')
