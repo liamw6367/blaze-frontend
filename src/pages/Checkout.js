@@ -27,10 +27,10 @@ function Checkout() {
     });
 
     let deliveryAddress = useSelector(store => {
-      return console.log(store);
+      return store.customer.delivery_addresses[0];
     });
 
-
+    console.log(deliveryAddress);
     return (
       <>
         <Navbar isLoggedIn={true} />
@@ -107,14 +107,14 @@ function Checkout() {
                   <div className="Checkout__form__item__bottom delivery_body">
                     <address className="Checkout__form__item__description">
                       <img src={mapPin} alt="" />
-                      433 Chestnut St, Philadelphia, PA 19106, USA
+                      {deliveryAddress.city + ',  ' + deliveryAddress.community}
                     </address>
                     <a
                       href="tel:+95 898 9898 989"
                       className="Checkout__form__item__description"
                     >
                       <img src={phoneIcon} alt="" />
-                      +95 898 9898 989 
+                      {phoneNumber}
                     </a>
                     <a href="#" className="next_style">
                       next >>
@@ -136,16 +136,17 @@ function Checkout() {
                     </p>
                   </div>
                   <div className="Checkout__form__item__bottom">
-                    <input
+                    {/* <input
                       className="Checkout__form__inp"
                       type="tel"
                       onChange={(e) => setDeliveryInstruction(e.target.value)}
                       value={DeliveryInstruction}
                       placeholder="Description"
-                    />
-                    <a href="#" className="next_style">
+                    /> */}
+                    <p className="Checkout__form__item__comments">{deliveryAddress.comments}</p>
+                    {/* <a href="#" className="next_style">
                       next >>
-                    </a>
+                    </a> */}
                   </div>
                 </div>
                 <div

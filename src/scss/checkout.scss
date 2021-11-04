@@ -287,6 +287,12 @@ img{
 
 }
 
+.Checkout__form__item__comments{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font: normal normal 400 16px/18px Mulish;
+}
+
 .product_description__box {
   padding: 0 15px;
   box-sizing: border-box;
