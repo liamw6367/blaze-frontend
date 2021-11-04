@@ -18,8 +18,8 @@ function App() {
     let dispatch = useDispatch()
     let customer = useSelector(store => {
         return store.customer; 
-    })
-    const role = customer.user_role?.name
+    });
+    const role = customer.user_role?.name;
     
     useEffect(() => {
         if (Token) {
@@ -115,13 +115,15 @@ console.log(role, 'role');
                     <ScrollToTop/>
                     {Token && Object.keys(customer).length  ?
                         <Switch>
+                            <Route exact path='/profile' component={ Profile } />
+                            <Route exact path='/profile-driver' component={ ProfileDriver } />
                             <Route exact path='/home' component={Home}/>
                             <Route exact path='/' component={Home}/>
                             <Route exact path='/checkout' component={Checkout}/>
                             <Route exact path='/order' component={Order}/>
                             <Route exact path='/category' component={Category}/>
                             {userRole()}
-                            <Route component={NoMatch}/>
+                            {/*<Route exact component={NoMatch}/>*/}
                         </Switch>
                         :
                         <Switch>
