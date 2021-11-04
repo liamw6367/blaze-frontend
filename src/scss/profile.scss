@@ -19,12 +19,12 @@
     flex-direction: column;
   }
 }
-
-.deliveryAddressMessage{
-  text-align: center;
-  padding-top: 10px;
+.hide {
+  display: none;
 }
-
+.show {
+  display: block;
+}
 .profile-Payment {
   background: white;
   padding: 50px;
@@ -199,7 +199,9 @@
     }
     .profile__inp__name{
       margin-bottom: 5px;
+
     }
+
     .profile__inp {
       width: 100%;}
 
@@ -209,6 +211,22 @@
     padding: 50px 30px;
   }
 }
+
+.profile__inp__name-value{
+  //color: red;
+  font-weight: 400;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.profile__inp__name-title {
+    width: auto;
+}
+
+.profile__inp__data-block {
+  margin-top: 30px;
+}
+
 
 @media (max-width: 992px) {
   .profile-registration-columne, .profile-Payment-columne {
