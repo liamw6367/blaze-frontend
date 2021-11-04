@@ -16,12 +16,14 @@ function Profile() {
   let customer = useSelector((store) => {
     return store.customer
   })
-  console.log(customer, 'customer')
+  const deliveryAddress = customer.delivery_addresses.slice(-1)[0]
+  console.log(deliveryAddress)
   const [user,setUser] = useState()
   let dispatch = useDispatch()
   const [PhoneVerificationActive, setPhoneVerificationActive] = useState(false)
   const [PhoneVerificationCodeActive, setPhoneVerificationCodeActive] =
     useState(false)
+  const [addressValidate, setAddressValidate] = useState(false)
 
   const PhoneVerificationOpen = () => {
     setPhoneVerificationActive(!PhoneVerificationActive)
@@ -36,7 +38,6 @@ function Profile() {
 
     const user = jwtDecode(localStorage.getItem('token'));
     setUser(user)
-    console.log(user)
 
 
   },[])
@@ -52,6 +53,7 @@ function Profile() {
     email: customer.email,
     id: customer.id,
   })
+  
   //console.log(userData.phone)
 
   function handleUserData(e) {
@@ -61,7 +63,6 @@ function Profile() {
       [e.target.name]: e.target.value,
     })
   }
-  console.log(customer, 'gsafaf')
 
   function savedUserData(e) {
     e.preventDefault()
@@ -85,7 +86,6 @@ function Profile() {
         setUserData(user)
         setUser(user)
         // localStorage.setItem('token', token);
-        console.log(res)
       })
       .catch((err) => {
         console.log(err)
@@ -134,30 +134,37 @@ function Profile() {
   const [ExpirationDate, setExpirationDate] = useState('')
 
   function foo(){
-    axios.put(`${process.env.REACT_APP_API_URL}/users/save-delivery-details`, {
+    if( SelectCity === 'State of Incorporation' || SelectCommunity === 'State of Incorporation' ||
+        Street === '' || Coments === ''
+    ){
+      setAddressValidate('All fields are required')
+    }else {
+      axios
+      .put(`${process.env.REACT_APP_API_URL}/users/save-delivery-details`,
+        {
+          user_id: userData.id,
+          city: SelectCity,
+          community: SelectCommunity,
+          street: Street,
+          comments: Coments },
+       {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      })
+      .then(data => {
+        const dataItems = jwtDecode(data.data.token)
+        console.log(dataItems);
+        dispatch({
           type: 'SET_CUSTOMER',
-          payload: {
-            user_id: userData.id,
-            city: SelectCity,
-            community: SelectCommunity,
-            street: Street,
-            comments: Coments },
-        }, {
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          },
+          payload: dataItems
         })
-        .then(data => {
-          dispatch({
-            type: 'SET_CUSTOMER',
-            payload: {...userData,
-               },
-          })
-        })
-
+      })
+      setAddressValidate(false)
+    }
+  
   }
-  // CardNumber
-  //console.log(customer, 'customer')
+
   return (
     <>
       <Navbar isLoggedIn={true} />
@@ -286,6 +293,31 @@ function Profile() {
           <form className="profile-Payment__form">
             <div className="profile-Payment-columne">
               <h2 className="title">Delivery Address</h2>
+ 
+              {deliveryAddress ? (
+                  
+                <div>
+                  <p className="profile__inp__name">City: <span className="value">{deliveryAddress.city}</span></p>
+                  <p className="profile__inp__name">Community:  <span className="profile__inp__name-value">{deliveryAddress.community}</span></p>
+                  <p className="profile__inp__name">Street:  <span className="profile__inp__name-value">{deliveryAddress.street}</span></p>
+                  <p className="profile__inp__name">Comments: <span className="profile__inp__name-value">{deliveryAddress.comments}</span> </p>
+                  
+                </div>
+              ): ''
+                
+              }
+
+
+
+
+
+
+            {deliveryAddress ? (
+              <h2 className="title">Delivery Address +++</h2>
+              ): null
+                
+            }
+
               <label className="profile__container">
                 <span className="visually-hidden">City:</span>
                 <p className="profile__inp__name">City:</p>
@@ -334,6 +366,7 @@ function Profile() {
                   value={Coments}
                 />
               </label>
+              <p className="errorMessage deliveryAddressMessage">{addressValidate}</p>
               <button onClick={foo} className="profile__btn" type="submit">
                 Save
               </button>
