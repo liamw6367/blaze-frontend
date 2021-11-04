@@ -20,7 +20,7 @@ function App() {
         return store.customer; 
     })
     const role = customer.user_role?.name
-    
+    console.log(customer, 'customer');
     useEffect(() => {
         if (Token) {
             let token = jwt_decode(Token)     

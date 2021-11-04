@@ -13,7 +13,7 @@ import { selectCartItems, selectTotalAmount } from "../features/shoppingCartItem
 
 function Checkout() {
 
-    const [openCheckoutItem, setOpenCheckoutItem] = useState('one')
+    const [openCheckoutItem, setOpenCheckoutItem] = useState('fore')
 
     const [PhoneNumber, setPhoneNumber] = useState("")
     const [DeliveryInstruction, setDeliveryInstruction] = useState("")
@@ -22,6 +22,14 @@ function Checkout() {
     const [expirationDate, setExpirationDate] = useState("")
     const shoppingCartItems = useSelector(selectCartItems);
     const totalAmount = useSelector(selectTotalAmount) || 0;
+    let phoneNumber = useSelector(store => {
+      return store.customer.phone;
+    });
+
+    let deliveryAddress = useSelector(store => {
+      return console.log(store);
+    });
+
 
     return (
       <>
@@ -44,21 +52,42 @@ function Checkout() {
                       Phone Number Verification
                     </p>
                   </div>
-                  <div className="Checkout__form__item__bottom">
-                    <p className="Checkout__form__item__description">
+                  <div className="Checkout__form__item__bottom Checkout__form__item__bottom__phone">
+                    {/* <p className="Checkout__form__item__description">
                       We need your phone number so that we can update you about
                       your order.
-                    </p>
-                    <input
+                    </p> */}
+                     <div className="Checkout__form__item__bottom delivery_body">
+                    <a
+                      href="tel:+95 898 9898 989"
+                      className="Checkout__form__item__description"
+                    >
+                      <img src={phoneIcon} alt="" />
+                      {phoneNumber}
+                    </a>
+                    {/* <a href="#" className="next_style">
+                      next >>
+                    </a> */}
+                  </div>
+
+
+
+
+
+
+
+
+
+                    {/* <input
                       className="Checkout__form__inp"
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       value={PhoneNumber}
                       type="tel"
-                      placeholder="+45"
+                      placeholder={phoneNumber}
                     />
                     <a href="#" className="next_style">
                       next >>
-                    </a>
+                    </a> */}
                   </div>
                 </div>
                 <div
@@ -77,15 +106,15 @@ function Checkout() {
                   </div>
                   <div className="Checkout__form__item__bottom delivery_body">
                     <address className="Checkout__form__item__description">
-                      <img src={phoneIcon} alt="" />
+                      <img src={mapPin} alt="" />
                       433 Chestnut St, Philadelphia, PA 19106, USA
                     </address>
                     <a
                       href="tel:+95 898 9898 989"
                       className="Checkout__form__item__description"
                     >
-                      <img src={mapPin} alt="" />
-                      +95 898 9898 989
+                      <img src={phoneIcon} alt="" />
+                      +95 898 9898 989 
                     </a>
                     <a href="#" className="next_style">
                       next >>
