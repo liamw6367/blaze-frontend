@@ -107,7 +107,7 @@ function Checkout() {
                   <div className="Checkout__form__item__bottom delivery_body">
                     <address className="Checkout__form__item__description">
                       <img src={mapPin} alt="" />
-                      {deliveryAddress.city + ',  ' + deliveryAddress.community}
+                      {deliveryAddress?.city + ',  ' + deliveryAddress?.community}
                     </address>
                     <a
                       href="tel:+95 898 9898 989"
@@ -116,9 +116,9 @@ function Checkout() {
                       <img src={phoneIcon} alt="" />
                       {phoneNumber}
                     </a>
-                    <a href="#" className="next_style">
-                      next >>
-                    </a>
+                    {/*<a href="#" className="next_style">*/}
+                    {/*  next >>*/}
+                    {/*</a>*/}
                   </div>
                 </div>
                 <div
@@ -143,7 +143,7 @@ function Checkout() {
                       value={DeliveryInstruction}
                       placeholder="Description"
                     /> */}
-                    <p className="Checkout__form__item__comments">{deliveryAddress.comments}</p>
+                    <p className="Checkout__form__item__comments">{deliveryAddress?.comments}</p>
                     {/* <a href="#" className="next_style">
                       next >>
                     </a> */}

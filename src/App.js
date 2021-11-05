@@ -66,7 +66,7 @@ console.log(role, 'role');
                     <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
-        } else if(role === 'customer' || role === 'store admin' || role === 'admin'){
+        } else if(role === 'customer'){
             return(
                 <>
                     <Route exact path='/profile' component={ Profile } />
@@ -100,7 +100,7 @@ console.log(role, 'role');
                     <Route exact path='/admin/add-tax' render={ () => <Redirect to='/' /> } />
                 </>
             )
-        } else if (role === 'admin') {
+        } else if (role === 'admin' || role === 'store admin') {
             <>
                 <Route exact path='/profile' component={ Profile } />
                 <Route exact path='/profile-driver' render={ () => <Redirect to='/' /> } />
