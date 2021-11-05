@@ -40,7 +40,7 @@ function Navbar() {
   const customer = useSelector((store) => {
     return store.customer;
   });
-  const deliveryLocation = customer?.city
+  const deliveryLocation = customer.delivery_addresses?.[0].city
 
   const shoppingCartItems = useSelector(selectCartItems);
   const numberOfCartItems = shoppingCartItems.reduce((acc, item) => acc + item.amount, 0);
