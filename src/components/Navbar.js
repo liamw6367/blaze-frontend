@@ -156,7 +156,10 @@ function Navbar() {
   function myAccount(){
     if(pathName === '/profile-driver' || pathName === '/profile') {
       return ''
-    }else {
+    }else if ( ROUT === 'admin' || ROUT === 'store admin') {
+      return <MenuItem><Link style={ {color: '#000' }} classname='login_user' to={'/admin/dashboard'}>DASHBOARD</Link></MenuItem>
+    }
+    else {
       return (
             <Link to="/" className="__link menu_navigation__link">
               <MenuItem><Link style={ {color: '#000' }} classname='login_user' to={handleRout}>My Account</Link></MenuItem>
@@ -205,7 +208,9 @@ function Navbar() {
                       </Button>
                       <Menu {...bindMenu(popupState)}>
                         {/*onClick={popupState.close}*/}
+                        {}
                         {myAccount()}
+
                         <MenuItem onClick={logOut}>Log Out</MenuItem>
                       </Menu>
                     </React.Fragment>
