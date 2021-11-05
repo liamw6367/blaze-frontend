@@ -30,7 +30,7 @@ function Checkout() {
       return store.customer.delivery_addresses[0];
     });
 
-    console.log(deliveryAddress);
+    //console.log(deliveryAddress);
     return (
       <>
         <Navbar isLoggedIn={true} />

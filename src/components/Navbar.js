@@ -344,7 +344,7 @@ function Navbar() {
           </DialogActions>
         </DialogTitle>
         <DialogContent id="dialogContent">
-            <ProductsDialog />
+            <ProductsDialog open={open} />
         </DialogContent>
       </Dialog>
     </>
