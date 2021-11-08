@@ -39,32 +39,42 @@ function ProductsDialog() {
   }
 
   return (
-      <>
-        <div className="head_banner">
-          <div>
-            <p>Sub Total</p>
-            <p> { `${ totalAmount }$` } </p>
-          </div>
-          <div>
-            <p>Delivery Charges</p>
-            <p className="delivery_color">+49$</p>
-          </div>
+    <>
+      <div className="head_banner">
+        <div>
+          <p>Sub Total</p>
+          <p> {`${totalAmount}$`} </p>
         </div>
-          { shoppingCartItems.map(cartItem => <CartItem key={ cartItem.id }  cartItem={ cartItem } />) }
-          { 
-             token && products.length ? (
-             <button onClick={checkoutPageRedirect} className="BestSavers__link BestSavers__link__card ">
-               Shop Now     
-            </button> 
-            ) : null
-          }
-          {alert && <Alert severity="error">
-            {!delAddresses && verified && 'Check your address delivery!'}
-            {!verified && delAddresses && 'Check your phone verification'}
-            {!delAddresses  && !verified && 'Check your phone verification and address delivery!'}
-           </Alert>}
-         
-      </>
+        <div>
+          <p>Delivery Charges</p>
+          <p className="delivery_color">+49$</p>
+        </div>
+      </div>
+      {shoppingCartItems.map((cartItem) => (
+        <CartItem key={cartItem.id} cartItem={cartItem} />
+      ))}
+      {token && products.length ? (
+        <button
+          onClick={checkoutPageRedirect}
+          className="BestSavers__link BestSavers__link__card"
+        >
+          Shop Now
+        </button>
+      ) : null}
+      <Link to="/profile">
+        {alert && (
+          <Alert severity="error">
+            {!delAddresses && verified && <Link to='/profile' className="delivery_error">"Check your address delivery!"</Link>}
+            {!verified && delAddresses && <Link to='/profile' className="delivery_error">"Check your phone verification"</Link>}
+            {!delAddresses &&
+              !verified &&
+              <Link to='/profile' className="delivery_error">
+               "Check your phone verification and address delivery!" 
+               </Link>}
+          </Alert>
+        )}
+      </Link>
+    </>
   );
 }
 
