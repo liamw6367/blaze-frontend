@@ -58,19 +58,19 @@ function ProductsDialog() {
           onClick={checkoutPageRedirect}
           className="BestSavers__link BestSavers__link__card"
         >
-          Shop Now
+          <Link to='/checkout' className="link">
+            Shop Now
+          </Link>
         </button>
       ) : null}
       <Link to="/profile">
         {alert && (
           <Alert severity="error">
-            {!delAddresses && verified && <Link to='/profile' className="delivery_error">"Check your address delivery!"</Link>}
-            {!verified && delAddresses && <Link to='/profile' className="delivery_error">"Check your phone verification"</Link>}
+            {!delAddresses && verified && "Check your address delivery!"}
+            {!verified && delAddresses && "Check your phone verification"}
             {!delAddresses &&
               !verified &&
-              <Link to='/profile' className="delivery_error">
-               "Check your phone verification and address delivery!" 
-               </Link>}
+              "Check your phone verification and address delivery!"}
           </Alert>
         )}
       </Link>
