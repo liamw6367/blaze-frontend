@@ -3,12 +3,17 @@ import shopIcon from '../assets/images/icons/shopIcon.png';
 import phoneIcon from '../assets/images/icons/phoneIcon.png';
 import React, { useState, useEffect } from 'react';
 import { removeCartItems, increaseCartItems, decreaseCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios";
 
 
 const CartItem = ({ cartItem }) => {
   const { product_stores } = cartItem;
-  console.log(cartItem)
+  cartItem.amount = cartItem.orders_products?.amount || cartItem.amount;
+  const userId = useSelector(store => {
+    return store.customer?.id
+  })
+  console.log(cartItem, 'cardItemsBack')
 
   console.log(product_stores, "cartitem -> product stores");
 
@@ -23,7 +28,19 @@ const CartItem = ({ cartItem }) => {
 
   function saveProdcuts(e) {
     e.preventDefault()
-    localStorage.setItem('products', JSON.stringify(cartItem))
+    const obj = {
+      user_id : userId,
+      amount : cartItem.amount || 1,
+      product_ids : [1],
+      total_price : 1,
+      checked_out : 0
+    }
+    console.log(cartItem)
+    e.preventDefault()
+    axios.post(`${process.env.REACT_APP_API_URL}/orders/add`,obj)
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+    // localStorage.setItem('products', JSON.stringify(cartItem))
   }
   
   const lessThanOne = itemQuantity <= 1;

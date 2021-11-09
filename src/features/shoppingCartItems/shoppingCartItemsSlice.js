@@ -44,6 +44,7 @@ export const shoppingCartItemsReducer = (state = {}, action) => {
             totalAmount: updatedTotalAmount
         };
     } else if(action.type === "INCREASE_CART_ITEMS") {
+        console.log(state.cartItems)
         const existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload.shoppingCartItemId);
         const existingCartItem = state.cartItems[existingCartItemIndex];
         const updatedTotalAmount = state.totalAmount + existingCartItem.sales_price;

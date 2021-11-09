@@ -15,7 +15,7 @@ import { addCartItems } from '../features/shoppingCartItems/shoppingCartItemsSli
 
 function CategoryItem({ category, product }) {
     const [open, setOpen] = React.useState(false);
-
+    console.log(product, 'product')
     const [itemQuantity, setItemQuantity] = useState(1);
     const lessThanOne = itemQuantity <= 1;
     const moreThanTen = itemQuantity >= 10;
