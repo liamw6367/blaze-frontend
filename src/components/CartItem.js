@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 const CartItem = ({ cartItem }) => {
   const { product_stores } = cartItem;
+  console.log(cartItem)
 
   console.log(product_stores, "cartitem -> product stores");
 
@@ -19,11 +20,16 @@ const CartItem = ({ cartItem }) => {
   useEffect(() => {
     setItemQuantity(cartItem.amount);
   }, [cartItem.amount]);
+
+  function saveProdcuts(e) {
+    e.preventDefault()
+    localStorage.setItem('products', JSON.stringify(cartItem))
+  }
   
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
   return (
-    <div className="product_cart_item">
+    <form className="product_cart_item">
       <button
         type="button" 
         className="thrush_btn"
@@ -90,7 +96,7 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="container contact">
         {
-          product_stores.map(productStore => {
+          product_stores?.map(productStore => {
             return (
               <div key={ productStore.id } className="shopName">
                 <img src={shopIcon} alt="" />
@@ -100,7 +106,7 @@ const CartItem = ({ cartItem }) => {
           })
         }
                 {
-          product_stores.map(productStore => {
+          product_stores?.map(productStore => {
             return (
               <div className="phoneNum">
               <img src={phoneIcon} alt="" />
@@ -111,7 +117,8 @@ const CartItem = ({ cartItem }) => {
         }
 
       </div>
-    </div>
+      <button type="submit" onClick={saveProdcuts}>save</button>
+    </form>
   )
 }
 export default CartItem;

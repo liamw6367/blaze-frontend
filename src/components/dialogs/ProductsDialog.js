@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCartItems, selectTotalAmount } from '../../features/shoppingCartItems/shoppingCartItemsSlice';
 import CartItem from '../CartItem';
 import { useHistory } from 'react-router';
 import Alert from '@material-ui/lab/Alert';
 import '../../scss/ProductsDialog.scss'
+import { addCartItems } from '../../features/shoppingCartItems/shoppingCartItemsSlice'
 
 
 function ProductsDialog() {
   const shoppingCartItems = useSelector(selectCartItems);
+  const [cardItems,setCardItems] = useState()
   const token = localStorage.getItem('token')
+  const productItems = localStorage?.getItem('products')
+  const dispatch = useDispatch()
+  const item = JSON.parse(productItems)
+  const items = [item]
+ 
+  
+  console.log(shoppingCartItems);
+  console.log(item)
+  
+
   const products = useSelector(store => {
     return store.shoppingCartItem.cartItems
   })
@@ -19,6 +31,10 @@ function ProductsDialog() {
   let verified = useSelector(store => {
     return store.customer.verified || null
   });
+
+  useEffect(() => {
+    
+  },[])
 
   let delAddresses = useSelector(store => {
     return store.customer.delivery_addresses?.length || null
@@ -53,6 +69,9 @@ function ProductsDialog() {
       {shoppingCartItems.map((cartItem) => (
         <CartItem key={cartItem.id} cartItem={cartItem} />
       ))}
+      {items.map((cartItem) => (
+        <CartItem key={cartItem.id} cartItem={cartItem} />
+      ))}
       {token && products.length ? (
         <button
           onClick={checkoutPageRedirect}
@@ -70,7 +89,7 @@ function ProductsDialog() {
               !verified &&
               <Link to='/profile' className="delivery_error">
                "Check your phone verification and address delivery!" 
-               </Link>}
+              </Link>}
           </Alert>
         )}
       </Link>
