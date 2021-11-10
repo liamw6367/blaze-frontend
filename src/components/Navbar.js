@@ -42,8 +42,13 @@ function Navbar() {
   });
   const deliveryLocation = customer.delivery_addresses?.[0]?.city
 
-  const shoppingCartItems = useSelector(selectCartItems);
+  const shoppingCartItems = useSelector(store => {
+    return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
+  });
+
+  console.log(shoppingCartItems, 'shopCardItem')
   const numberOfCartItems = shoppingCartItems.reduce((acc, item) => acc + item.amount, 0);
+  console.log(numberOfCartItems)
   const cartItemsQuantity = shoppingCartItems.length;
 
   const ROUT = customer.user_role?.name

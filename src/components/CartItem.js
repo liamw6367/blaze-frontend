@@ -2,12 +2,17 @@ import deleteIcon from '../assets/images/icons/delete.png';
 import shopIcon from '../assets/images/icons/shopIcon.png';
 import phoneIcon from '../assets/images/icons/phoneIcon.png';
 import React, { useState, useEffect } from 'react';
-import { removeCartItems, increaseCartItems, decreaseCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
+import {
+  removeCartItems,
+  increaseCartItems,
+  decreaseCartItems,
+  addCartItems
+} from '../features/shoppingCartItems/shoppingCartItemsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem, saveProdcuts }) => {
   const { product_stores } = cartItem;
   cartItem.amount = cartItem.orders_products?.amount || cartItem.amount;
   const userId = useSelector(store => {
@@ -26,22 +31,6 @@ const CartItem = ({ cartItem }) => {
     setItemQuantity(cartItem.amount);
   }, [cartItem.amount]);
 
-  function saveProdcuts(e) {
-    e.preventDefault()
-    const obj = {
-      user_id : userId,
-      amount : cartItem.amount || 1,
-      product_ids : [1],
-      total_price : 1,
-      checked_out : 0
-    }
-    console.log(cartItem)
-    e.preventDefault()
-    axios.post(`${process.env.REACT_APP_API_URL}/orders/add`,obj)
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
-    // localStorage.setItem('products', JSON.stringify(cartItem))
-  }
   
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
@@ -84,7 +73,7 @@ const CartItem = ({ cartItem }) => {
                 <button 
                   type="button" 
                   onClick={ () => { 
-                    dispatch(increaseCartItems(cartItem.id)); 
+                    dispatch(increaseCartItems(cartItem.id))
                     setItemQuantity(prevQuantity => prevQuantity + 1);
                   } }
                   disabled={ moreThanTen }
@@ -134,7 +123,7 @@ const CartItem = ({ cartItem }) => {
         }
 
       </div>
-      <button type="submit" onClick={saveProdcuts}>save</button>
+
     </form>
   )
 }

@@ -35,10 +35,12 @@ function App() {
                 .then(res => {
                     console.log(res.data)
                      res.data[0].product_orders.map(i => {
+                         console.log(i.orders_products.amount)
                          dispatch(addCartItems({
                               ...i,
                              amount: i.orders_products.amount
                          }))
+                         localStorage.setItem('order_id', res.data[0].id)
                     })
                 })
                 .catch(e => e.message)
