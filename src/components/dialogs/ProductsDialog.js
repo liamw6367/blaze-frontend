@@ -12,7 +12,12 @@ import jwtDecode from "jwt-decode";
 
 
 function ProductsDialog() {
-    const shoppingCartItems = useSelector(selectCartItems);
+    const products = useSelector(store => {
+        return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
+    });
+
+    console.log(products,'shopCardItem')
+
     const [cardItems, setCardItems] = useState()
     const token = localStorage.getItem('token')
     const [data, setData] = useState({product_orders: []})
@@ -26,10 +31,10 @@ function ProductsDialog() {
     // const items = [item]
 
 
-    const products = useSelector(store => {
-        return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems));
-        // return store.shoppingCartItem.cartItems
-    })
+    // const products = useSelector(store => {
+    //     return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems));
+    //     // return store.shoppingCartItem.cartItems
+    // })
 
     const prod = useSelector(store => {
         return console.log(store.shoppingCartItem)
@@ -109,8 +114,8 @@ function ProductsDialog() {
                     <p className="delivery_color">+49$</p>
                 </div>
             </div>
-            {console.log(shoppingCartItems)}
-            {shoppingCartItems.map((cartItem) => (
+            {console.log(products)}
+            {products.map((cartItem) => (
                 <CartItem key={cartItem.id} cartItem={cartItem}/>
             ))}
             {/*{ data?.product_orders.map((products) => {*/}

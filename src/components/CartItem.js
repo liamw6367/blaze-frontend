@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from "axios";
 
 
-const CartItem = ({ cartItem, saveProdcuts }) => {
+const CartItem = ({ cartItem }) => {
   const { product_stores } = cartItem;
-  cartItem.amount = cartItem.orders_products?.amount || cartItem.amount;
+  // cartItem.amount = cartItem.orders_products?.amount || cartItem.amount;
   const userId = useSelector(store => {
     return store.customer?.id
   })
