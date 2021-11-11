@@ -16,13 +16,16 @@ function ProductsDialog() {
         return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
     });
 
-    console.log(products,'shopCardItem')
+    console.log(products, 'shopCardItem')
 
     const [cardItems, setCardItems] = useState()
     const token = localStorage.getItem('token')
     const [data, setData] = useState({product_orders: []})
     const order_id = localStorage.getItem('order_id')
-    const userId = jwtDecode(token).id
+    let userId;
+    if (token) {
+        userId = jwtDecode(token).id
+    }
     const dispatch = useDispatch()
     console.log(userId)
     const productItems = localStorage?.getItem('products')
@@ -59,7 +62,6 @@ function ProductsDialog() {
     // },[])
 
 
-
     let delAddresses = useSelector(store => {
         return store.customer.delivery_addresses?.length || null
     });
@@ -86,7 +88,7 @@ function ProductsDialog() {
             products: JSON.parse(JSON.stringify(products)),
             total_price: 1,
             checked_out: 0,
-            order_id : order_id || ''
+            order_id: order_id || ''
         };
 
         axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
@@ -121,7 +123,7 @@ function ProductsDialog() {
             {/*{ data?.product_orders.map((products) => {*/}
             {/*  return <CartItem key={products.id} cartItem={products}/>*/}
             {/*})}*/}
-            {token && products.length ? (
+            { products.length ? (
                 <>
                     <button
                         onClick={checkoutPageRedirect}
@@ -129,7 +131,9 @@ function ProductsDialog() {
                     >
                         Shop Now
                     </button>
+                    {token && (
                     <button type="submit" onClick={saveProdcuts}>save</button>
+                    )}
                 </>
             ) : null}
             <Link to="/profile">
