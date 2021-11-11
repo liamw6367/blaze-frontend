@@ -105,7 +105,7 @@ const CartItem = ({ cartItem }) => {
             );
           })
         }
-                {
+        {
           product_stores?.map(productStore => {
             return (
               <div className="phoneNum">
