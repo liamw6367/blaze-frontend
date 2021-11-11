@@ -70,18 +70,19 @@ function ProductsDialog() {
 
     const history = useHistory()
 
-    function checkoutPageRedirect() {
+    function checkoutPageRedirect(e) {
         if (!delAddresses || !verified) {
             setAlert(true)
         } else {
+
             setAlert(false)
-            history.push('/checkout')
+            saveProdcuts(e,true)
         }
     }
 
-    function saveProdcuts(e) {
+    function saveProdcuts(e, checkout = false) {
         console.log(products)
-        e.preventDefault()
+        e?.preventDefault()
 
         const obj = {
             user_id: userId,
@@ -93,13 +94,17 @@ function ProductsDialog() {
 
         axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
             .then(res => {
+                console.log(res.data[0])
                 res.data[0].product_orders.map(i => {
                     dispatch(addCartItems({
                         ...i,
                         amount: i.orders_products.amount
                     }))
                 })
-                // localStorage.setItem('products', JSON.stringify(cartItem))
+                localStorage.setItem('order_id', res.data[0]?.id)
+                if(checkout){
+                    history.push('/checkout')
+                }
             })
             .catch(e => console.log(e))
     }
