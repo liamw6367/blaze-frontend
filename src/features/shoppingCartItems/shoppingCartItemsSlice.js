@@ -1,3 +1,5 @@
+import {act} from "@testing-library/react";
+
 export const shoppingCartItemsReducer = (state = {}, action) => {
     if(action.type === "ADD_CART_ITEMS") {
         const updatedTotalAmount = state.totalAmount + action.payload.shoppingCartItem.sales_price * action.payload.shoppingCartItem.amount;
@@ -43,7 +45,15 @@ export const shoppingCartItemsReducer = (state = {}, action) => {
             cartItems: updatedCartItems,
             totalAmount: updatedTotalAmount
         };
-    } else if(action.type === "INCREASE_CART_ITEMS") {
+    }else if(action.type === 'CLEAR_CART') {
+        let updatedCartItems = state.cartItems.filter(item => item === 0);
+        console.log(state.cartItems)
+        return {
+            cartItems: updatedCartItems,
+            totalAmount: 0
+        }
+    }
+    else if(action.type === "INCREASE_CART_ITEMS") {
         console.log(state.cartItems)
         const existingCartItemIndex = state.cartItems.findIndex(item => item.id === action.payload.shoppingCartItemId);
         const existingCartItem = state.cartItems[existingCartItemIndex];
@@ -94,3 +104,9 @@ export const removeCartItems = (itemId) => {
         payload: { shoppingCartItemId: itemId }
     };
 };
+export const clearCard = () => {
+    console.log('text')
+    return{
+        type: "CLEAR_CART"
+    }
+}
