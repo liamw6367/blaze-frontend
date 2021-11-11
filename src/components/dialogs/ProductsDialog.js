@@ -6,7 +6,7 @@ import CartItem from '../CartItem';
 import {useHistory} from 'react-router';
 import Alert from '@material-ui/lab/Alert';
 import '../../scss/ProductsDialog.scss'
-import {addCartItems} from '../../features/shoppingCartItems/shoppingCartItemsSlice'
+import { addCartItems, clearCard } from '../../features/shoppingCartItems/shoppingCartItemsSlice'
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 
@@ -96,6 +96,7 @@ function ProductsDialog() {
             .then(res => {
                 console.log(res.data[0])
                 res.data[0].product_orders.map(i => {
+                  dispatch(clearCard())
                     dispatch(addCartItems({
                         ...i,
                         amount: i.orders_products.amount
