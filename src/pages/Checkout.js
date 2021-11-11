@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './../scss/checkout.scss';
 import test from './../assets/images/App_Store.png';
@@ -8,12 +8,17 @@ import phoneIcon from '../assets/images/icons/phoneIcon.png';
 import lock from '../assets/images/icons/lock.png';
 import creditCard from '../assets/images/icons/credit-card.png';
 import Navbar from "../components/Navbar";
+import {clearCard} from "../features/shoppingCartItems/shoppingCartItemsSlice";
 //import CartItem from '../components/CartItem';
 import { selectCartItems, selectTotalAmount } from "../features/shoppingCartItems/shoppingCartItemsSlice";
+import axios from "axios";
+import { useHistory } from 'react-router'
+
 
 function Checkout() {
 
     const [openCheckoutItem, setOpenCheckoutItem] = useState('fore')
+    const dispatch = useDispatch()
 
     const [PhoneNumber, setPhoneNumber] = useState("")
     const [DeliveryInstruction, setDeliveryInstruction] = useState("")
@@ -22,6 +27,8 @@ function Checkout() {
     const [expirationDate, setExpirationDate] = useState("")
     const shoppingCartItems = useSelector(selectCartItems);
     const totalAmount = useSelector(selectTotalAmount) || 0;
+    const history = useHistory()
+    let order_id = localStorage.getItem('order_id')
     let phoneNumber = useSelector(store => {
       return store.customer.phone;
     });
@@ -29,6 +36,34 @@ function Checkout() {
     let deliveryAddress = useSelector(store => {
       return store.customer.delivery_addresses[0];
     });
+
+    function placeOrderHandler(e) {
+      console.log(order_id)
+      e.preventDefault()
+      if(order_id) {
+        axios.put(`${process.env.REACT_APP_API_URL}/orders/check-out`,{order_id})
+            .then(res => {
+                dispatch(clearCard())
+                history.push('/')
+                localStorage.removeItem('order_id')
+            })
+            .catch(e => console.log(e.message))
+      }
+    }
+
+    function cancelOrderHandler(e) {
+      e.preventDefault()
+      if(order_id) {
+        axios.delete(`${process.env.REACT_APP_API_URL}/orders/cancel?order_id=${order_id}`,)
+            .then(res => {
+                dispatch(clearCard())
+              history.push('/')
+                localStorage.removeItem('order_id')
+            })
+            .catch(e => console.log(e.message))
+      }
+
+    }
 
     //console.log(deliveryAddress);
     return (
@@ -226,8 +261,11 @@ function Checkout() {
                     <div className="Checkout__total-text">Order Total</div>
                     <div className="Checkout__total__price">{ totalAmount ? `${ totalAmount + 49}$`: 0 }</div>
                   </div>
-                  <button className="Checkout__submit">
+                  <button onClick={placeOrderHandler} className="Checkout__submit">
                     Place Order
+                  </button>
+                  <button onClick={cancelOrderHandler} className="Checkout__submit">
+                    Cancel Order
                   </button>
                 </div>
               </div>
