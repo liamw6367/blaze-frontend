@@ -2,12 +2,23 @@ import deleteIcon from '../assets/images/icons/delete.png';
 import shopIcon from '../assets/images/icons/shopIcon.png';
 import phoneIcon from '../assets/images/icons/phoneIcon.png';
 import React, { useState, useEffect } from 'react';
-import { removeCartItems, increaseCartItems, decreaseCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
-import { useDispatch } from 'react-redux';
+import {
+  removeCartItems,
+  increaseCartItems,
+  decreaseCartItems,
+  addCartItems
+} from '../features/shoppingCartItems/shoppingCartItemsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from "axios";
 
 
 const CartItem = ({ cartItem }) => {
   const { product_stores } = cartItem;
+  // cartItem.amount = cartItem.orders_products?.amount || cartItem.amount;
+  const userId = useSelector(store => {
+    return store.customer?.id
+  })
+  console.log(cartItem, 'cardItemsBack')
 
   console.log(product_stores, "cartitem -> product stores");
 
@@ -19,11 +30,12 @@ const CartItem = ({ cartItem }) => {
   useEffect(() => {
     setItemQuantity(cartItem.amount);
   }, [cartItem.amount]);
+
   
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
   return (
-    <div className="product_cart_item">
+    <form className="product_cart_item">
       <button
         type="button" 
         className="thrush_btn"
@@ -61,7 +73,7 @@ const CartItem = ({ cartItem }) => {
                 <button 
                   type="button" 
                   onClick={ () => { 
-                    dispatch(increaseCartItems(cartItem.id)); 
+                    dispatch(increaseCartItems(cartItem.id))
                     setItemQuantity(prevQuantity => prevQuantity + 1);
                   } }
                   disabled={ moreThanTen }
@@ -90,7 +102,7 @@ const CartItem = ({ cartItem }) => {
       </div>
       <div className="container contact">
         {
-          product_stores.map(productStore => {
+          product_stores?.map(productStore => {
             return (
               <div key={ productStore.id } className="shopName">
                 <img src={shopIcon} alt="" />
@@ -100,7 +112,7 @@ const CartItem = ({ cartItem }) => {
           })
         }
                 {
-          product_stores.map(productStore => {
+          product_stores?.map(productStore => {
             return (
               <div className="phoneNum">
               <img src={phoneIcon} alt="" />
@@ -111,7 +123,8 @@ const CartItem = ({ cartItem }) => {
         }
 
       </div>
-    </div>
+
+    </form>
   )
 }
 export default CartItem;

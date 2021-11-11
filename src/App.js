@@ -11,6 +11,9 @@ import Checkout from './pages/Checkout';
 import {useEffect} from "react";
 import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
+import {addCartItems} from "./features/shoppingCartItems/shoppingCartItemsSlice";
+
 
 
 function App() {
@@ -28,6 +31,19 @@ function App() {
                         type: 'SET_CUSTOMER',
                         payload: token
                     })
+            axios.get(`${process.env.REACT_APP_API_URL}/orders/get?user_id=${token.id}&checked_out=0`)
+                .then(res => {
+                    console.log(res.data)
+                     res.data[0].product_orders.map(i => {
+                         console.log(i.orders_products.amount)
+                         dispatch(addCartItems({
+                              ...i,
+                             amount: i.orders_products.amount
+                         }))
+                         localStorage.setItem('order_id', res.data[0].id)
+                    })
+                })
+                .catch(e => e.message)
         }
     }, [])
 console.log(role, 'role');
