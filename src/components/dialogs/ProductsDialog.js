@@ -3,16 +3,12 @@ import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {selectCartItems, selectTotalAmount} from '../../features/shoppingCartItems/shoppingCartItemsSlice';
 import CartItem from '../CartItem';
-<<<<<<< HEAD
 import Login from '../modals/login';
 import SignUp from '../modals/signUp';
 import ForgotPass from '../modals/forgotPass';
 import NewPass from '../modals/resetPass';
 import VerifyCode from '../modals/verifyCode';
 import { useHistory } from 'react-router';
-=======
-import {useHistory} from 'react-router';
->>>>>>> 93a9cb702b0428c77ebfe497411f44704f2a3c7a
 import Alert from '@material-ui/lab/Alert';
 import '../../scss/ProductsDialog.scss'
 import {addCartItems} from '../../features/shoppingCartItems/shoppingCartItemsSlice'
@@ -21,17 +17,36 @@ import jwtDecode from "jwt-decode";
 
 
 function ProductsDialog() {
-<<<<<<< HEAD
   const shoppingCartItems = useSelector(selectCartItems);
   let [token, setToken] = useState(
     window.localStorage.getItem('token')
       ? window.localStorage.getItem('token')
       : null
   )
+
   const products = useSelector(store => {
-    return store.shoppingCartItem.cartItems
-  })
+    return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
+});
+
+console.log(products,'shopCardItem')
+
+const [cardItems, setCardItems] = useState()
+//const token = localStorage.getItem('token')
+const [data, setData] = useState({product_orders: []})
+const order_id = localStorage.getItem('order_id')
+const userId = jwtDecode(token).id
+const dispatch = useDispatch()
+console.log(userId)
+const productItems = localStorage?.getItem('products')
+  // const products = useSelector(store => {
+  //   return store.shoppingCartItem.cartItems
+  // })
   const totalAmount = useSelector(selectTotalAmount) || 0;
+  const prod = useSelector(store => {
+    return console.log(store.shoppingCartItem)
+})
+console.log(prod)
+console.log(products, 'products')
   
   let verified = useSelector(store => {
     return store.customer.verified || null
@@ -112,6 +127,31 @@ function ProductsDialog() {
     }
   }
 
+  function saveProdcuts(e) {
+      console.log(products)
+      e.preventDefault()
+
+      const obj = {
+          user_id: userId,
+          products: JSON.parse(JSON.stringify(products)),
+          total_price: 1,
+          checked_out: 0,
+          order_id : order_id || ''
+      };
+
+      axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
+          .then(res => {
+              res.data[0].product_orders.map(i => {
+                  dispatch(addCartItems({
+                      ...i,
+                      amount: i.orders_products.amount
+                  }))
+              })
+              // localStorage.setItem('products', JSON.stringify(cartItem))
+          })
+          .catch(e => console.log(e))
+  }
+
   return (
     <>
       <div className="head_banner">
@@ -124,9 +164,9 @@ function ProductsDialog() {
           <p className="delivery_color">+49$</p>
         </div>
       </div>
-      {shoppingCartItems.map((cartItem) => (
-        <CartItem key={cartItem.id} cartItem={cartItem} />
-      ))}
+      {products.map((cartItem) => (
+                <CartItem key={cartItem.id} cartItem={cartItem}/>
+            ))}
       {products.length ? (
         <button
           onClick={checkoutPageRedirect}
@@ -135,18 +175,23 @@ function ProductsDialog() {
           <Link to='/checkout' className="link">
             Shop Now
           </Link>
+          <button type="submit" onClick={saveProdcuts}>save</button>
         </button>
       ) : null}
       <Link to="/profile">
-        {alert && (
-          <Alert severity="error">
-            {!delAddresses && verified && "Check your address delivery!"}
-            {!verified && delAddresses && "Check your phone verification"}
-            {!delAddresses &&
-              !verified &&
-              "Check your phone verification and address delivery!"}
-          </Alert>
-        )}
+      {alert && (
+                    <Alert severity="error">
+                        {!delAddresses && verified &&
+                        <Link to='/profile' className="delivery_error">"Check your address delivery!"</Link>}
+                        {!verified && delAddresses &&
+                        <Link to='/profile' className="delivery_error">"Check your phone verification"</Link>}
+                        {!delAddresses &&
+                        !verified &&
+                        <Link to='/profile' className="delivery_error">
+                            "Check your phone verification and address delivery!"
+                        </Link>}
+                    </Alert>
+                )}
       </Link>
       <Login
         aaa={bbb}
@@ -183,21 +228,20 @@ function ProductsDialog() {
       />
     </>
   );
-=======
-    const products = useSelector(store => {
-        return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
-    });
+    // const products = useSelector(store => {
+    //     return JSON.parse(JSON.stringify(store.shoppingCartItem.cartItems))
+    // });
 
-    console.log(products,'shopCardItem')
+    // console.log(products,'shopCardItem')
 
-    const [cardItems, setCardItems] = useState()
-    const token = localStorage.getItem('token')
-    const [data, setData] = useState({product_orders: []})
-    const order_id = localStorage.getItem('order_id')
-    const userId = jwtDecode(token).id
-    const dispatch = useDispatch()
-    console.log(userId)
-    const productItems = localStorage?.getItem('products')
+    // const [cardItems, setCardItems] = useState()
+    // //const token = localStorage.getItem('token')
+    // const [data, setData] = useState({product_orders: []})
+    // const order_id = localStorage.getItem('order_id')
+    // const userId = jwtDecode(token).id
+    // const dispatch = useDispatch()
+    // console.log(userId)
+    // const productItems = localStorage?.getItem('products')
     // const dispatch = useDispatch()
     // const item = JSON.parse(productItems)
     // const items = [item]
@@ -208,16 +252,16 @@ function ProductsDialog() {
     //     // return store.shoppingCartItem.cartItems
     // })
 
-    const prod = useSelector(store => {
-        return console.log(store.shoppingCartItem)
-    })
-    console.log(prod)
-    console.log(products, 'products')
-    const totalAmount = useSelector(selectTotalAmount) || 0;
+    // const prod = useSelector(store => {
+    //     return console.log(store.shoppingCartItem)
+    // })
+    // console.log(prod)
+    // console.log(products, 'products')
+    //const totalAmount = useSelector(selectTotalAmount) || 0;
 
-    let verified = useSelector(store => {
-        return store.customer.verified || null
-    });
+    // let verified = useSelector(store => {
+    //     return store.customer.verified || null
+    // });
 
 
     // useEffect(() => {
@@ -232,96 +276,99 @@ function ProductsDialog() {
 
 
 
-    let delAddresses = useSelector(store => {
-        return store.customer.delivery_addresses?.length || null
-    });
+    // let delAddresses = useSelector(store => {
+    //     return store.customer.delivery_addresses?.length || null
+    // });
 
-    const [alert, setAlert] = useState(false)
+    //const [alert, setAlert] = useState(false)
 
-    const history = useHistory()
+    //const history = useHistory()
 
-    function checkoutPageRedirect() {
-        if (!delAddresses || !verified) {
-            setAlert(true)
-        } else {
-            setAlert(false)
-            history.push('/checkout')
-        }
-    }
+    // function checkoutPageRedirect() {
+    //   if (!token) {
+    //     loginOpen();
+    //   }
+    //   else if (!delAddresses || !verified) {
+    //     setAlert(true);
+    //   } else {
+    //     setAlert(false);
+    //     history.push("/checkout");
+    //   }
+    // }
 
-    function saveProdcuts(e) {
-        console.log(products)
-        e.preventDefault()
+    // function saveProdcuts(e) {
+    //     console.log(products)
+    //     e.preventDefault()
 
-        const obj = {
-            user_id: userId,
-            products: JSON.parse(JSON.stringify(products)),
-            total_price: 1,
-            checked_out: 0,
-            order_id : order_id || ''
-        };
+    //     const obj = {
+    //         user_id: userId,
+    //         products: JSON.parse(JSON.stringify(products)),
+    //         total_price: 1,
+    //         checked_out: 0,
+    //         order_id : order_id || ''
+    //     };
 
-        axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
-            .then(res => {
-                res.data[0].product_orders.map(i => {
-                    dispatch(addCartItems({
-                        ...i,
-                        amount: i.orders_products.amount
-                    }))
-                })
-                // localStorage.setItem('products', JSON.stringify(cartItem))
-            })
-            .catch(e => console.log(e))
-    }
+    //     axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
+    //         .then(res => {
+    //             res.data[0].product_orders.map(i => {
+    //                 dispatch(addCartItems({
+    //                     ...i,
+    //                     amount: i.orders_products.amount
+    //                 }))
+    //             })
+    //             // localStorage.setItem('products', JSON.stringify(cartItem))
+    //         })
+    //         .catch(e => console.log(e))
+    // }
 
-    return (
-        <>
-            <div className="head_banner">
-                <div>
-                    <p>Sub Total</p>
-                    <p> {`${totalAmount}$`} </p>
-                </div>
-                <div>
-                    <p>Delivery Charges</p>
-                    <p className="delivery_color">+49$</p>
-                </div>
-            </div>
-            {console.log(products)}
-            {products.map((cartItem) => (
-                <CartItem key={cartItem.id} cartItem={cartItem}/>
-            ))}
-            {/*{ data?.product_orders.map((products) => {*/}
-            {/*  return <CartItem key={products.id} cartItem={products}/>*/}
-            {/*})}*/}
-            {token && products.length ? (
-                <>
-                    <button
-                        onClick={checkoutPageRedirect}
-                        className="BestSavers__link BestSavers__link__card"
-                    >
-                        Shop Now
-                    </button>
-                    <button type="submit" onClick={saveProdcuts}>save</button>
-                </>
-            ) : null}
-            <Link to="/profile">
-                {alert && (
-                    <Alert severity="error">
-                        {!delAddresses && verified &&
-                        <Link to='/profile' className="delivery_error">"Check your address delivery!"</Link>}
-                        {!verified && delAddresses &&
-                        <Link to='/profile' className="delivery_error">"Check your phone verification"</Link>}
-                        {!delAddresses &&
-                        !verified &&
-                        <Link to='/profile' className="delivery_error">
-                            "Check your phone verification and address delivery!"
-                        </Link>}
-                    </Alert>
-                )}
-            </Link>
-        </>
-    );
->>>>>>> 93a9cb702b0428c77ebfe497411f44704f2a3c7a
+//     return (
+//         <>
+//             <div className="head_banner">
+//                 <div>
+//                     <p>Sub Total</p>
+//                     <p> {`${totalAmount}$`} </p>
+//                 </div>
+//                 <div>
+//                     <p>Delivery Charges</p>
+//                     <p className="delivery_color">+49$</p>
+//                 </div>
+//             </div>
+//             {console.log(products)}
+//             {/* {products.map((cartItem) => (
+//                 <CartItem key={cartItem.id} cartItem={cartItem}/>
+//             ))} */}
+//             {/*{ data?.product_orders.map((products) => {*/}
+//             {/*  return <CartItem key={products.id} cartItem={products}/>*/}
+//             {/*})}*/}
+//             {token && products.length ? (
+//                 <>
+//                     <button
+//                         onClick={checkoutPageRedirect}
+//                         className="BestSavers__link BestSavers__link__card"
+//                     >
+//                         Shop Now
+//                     </button>
+//                     <button type="submit" onClick={saveProdcuts}>save</button>
+//                 </>
+//             ) : null}
+//             <Link to="/profile">
+//                 {alert && (
+//                     <Alert severity="error">
+//                         {!delAddresses && verified &&
+//                         <Link to='/profile' className="delivery_error">"Check your address delivery!"</Link>}
+//                         {!verified && delAddresses &&
+//                         <Link to='/profile' className="delivery_error">"Check your phone verification"</Link>}
+//                         {!delAddresses &&
+//                         !verified &&
+//                         <Link to='/profile' className="delivery_error">
+//                             "Check your phone verification and address delivery!"
+//                         </Link>}
+//                     </Alert>
+//                 )}
+//             </Link>
+//         </>
+//     );
+// >>>>>>> 93a9cb702b0428c77ebfe497411f44704f2a3c7a
 }
 
 export default ProductsDialog;
