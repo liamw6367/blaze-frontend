@@ -2,10 +2,15 @@ import React, {useState} from "react";
 import axios from "axios";
 import {useSelector, useDispatch} from "react-redux";
 import jwt_decode from "jwt-decode"
+import { addCartItems } from "../../../features/shoppingCartItems/shoppingCartItemsSlice";
 
 const LoginForm = ({aaa, ForgotPassOpen, localUser}) => {
 
     const dispatch = useDispatch()
+    const prod = useSelector(store => {
+        return console.log(store.shoppingCartItem)
+    })
+
     let [error, setError] = useState('')
     let [inputs, setInputs] = useState([
             {
