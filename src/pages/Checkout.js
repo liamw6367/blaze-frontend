@@ -261,12 +261,14 @@ function Checkout() {
                     <div className="Checkout__total-text">Order Total</div>
                     <div className="Checkout__total__price">{ totalAmount ? `${ totalAmount + 49}$`: 0 }</div>
                   </div>
-                  <button onClick={placeOrderHandler} className="Checkout__submit">
-                    Place Order
-                  </button>
-                  <button onClick={cancelOrderHandler} className="Checkout__submit">
-                    Cancel Order
-                  </button>
+                  <div className="Checkout__button__block">
+                    <button onClick={cancelOrderHandler} className="Checkout__submit Checkout__submit__cancel">
+                      Cancel Order
+                    </button>
+                    <button onClick={placeOrderHandler} className="Checkout__submit">
+                      Place Order
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -8,6 +8,14 @@
     margin: 52px auto 0;
   }
 
+  &__button__block {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 20px;
+    gap: 50px;
+    // align-items: flex-start;
+  }
+
   &__submit {
     width: 140px;
     height: 44px;
@@ -20,7 +28,14 @@
     align-items: center;
     justify-content: center;
     border: 0;
+
+    &__cancel {
+      background: #dc3545;
+    }
+
   }
+
+  
 
   &__form__block {
     width: 100%;

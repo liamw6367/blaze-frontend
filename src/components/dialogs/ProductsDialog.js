@@ -201,8 +201,8 @@ function ProductsDialog() {
               Shop Now
             </button>
             {token && (
-              <button type="submit" onClick={saveProdcuts}>
-                save
+              <button type="submit" className="BestSavers__link BestSavers__link__button" onClick={saveProdcuts}>
+                Save Product
               </button>
             )}
           </>
