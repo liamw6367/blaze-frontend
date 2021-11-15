@@ -41,7 +41,7 @@ function Checkout() {
         order_id = +localStorage.getItem('order_id');
         e.preventDefault()
         if (order_id) {
-            axios.put(`${process.env.REACT_APP_API_URL}/orders/check-out`, {order_id})
+            axios.put(`${process.env.REACT_APP_API_URL}/orders/check-out`, {order_id, total_price: totalAmount})
                 .then(res => {
                     dispatch(clearCard())
                     history.push('/')

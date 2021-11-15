@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react'
+import {useSelector} from "react-redux";
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import './../scss/order.scss'
@@ -13,11 +14,11 @@ function Order(){
     const [From , setFrom] = useState("")
     const [To , setTo] = useState("")
     const [response,setResponse] = useState()
+    const customerId = useSelector(store => store.customer.id)
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/orders/get?checked_out=1&user_id=4`)
-        .then(res => setResponse(res.data[0]))
+        axios.get(`${process.env.REACT_APP_API_URL}/orders/get?user_id=${customerId}`)
+        .then(res => setResponse(res.data))
         .catch(e => console.log(e))
-        
     },[])
 
     return(
@@ -49,21 +50,20 @@ function Order(){
                 </form>
             </div>
             <div className='order--search__container__title'>
-                <p className='order--search__title__item'>Order</p>
+                <p className='order--search__title__item'>Order ID</p>
+                <p className='order--search__title__item'>Price</p>
                 <p className='order--search__title__item'>Date</p>
                 <p className='order--search__title__item'>Status</p>
-                <p className='order--search__title__item'>Price</p>
                 <p className='order--search__title__item'>View Details</p>
             </div>
             <div className='order--search__container'>
-                {response && response.product_orders.map(el => (
-                    <OrderSearchItem 
-                    description={el.description}
+                {console.log(response)}
+                {response && response.map(el => (
+                    <OrderSearchItem
                     id={el.id}
-                    normal_price ={el.normal_price}
-                    category={el.product_category[0].name}
                     created_at={el.created_at}
-                    order_id={el.orders_products.order_id}
+                    total_price={el.total_price}
+                    checked_out={el.checked_out}
                     />
                 ))}
             </div>
