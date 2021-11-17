@@ -6,7 +6,9 @@ import './../scss/order.scss'
 import test from './../assets/images/App_Store.png'
 import OrderSearchItem from '../components/orderSearchItem'
 import Navbar from "../components/Navbar";
+import moment from "moment";
 import axios from 'axios'
+
 
 
 function Order(){
@@ -20,6 +22,22 @@ function Order(){
         .then(res => setResponse(res.data))
         .catch(e => console.log(e))
     },[])
+
+    function dateHandler(e) {
+        e.preventDefault()
+        if(From && To){
+            let params = {
+                start_date: moment(From).format(),
+                end_date: moment(To).format()
+            }
+            axios.get(`${process.env.REACT_APP_API_URL}/orders/get?user_id=${customerId}`,{params:params})
+                .then(res => setResponse(res.data))
+                .catch(e => console.log(e))
+        }
+        console.log(From,To)
+    }
+
+
 
     return(
         <>
@@ -46,7 +64,7 @@ function Order(){
                         <span className='visually-hidden'>Surname</span>
                         <input type="search" id="search" className="order__inp__search "/>
                     </label> */}
-                    {/* <button className="order__btn" type='submit'>Search</button> */}
+                     <button className="order__btn" type='submit' onClick={dateHandler}>Search</button>
                 </form>
             </div>
             <div className='order--search__container__title'>
