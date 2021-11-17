@@ -9,12 +9,22 @@ import Navbar from "../components/Navbar";
 import moment from "moment";
 import axios from 'axios'
 import OrderView from './OrderView';
+import Paginator from 'react-hooks-paginator';
 
 
 
 
 function Order(){
 
+    const pageLimit = 10;
+    const [offset, setOffset] = useState(0);
+    const [currentPage, setCurrentPage] = useState();
+    const [data ,setData] = useState([]);
+    const [currentData, setCurrentData] = useState([]);
+
+
+    
+    
     const [From , setFrom] = useState("")
     const [To , setTo] = useState("")
     const [response,setResponse] = useState()
@@ -24,6 +34,49 @@ function Order(){
         .then(res => setResponse(res.data))
         .catch(e => console.log(e))
     },[])
+
+
+
+
+
+    let mediaCardElementRevers;
+    let mediaCardElement;
+
+    if(response) {
+        mediaCardElementRevers  = response.map((el) =>(
+            <OrderSearchItem
+            el={el}
+            id={el.id}
+            created_at={el.created_at}
+            total_price={el.total_price}
+            checked_out={el.checked_out}
+            />
+        ))
+        mediaCardElement = mediaCardElementRevers.reverse()
+        // mediaCardElementRevers  = response.map((el) =>(
+        
+        //     <OrderSearchItem
+        //     el={el}
+        //     id={el.id}
+        //     created_at={el.created_at}
+        //     total_price={el.total_price}
+        //     checked_out={el.checked_out}
+        //     />
+        // ))
+        // mediaCardElement = mediaCardElementRevers.reverse()
+    }
+   
+
+    useEffect(() => {
+        setCurrentData(mediaCardElement?.slice(offset, offset + pageLimit));
+    }, [offset, data]);
+
+
+
+
+
+
+
 
     function dateHandler(e) {
         e.preventDefault()
@@ -78,16 +131,23 @@ function Order(){
             </div>
             <div className='order--search__container'>
                 {console.log(response)}
-                {response && response.map(el => (
-                    <OrderSearchItem
-                    el={el}
-                    id={el.id}
-                    created_at={el.created_at}
-                    total_price={el.total_price}
-                    checked_out={el.checked_out}
-                    />
-                ))}
+                {response && (
+                     currentData?.map(mediaCardElement => (
+                        <>{mediaCardElement}</>
+                  ))
+                )}
+
             </div>
+            {response && (
+                  <Paginator
+                  totalRecords={mediaCardElement.length}
+                  pageLimit={pageLimit}
+                  pageNeighbours={1}
+                  setOffset={setOffset}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+              />
+            )}
            <Footer/>
         </div>
     </>
