@@ -8,6 +8,8 @@ import OrderSearchItem from '../components/orderSearchItem'
 import Navbar from "../components/Navbar";
 import moment from "moment";
 import axios from 'axios'
+import OrderView from './OrderView';
+
 
 
 
@@ -78,6 +80,7 @@ function Order(){
                 {console.log(response)}
                 {response && response.map(el => (
                     <OrderSearchItem
+                    el={el}
                     id={el.id}
                     created_at={el.created_at}
                     total_price={el.total_price}

@@ -1,0 +1,42 @@
+.OrderViewCard {
+    // border: 3px solid red;
+    padding: 16px;
+    box-shadow: 0 0 8px 1px rgb(175, 175, 175);
+    // flex: 1 1 28%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 285px;
+    width: 100%;
+    margin: 10px;
+
+    &__img {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 10px 10px 0 0 ;
+    }
+
+    &__price {
+        font-size: 14px;
+        font-weight: 700;
+        color: #000000;
+        margin-top: auto;
+        font-family: MuliBold,sans-serif;
+    }
+
+    &__title {
+        font-size: 18px;
+        font-weight: 700;
+        // line-height: 20px;
+        margin-bottom: 3px;
+        font-family: MuliBold,sans-serif;
+        color: #000000;
+    }
+
+    &__count {
+        font-size: 14px;
+        font-weight: 700;
+        color: #000000;
+        font-family: MuliBold,sans-serif;
+    }
+}
