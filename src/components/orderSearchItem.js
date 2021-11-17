@@ -5,11 +5,12 @@ import moment from 'moment'
 import OrderView from '../pages/OrderView'
 
 function OrderSearchItem({el}) {
-    const [loginActiv, setLoginActiv] = useState(false)
+    const [cartModal, setcartModal] = useState(false)
 
-    const loginOpen = () => {
-        setLoginActiv(!loginActiv)
+    const modalOpen = () => {
+        setcartModal(!cartModal)
     }
+
     return (
         <div className='order-item'>
             <div className='order-item__block'>
@@ -22,13 +23,12 @@ function OrderSearchItem({el}) {
             <p className='order-item__text'>{moment(el.created_at).format("YYYY-MM-DD")}</p>
             <p className='order-item__text order-item__text-gold'>{el.checked_out ? 'Completed' : 'Pending'}</p>
             <p className='order-item__text'>
-                <button type="submit" className="BestSavers__link BestSavers__link__button" onClick={loginOpen}>View</button>
+                <button type="submit" className="BestSavers__link BestSavers__link__button" onClick={modalOpen}>View</button>
             </p>
-            
             <OrderView
                 el={el}
-                loginActiv={loginActiv}
-                loginOpen={loginOpen}
+                cartModal={cartModal}
+                modalOpen={modalOpen}
             />
         </div>
     )

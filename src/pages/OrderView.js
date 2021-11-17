@@ -3,10 +3,10 @@ import OrderViewCard from './OrderViewCard';
 
 
 
-function OrderView({loginActiv, loginOpen,el}) {
+function OrderView({cartModal, modalOpen,el}) {
 
     return (
-        <div className={loginActiv ? 'modal-bg' : 'modal-bg--active'} onClick={loginOpen}>
+        <div className={cartModal ? 'modal-bg' : 'modal-bg--active'} onClick={modalOpen}>
             <section className='orders' onClick={(e) => {
                 e.stopPropagation();
             }}>
