@@ -21,10 +21,6 @@ function Order(){
     const [currentPage, setCurrentPage] = useState();
     const [data ,setData] = useState([]);
     const [currentData, setCurrentData] = useState([]);
-
-
-    
-    
     const [From , setFrom] = useState("")
     const [To , setTo] = useState("")
     const [response,setResponse] = useState()
@@ -34,10 +30,6 @@ function Order(){
         .then(res => setResponse(res.data))
         .catch(e => console.log(e))
     },[])
-
-
-
-
 
     let mediaCardElementRevers;
     let mediaCardElement;
@@ -53,30 +45,11 @@ function Order(){
             />
         ))
         mediaCardElement = mediaCardElementRevers.reverse()
-        // mediaCardElementRevers  = response.map((el) =>(
-        
-        //     <OrderSearchItem
-        //     el={el}
-        //     id={el.id}
-        //     created_at={el.created_at}
-        //     total_price={el.total_price}
-        //     checked_out={el.checked_out}
-        //     />
-        // ))
-        // mediaCardElement = mediaCardElementRevers.reverse()
     }
-   
 
     useEffect(() => {
         setCurrentData(mediaCardElement?.slice(offset, offset + pageLimit));
     }, [offset, data]);
-
-
-
-
-
-
-
 
     function dateHandler(e) {
         e.preventDefault()
@@ -91,8 +64,6 @@ function Order(){
         }
         console.log(From,To)
     }
-
-
 
     return(
         <>
