@@ -12,6 +12,7 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 import { addCartItems } from '../../../features/shoppingCartItems/shoppingCartItemsSlice'
 import { useDispatch } from 'react-redux';
+import shopIcon from "../../../assets/images/icons/shopIcon.png";
 
 const options = {
     responsive: {
@@ -117,9 +118,19 @@ const SingleProduct = () => {
                             > Add to cart</button>
                         </div>
                     <div className='single-product__store-details'>
-                        <img src={test}  className='single-product__store-details-img'/>
-                        <p  className='single-product__store-details-name'>Shop name</p>
-                        <a  className='single-product__store-details-tel' href='tel:+454554454'><img src={phoneIcon}/> +454554454</a>
+                        {
+                            singleItem?.product_stores?.map(productStore => {
+                                return (
+                                    <>
+                                    <img src={shopIcon}  className='single-product__store-details-img'/>
+                                    <p  className='single-product__store-details-name'>{productStore.name}</p>
+                                        <a className='single-product__store-details-tel' href={`${productStore.contact_number}`}><img
+                                            src={phoneIcon}/> {productStore.contact_number}</a>
+                                    </>
+                                )
+                            })
+                        }
+
                     </div>
                 </div>
             </div>
