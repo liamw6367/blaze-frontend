@@ -23,6 +23,7 @@ function BestSavers() {
         {topCardItems.map(item => {
           return (
             <CardItem
+              id={item.id}
               key={ item.id }
               imgUrl={ item.image }
               paragraph={ item.description }

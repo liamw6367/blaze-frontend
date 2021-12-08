@@ -13,6 +13,7 @@ import jwt_decode from "jwt-decode"
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {addCartItems} from "./features/shoppingCartItems/shoppingCartItemsSlice";
+import SingleProduct from './components/modals/component/SingleProduct';
 
 
 
@@ -26,7 +27,6 @@ function App() {
     
     useEffect(() => {
         if (Token) {
-
             let token = jwt_decode(Token)
                     dispatch({
                         type: 'SET_CUSTOMER',
@@ -87,6 +87,7 @@ console.log(role, 'role');
             return(
                 <>
                     <Route exact path='/profile' component={ Profile } />
+                    <Route exact path='/single-product/:id' component={SingleProduct} />
                     <Route exact path='/profile-driver' render={ () => <Redirect to='/' /> } />
                     <Route exact path='/admin/dashboard' render={ () => <Redirect to='/' /> } />
                     <Route exact path='/admin/stores' render={ () => <Redirect to='/' /> } />
@@ -139,6 +140,7 @@ console.log(role, 'role');
                             <Route exact path='/checkout' component={Checkout}/>
                             <Route exact path='/order' component={Order}/>
                             <Route exact path='/category' component={Category}/>
+                            <Route exact path='/single-product' component={SingleProduct} />
                             {userRole()}
                             {/*<Route exact component={NoMatch}/>*/}
                         </Switch>

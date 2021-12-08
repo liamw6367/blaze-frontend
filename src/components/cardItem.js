@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import './../scss/cardItem.scss';
 import shoppingCart from '../assets/images/icons/shopping-cart.svg';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { addCartItems } from '../features/shoppingCartItems/shoppingCartItemsSlice';
 
 
-function CardItem({ imgUrl, paragraph, title, salePrice, price, sale, cartItem }) {
+function CardItem({ id, imgUrl, paragraph, title, salePrice, price, sale, cartItem }) {
   const [itemQuantity, setItemQuantity] = useState(1);
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
-
+  const history = useHistory()
   const dispatch = useDispatch();
+  
+  const singleProductHandler = () => {
+    history.push(`/single-product/${id}`) 
+  }
 
   return (
     <div className="cardItem__item">
       {console.log('dsadsadsa')}
       <div className="today_sale">{sale}</div>
-        <img src={ `${process.env.REACT_APP_API_URL}/uploads/product_images/${imgUrl}`} className="cardItem__item__img" alt="" />
+        <img onClick={singleProductHandler} src={ `${process.env.REACT_APP_API_URL}/uploads/product_images/${imgUrl}`} className="cardItem__item__img" alt="" />
       <div>
         <p className="today-card_product-paragraph">{paragraph}</p>
         <h3 className="today-card_product-title">{title}</h3>
