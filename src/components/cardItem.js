@@ -12,7 +12,7 @@ function CardItem({ id, imgUrl, paragraph, title, salePrice, price, sale, cartIt
   const moreThanTen = itemQuantity >= 10;
   const history = useHistory()
   const dispatch = useDispatch();
-  
+  console.log('hi')
   const singleProductHandler = () => {
     history.push(`/single-product/${id}`) 
   }

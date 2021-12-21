@@ -47,8 +47,9 @@ function App() {
                 .catch(e => e.message)
         }
     }, [])
-console.log(role, 'role');
+
     function userRole(){
+        console.log(role, 'role');
         if(role === 'driver'){
             return(
                 <>
@@ -87,7 +88,7 @@ console.log(role, 'role');
             return(
                 <>
                     <Route exact path='/profile' component={ Profile } />
-                    <Route exact path='/single-product/:id' component={SingleProduct} />
+                    {/*<Route exact path='/single-product/:id' component={SingleProduct} />*/}
                     <Route exact path='/profile-driver' render={ () => <Redirect to='/' /> } />
                     <Route exact path='/admin/dashboard' render={ () => <Redirect to='/' /> } />
                     <Route exact path='/admin/stores' render={ () => <Redirect to='/' /> } />
@@ -140,7 +141,7 @@ console.log(role, 'role');
                             <Route exact path='/checkout' component={Checkout}/>
                             <Route exact path='/order' component={Order}/>
                             <Route exact path='/category' component={Category}/>
-                            <Route exact path='/single-product' component={SingleProduct} />
+                            <Route exact path='/single-product/:id' component={SingleProduct} />
                             {userRole()}
                             {/*<Route exact component={NoMatch}/>*/}
                         </Switch>
@@ -150,6 +151,7 @@ console.log(role, 'role');
                             <Route exact path='/' component={Home}/>
                             <Route exact path='/checkout' component={Home}/>
                             <Route exact path='/order' component={Home}/>
+                            <Route exact path='/single-product/:id' component={SingleProduct} />
                             {/* <Route exact path='' render={(props) => <Login {...props} loginOpen={true} loginActiv={true}/>}/> */}
                             
                             <Route exact path='/profile' component={ Home}/>
