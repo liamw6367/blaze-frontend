@@ -146,9 +146,10 @@ function ProductsDialog() {
 
             axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
                 .then(res => {
+                    dispatch(clearCard())
                     console.log(res.data[0])
                     res.data[0].product_orders.map(i => {
-                        dispatch(clearCard())
+
                         dispatch(addCartItems({
                             ...i,
                             amount: i.orders_products.amount
