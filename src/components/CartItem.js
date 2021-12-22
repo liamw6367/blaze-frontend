@@ -31,6 +31,17 @@ const CartItem = ({ cartItem }) => {
     setItemQuantity(cartItem.amount);
   }, [cartItem.amount]);
 
+  function removeProductFromOrder() {
+    let order_id = localStorage.getItem('order_id')
+    if(order_id) {
+      axios.delete(`${process.env.REACT_APP_API_URL}/orders/remove-product-from-order`,{params:{order_id,product_id:cartItem.id}})
+          .then(res => dispatch(removeCartItems(cartItem.id)))
+    }
+    else {
+      dispatch(removeCartItems(cartItem.id))
+    }
+  }
+
   
   const lessThanOne = itemQuantity <= 1;
   const moreThanTen = itemQuantity >= 10;
@@ -39,7 +50,7 @@ const CartItem = ({ cartItem }) => {
       <button
         type="button" 
         className="thrush_btn"
-        onClick={ () => dispatch(removeCartItems(cartItem.id)) }
+        onClick={removeProductFromOrder}
       >
         <img src={deleteIcon} alt="" />
       </button>

@@ -164,7 +164,7 @@ function Navbar() {
         if (pathName === '/profile-driver' || pathName === '/profile') {
             return ''
         } else if (ROUT === 'admin' || ROUT === 'store admin') {
-            return <MenuItem><Link style={{color: '#000'}} classname='login_user'
+            return <MenuItem><Link style={{color: '#000'}} className='login_user'
                                    to={'/admin/dashboard'}>DASHBOARD</Link></MenuItem>
         } else {
             return (

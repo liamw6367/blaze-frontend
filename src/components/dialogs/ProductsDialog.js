@@ -149,7 +149,6 @@ function ProductsDialog() {
                     dispatch(clearCard())
                     console.log(res.data[0])
                     res.data[0].product_orders.map(i => {
-
                         dispatch(addCartItems({
                             ...i,
                             amount: i.orders_products.amount
@@ -168,6 +167,7 @@ function ProductsDialog() {
         <>
             <div className="head_banner">
                 <div>
+                    {                    console.log(products, 'changedProducts')}
                     <p>Sub Total</p>
                     <p> {`${totalAmount}$`} </p>
                 </div>
