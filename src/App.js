@@ -14,6 +14,8 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {addCartItems} from "./features/shoppingCartItems/shoppingCartItemsSlice";
 import SingleProduct from './components/modals/component/SingleProduct';
+import Chat from "./components/Chat";
+
 
 
 
@@ -136,6 +138,7 @@ function App() {
                         <Switch>
                             <Route exact path='/profile' component={ Profile } />
                             <Route exact path='/profile-driver' component={ ProfileDriver } />
+                            <Route exact path='/chat' component={Chat} />
                             <Route exact path='/home' component={Home}/>
                             <Route exact path='/' component={Home}/>
                             <Route exact path='/checkout' component={Checkout}/>
@@ -149,6 +152,7 @@ function App() {
                         <Switch>
                             <Route exact path='/home' component={Home}/>
                             <Route exact path='/' component={Home}/>
+                            <Route exact path='/chat' component={Chat} />
                             <Route exact path='/checkout' component={Home}/>
                             <Route exact path='/order' component={Home}/>
                             <Route exact path='/single-product/:id' component={SingleProduct} />
