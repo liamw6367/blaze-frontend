@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import io from 'socket.io-client'
 import TextField from "@material-ui/core/TextField";
 import '../scss/chat.scss'
+import axios from "axios";
 
 
 const Chat = () => {
@@ -10,11 +11,17 @@ const Chat = () => {
     const [chat, setChat] = useState([])
     const socketRef = useRef()
 
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/chat/get-messages`)
+            .then(res => setChat(res.data))
+    },[])
+
     useEffect(
         () => {
                 socketRef.current = io.connect(process.env.REACT_APP_API_URL)
-                socketRef.current.on("getMessage", ({ message }) => {
-                    setChat([ ...chat, { message } ])
+                socketRef.current.on("getMessages", (data) => {
+                    console.log(data, '111')
+                    setChat(data)
                 })
                 return () => socketRef.current.disconnect()
         },
@@ -31,10 +38,11 @@ const Chat = () => {
     }
 
     const renderChat = () => {
-        return chat.map(({name, message}, index) => (
+        console.log(chat,'chat')
+        return chat.map(({from_id,to_id,message}, index) => (
             <div key={index}>
                 <h3>
-                    {name}: <span>{message}</span>
+                    {from_id}: <span>{message}</span>{to_id}
                 </h3>
             </div>
         ))
