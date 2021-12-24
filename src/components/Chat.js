@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Chat = () => {
     // const socket = io.connect(process.env.REACT_APP_API_URL);
-    const [state, setState] = useState({message: ''});
+    const [state, setState] = useState({message: '', from_id:1, to_id: 5});
     const [chat, setChat] = useState([])
     const socketRef = useRef()
 
@@ -28,8 +28,8 @@ const Chat = () => {
         [ chat ]
     )
     const onMessageSubmit = (e) => {
-        const { message } = state
-        socketRef.current.emit("sendMessage", { message })
+        const { from_id, message, to_id } = state
+        socketRef.current.emit("sendMessage", { from_id, message, to_id })
         e.preventDefault()
         setState({ message: ""})
     }
