@@ -21,6 +21,7 @@ function BestEveryday() {
         {dailyCards.map((item,index) => {
           return (
             <CardItem
+              id={item.id}
               key={index}
               imgUrl={item.image}
               paragraph={item.description}

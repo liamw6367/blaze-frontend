@@ -269,6 +269,7 @@ function Checkout() {
                         </div>
                     </div>
                     <div className="myCard">
+                        {console.log(shoppingCartItems,'cardItems')}
                         <h3 className="myCard__title">My Cart({shoppingCartItems.length} items)</h3>
                         {shoppingCartItems.map((cartItem) => (
                             <div className="myCard__item">

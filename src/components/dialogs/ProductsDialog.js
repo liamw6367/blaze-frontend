@@ -146,9 +146,9 @@ function ProductsDialog() {
 
             axios.post(`${process.env.REACT_APP_API_URL}/orders/add`, obj)
                 .then(res => {
+                    dispatch(clearCard())
                     console.log(res.data[0])
                     res.data[0].product_orders.map(i => {
-                        dispatch(clearCard())
                         dispatch(addCartItems({
                             ...i,
                             amount: i.orders_products.amount
@@ -167,6 +167,7 @@ function ProductsDialog() {
         <>
             <div className="head_banner">
                 <div>
+                    {                    console.log(products, 'changedProducts')}
                     <p>Sub Total</p>
                     <p> {`${totalAmount}$`} </p>
                 </div>
