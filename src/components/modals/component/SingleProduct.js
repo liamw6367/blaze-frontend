@@ -141,7 +141,6 @@ const SingleProduct = () => {
           <AvailableStores />
         </>
     )
-
 }
 
 export default SingleProduct
