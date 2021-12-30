@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import io from 'socket.io-client'
 import TextField from "@material-ui/core/TextField";
+import { ReactComponent as sendLogo } from '../assets/images/send.svg'
 import '../scss/chat.scss'
 import axios from "axios";
 import jwtDecode from "jwt-decode";
@@ -64,7 +65,8 @@ const Chat = () => {
             <form onSubmit={onMessageSubmit}>
                 <h1>Messenger</h1>
                 <div className='name-field'>
-                    <TextField name='message' onChange={e => onTextChange(e)} value={state.message} label={'Message'}/>
+                    <textarea name='message' onChange={e => onTextChange(e)} value={state.message} label={'Message'}/>
+                    <sendLogo className="Chat-"/>
                 </div>
                 <button>Send Message</button>
             </form>
