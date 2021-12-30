@@ -159,13 +159,17 @@ function Navbar() {
         history.push('/')
         window.location.reload()
     }
+    function dashboardHandler(){
+        history.push('/admin/dashboard')
+        window.location.reload()
+    }
 
     function myAccount() {
         if (pathName === '/profile-driver' || pathName === '/profile') {
             return ''
         } else if (ROUT === 'admin' || ROUT === 'store admin') {
-            return <MenuItem><Link style={{color: '#000'}} className='login_user'
-                                   to={'/admin/dashboard'}>DASHBOARD</Link></MenuItem>
+            return <MenuItem><Link onClick={dashboardHandler} style={{color: '#000'}} className='login_user'
+                                   >DASHBOARD</Link></MenuItem>
         } else {
             return (
                 <Link to="/" className="__link menu_navigation__link">
