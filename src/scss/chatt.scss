@@ -28,7 +28,6 @@
 .chatWrapper {
   z-index: 2;
   display: flex;
-  right: 0;
   position: fixed;
   right: 46px;
   bottom: 50px;
@@ -37,6 +36,18 @@
 .Chat-container {
   height: 325px;
   overflow-y: auto;
+}
+.Chat-support__name {
+  padding: 20px;
+  color:#fff;
+  font-family: MuliRegular, sans-serif;
+  font-weight: bold;
+}
+
+.Chat-time {
+  font-size: 10px;
+  font-family: MuliRegular, sans-serif;
+  text-align: center;
 }
 
 .Chat-input {
