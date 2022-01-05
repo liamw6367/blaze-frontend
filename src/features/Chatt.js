@@ -15,10 +15,13 @@ const Chatt = () => {
     let token = localStorage.getItem('token')
 
     let user_id;
+    let role
     if (token) {
         const user = jwtDecode(token);
         user_id = user.id
+        role = user.user_role.name
     }
+
 
     const [state, setState] = useState({message: '', from_id: user_id, to_id: 2});
     const [chat, setChat] = useState([])
@@ -26,7 +29,7 @@ const Chatt = () => {
 
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/chat/get-messages`, {params: {from_id: user_id}})
+        axios.get(`${process.env.REACT_APP_API_URL}/chat/get-messages`, {params: {from_id: user_id,role}})
             .then(res => setChat(res.data))
     }, []);
 
