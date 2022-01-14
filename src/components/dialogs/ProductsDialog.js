@@ -178,7 +178,7 @@ function ProductsDialog() {
         <div>
           {console.log(products, 'changedProducts')}
           <p>Sub Total</p>
-          <p> {`${totalAmount + deliveryFee?.price}$`} </p>
+          <p> {`${totalAmount}$`} </p>
         </div>
         <div>
           <p>Delivery Charges</p>
