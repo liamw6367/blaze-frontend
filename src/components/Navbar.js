@@ -161,6 +161,10 @@ function Navbar() {
     history.push('/')
     window.location.reload()
   }
+  function dashboardHandler() {
+    history.push('/admin/dashboard')
+    window.location.reload()
+  }
 
   function myAccount() {
     if (pathName === '/profile-driver' || pathName === '/profile') {
@@ -169,9 +173,9 @@ function Navbar() {
       return (
         <MenuItem>
           <Link
+            onClick={dashboardHandler}
             style={{ color: '#000' }}
             className="login_user"
-            to={'/admin/dashboard'}
           >
             DASHBOARD
           </Link>

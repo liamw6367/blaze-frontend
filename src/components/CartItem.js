@@ -93,9 +93,9 @@ const CartItem = ({ cartItem }) => {
                 </button>
               </div>
               <span className="x"> x </span>
-              <p className="price" style={{ margin: '0 9px' }}>
-                $50.30
-              </p>
+              {/*<p className="price" style={{ margin: '0 9px' }}>*/}
+              {/*  $50.30*/}
+              {/*</p>*/}
               <p
                 className="price old"
                 style={{ textDecoration: 'line-through' }}

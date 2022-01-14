@@ -16,6 +16,7 @@ import ForgotPass from '../components/modals/forgotPass'
 import VerifyCode from '../components/modals/verifyCode'
 import NewPass from '../components/modals/resetPass'
 import Chatt from '../features/Chatt'
+import jwtDecode from "jwt-decode";
 
 function Home() {
   const user_id = useSelector((store) => store.customer.id)
@@ -79,6 +80,11 @@ function Home() {
       ? window.localStorage.getItem('token')
       : null
   )
+  let role;
+  if (token) {
+    const user = jwtDecode(token);
+    role = user.user_role.name
+  }
 
   const bbb = () => {
     setLoginActiv(false)
@@ -108,14 +114,14 @@ function Home() {
           </h2>
           <h3 className="welcome__title">ON 200 + BIG BRANDS</h3>
           <button
-            onClick={user_id ? categoryPage : loginOpen}
+            onClick={categoryPage}
             className="home__link"
           >
             Shop Now
           </button>
           <img src={test1} className="welcomebgImg" />
         </div>
-        <Chatt />
+        {token && role === 'customer' &&  <Chatt />}
       </div>
       <Login
         aaa={bbb}

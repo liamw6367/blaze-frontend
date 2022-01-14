@@ -1,20 +1,32 @@
 import React, {useState, useEffect, useRef} from 'react'
 import io from 'socket.io-client'
 import TextField from "@material-ui/core/TextField";
+import { ReactComponent as sendLogo } from '../assets/images/send.svg'
 import '../scss/chat.scss'
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 
 const Chat = () => {
+
+    let token = localStorage.getItem('token')
+    let user_id;
+    if (token) {
+        const user = jwtDecode(token);
+        user_id = user.id
+    }
+
+
     // const socket = io.connect(process.env.REACT_APP_API_URL);
-    const [state, setState] = useState({message: '', from_id:1, to_id: 5});
+    const [state, setState] = useState({message: '', from_id: user_id, to_id: 2});
     const [chat, setChat] = useState([])
-    const socketRef = useRef()
+    const socketRef = useRef();
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/chat/get-messages`)
             .then(res => setChat(res.data))
-    },[])
+    },[]);
 
     useEffect(
         () => {
@@ -29,20 +41,21 @@ const Chat = () => {
     )
     const onMessageSubmit = (e) => {
         const { from_id, message, to_id } = state
+        console.log(state)
         socketRef.current.emit("sendMessage", { from_id, message, to_id })
         e.preventDefault()
-        setState({ message: ""})
+        setState({ message: "", from_id: user_id, to_id: to_id})
     }
     const onTextChange = (e) => {
         setState({ ...state, [e.target.name]: e.target.value })
     }
 
     const renderChat = () => {
-        console.log(chat,'chat')
+        // console.log(chat,'chat')
         return chat.map(({from_id,to_id,message}, index) => (
             <div key={index}>
                 <h3>
-                    {from_id}: <span>{message}</span>{to_id}
+                    {from_id}: <span>{message}</span>
                 </h3>
             </div>
         ))
@@ -50,9 +63,10 @@ const Chat = () => {
     return (
         <div>
             <form onSubmit={onMessageSubmit}>
-                <h1>Messanger</h1>
+                <h1>Messenger</h1>
                 <div className='name-field'>
-                    <TextField name='message' onChange={e => onTextChange(e)} value={state.message} label={'Message'}/>
+                    <textarea name='message' onChange={e => onTextChange(e)} value={state.message} label={'Message'}/>
+                    <sendLogo className="Chat-"/>
                 </div>
                 <button>Send Message</button>
             </form>
