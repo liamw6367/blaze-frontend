@@ -82,7 +82,7 @@ const SingleProduct = () => {
       {singleItem ? (
         <div className="single-product wrapper">
           <div className="single-product__details">
-            {corusel()}
+            {singleItem && corusel()}
             <div className="single-product__details-content">
               <h1 className="single-product__details-title">Product Details</h1>
               <h2 className="single-product__details-subtitle">
