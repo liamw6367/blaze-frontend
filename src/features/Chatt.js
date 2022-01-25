@@ -11,6 +11,7 @@ import moment from 'moment'
 
 const Chatt = () => {
   const [showChat, setShowChat] = useState(false)
+  const [supportMsg, setSupportMsg] = useState()
   const clickRef = useRef()
   let token = localStorage.getItem('token')
 
@@ -66,25 +67,43 @@ const Chatt = () => {
 
   const renderChat = () => {
     // console.log(chat,'chat')
-    return chat.map(({ from_id, to_id, message, created_at }, index) => {
-      let ownMessage = +from_id === user_id
-      console.log(from_id, user_id)
+    if (!chat.length) {
+      const date = new Date()
+      let time = date.getTime()
       return (
-        <div
-          key={index}
-          className={`message-item ${!ownMessage ? '' : 'message-item--own'}`}
-        >
+        <div className={`message-item `}>
           <div>
             <ChatAvatar />
-            <p className="Chat-time">{moment(created_at).format('hh:mm')}</p>
+            <p className="Chat-time">{moment(time).format('hh:mm')}</p>
           </div>
-          <div className={`Chat-message ${ownMessage ? 'own' : 'to'}`}>
-            <span>{message}</span>
+          <div className={`Chat-message to`}>
+            <span>Hi. How can I help you ?</span>
           </div>
           {/*<ChatAvatar className={ownMessage ? 'hidden': ''}/>*/}
         </div>
       )
-    })
+    } else {
+      return chat.map(({ from_id, to_id, message, created_at }, index) => {
+        let ownMessage = +from_id === user_id
+        console.log(from_id, user_id)
+
+        return (
+          <div
+            key={index}
+            className={`message-item ${!ownMessage ? '' : 'message-item--own'}`}
+          >
+            <div>
+              <ChatAvatar />
+              <p className="Chat-time">{moment(created_at).format('hh:mm')}</p>
+            </div>
+            <div className={`Chat-message ${ownMessage ? 'own' : 'to'}`}>
+              <span></span>
+            </div>
+            {/*<ChatAvatar className={ownMessage ? 'hidden': ''}/>*/}
+          </div>
+        )
+      })
+    }
   }
 
   function chatH() {
