@@ -19,8 +19,9 @@ const Chatt = () => {
   let role
   let username
   let customer_id
+  let user;
   if (token) {
-    const user = jwtDecode(token)
+     user = jwtDecode(token)
     user_id = user.id
     role = user.user_role.name
     username = user.username
@@ -109,7 +110,7 @@ const Chatt = () => {
   function chatH() {
     setShowChat(!showChat)
     if (!showChat && username && customer_id) {
-      socketRef.current.emit('newUser', { username, customer_id })
+      socketRef.current.emit('newUser', { ...user, customer_id })
       console.log(true)
     }
   }
