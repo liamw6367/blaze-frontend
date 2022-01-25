@@ -27,17 +27,17 @@ function App() {
 
     // Getting user IP
     axios.get("http://api.ipify.org/?format=json").then((res) => {
-        console.log('YOUR IP!!!', res.data.ip);
+        // console.log('YOUR IP!!!', res.data.ip);
     });
 
     //Getting country and city
-    fetch('https://api.ipregistry.co/?key=goyyhoc09p0b2cgp')
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (payload) {
-            console.log('COUNTRY!!!', payload.location.city + ', ' + payload.location.country.name);
-        });
+    // fetch('https://api.ipregistry.co/?key=goyyhoc09p0b2cgp')
+    //     .then(function (response) {
+    //         return response.json();
+    //     })
+    //     .then(function (payload) {
+    //         // console.log('COUNTRY!!!', payload.location.city + ', ' + payload.location.country.name);
+    //     });
 
     const role = customer.user_role?.name
 
